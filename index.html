@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f4f2e9" />
+  <meta name="description" content="一部可以走进去的城堡交互书。探索公元10世纪的城堡，在石墙之间，发现中世纪的生活。" />
+  <title>CASTELLUM · 石墙之内</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <div id="loading" class="loading-screen" aria-live="polite">
+    <div class="loading-castle"><svg viewBox="0 0 120 100" fill="currentColor"><path d="M10 87V39h7V28h8v11h8V28h8v11h7v48ZM46 87V20h8V8h12v12h8v67ZM73 87V39h7V28h8v11h8V28h8v11h7v48Z"/><path d="M27 87V56h64v31Z"/><path d="M54 87V73a6 6 0 0 1 12 0v14Z" fill="#f4f2e9"/></svg></div>
+    <div class="loading-wordmark">CASTELLUM</div><p>正在叩响，千年前的城门</p><div class="loading-track"><span></span></div>
+  </div>
+  <div id="app">
+    <header class="site-header">
+      <button class="brand" id="home-button" aria-label="返回封面"><svg viewBox="0 0 36 42" aria-hidden="true"><path d="M18 1 34 10v21L18 41 2 31V10Z"/><path d="M10 29V16h4v5h2V11h4v10h2v-5h4v13ZM17 29v-5h2v5"/></svg><span>CASTELLUM<small>一部可以走进去的城堡图志</small></span></button>
+      <nav aria-label="主要导航"><button class="nav-link active" id="nav-cover">城堡图志<span>THE BOOK</span></button><button class="nav-link" id="nav-explore">空间探索<span>EXPLORE</span></button><button class="nav-link" id="nav-about">关于本书<span>ABOUT</span></button></nav>
+      <div class="header-edition"><span class="edition-dot"></span>交互典藏版 <span class="edition-number">VOL. 01</span></div>
+    </header>
+    <main class="experience" id="experience">
+      <div id="scene-container" aria-label="可拖动旋转的三维中世纪城堡模型"></div>
+      <div class="scene-vignette"></div>
+      <section class="cover-copy" id="cover-copy">
+        <div class="eyebrow"><span></span> A JOURNEY THROUGH STONE & TIME</div>
+        <p class="chapter-kicker">西欧 · 公元 10 世纪</p>
+        <h1>石墙之内，<br/>一个<span>时代。</span></h1>
+        <p class="cover-description">越过护城河，推开厚重的城门。<br/>在城堡的每一处空间，<br/>读懂防御、信仰与日常交织的中世纪。</p>
+        <button id="enter-button" class="primary-button">走进城堡 <span>EXPLORE THE CASTLE</span><svg viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+        <div class="cover-note"><span class="note-number">Ⅰ</span><div>从一座城堡，认识一个时代<small>建筑 · 生活 · 防御</small></div></div>
+      </section>
+      <div class="model-heading" id="model-heading"><span class="model-heading-rule"></span><span>THE FORTIFIED WORLD</span><small>一座城堡，一方天地</small></div>
+      <div class="compass" aria-hidden="true"><span>N</span><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23"/><path d="M30 4v9m0 34v9M4 30h9m34 0h9"/><path d="m30 17 7 24-7-7-7 7Z" class="compass-needle"/></svg></div>
+      <div class="model-tag" id="model-tag"><span class="tag-cross">+</span><div>西欧封建城堡<small>WESTERN EUROPE · c. 950 AD</small></div><span class="tag-index">01</span></div>
+      <div class="scene-tools" id="scene-tools"><button id="zoom-in" title="放大" aria-label="放大模型">+</button><button id="zoom-out" title="缩小" aria-label="缩小模型">−</button><span></span><button id="reset-view" title="重置视角" aria-label="重置视角"><svg viewBox="0 0 24 24"><path d="M5 9a8 8 0 1 1 0 7M5 4v5h5"/></svg></button><button id="toggle-labels" class="labels-button" title="显示或隐藏区域名称" aria-label="显示区域名称" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 6h16v11H9l-5 4ZM8 10h8m-8 3h5"/></svg></button></div>
+      <div class="explore-heading" id="explore-heading"><button id="back-button"><span>←</span> 返回全貌</button><div class="eyebrow">CHAPTER 01 / SPACES & STORIES</div><h2>城堡里的生活</h2><p>轻触一个空间，翻开它的故事。</p></div>
+      <div id="labels" class="labels"></div>
+      <div id="hover-tooltip" class="hover-tooltip"></div>
+      <aside id="detail-panel" class="detail-panel" aria-label="区域介绍" aria-live="polite"></aside>
+      <div class="explore-empty" id="explore-empty"><span>✧</span><p>每一处空间，都藏着一段日常。</p><small>点击模型上的标记，开始探索</small></div>
+      <div id="graphics-fallback" class="graphics-fallback" hidden><h2>让城堡在这里展开</h2><p>当前浏览器未启用 WebGL，请开启硬件加速后刷新。你仍可从下方空间目录阅读全部介绍。</p></div>
+      <div class="view-mode" id="view-mode"><span class="live-dot"></span><span id="view-mode-text">3D 全景模型</span><span class="view-mode-divider"></span><span id="interaction-hint">拖动旋转 · 滚轮缩放</span></div>
+    </main>
+    <section class="chapter-strip" aria-label="探索主题">
+      <div class="strip-title"><span>THE ANATOMY OF A CASTLE</span><h2>不止是堡垒，也是生活。</h2></div>
+      <button class="chapter-item" data-category="defense"><span class="chapter-number">01</span><div><h3>石墙与守望</h3><p>防御体系 <span>DEFENSE</span></p></div><span class="chapter-arrow">↗</span></button>
+      <button class="chapter-item" data-category="daily"><span class="chapter-number">02</span><div><h3>炉火与日常</h3><p>城堡生活 <span>DAILY LIFE</span></p></div><span class="chapter-arrow">↗</span></button>
+      <button class="chapter-item" data-category="faith"><span class="chapter-number">03</span><div><h3>秩序与信仰</h3><p>精神世界 <span>FAITH & POWER</span></p></div><span class="chapter-arrow">↗</span></button>
+    </section>
+    <section class="space-directory" id="space-directory" hidden><div><span>EXPLORE THE SPACES</span><h2>空间目录</h2></div><div id="directory-filters" class="directory-filters"><button class="active" data-filter="all">全部空间</button><button data-filter="defense">防御</button><button data-filter="daily">日常</button><button data-filter="faith">信仰与秩序</button></div><div id="directory-items" class="directory-items"></div></section>
+    <footer><span>CASTELLUM <i>©</i> 2026</span><p>让历史有空间，让空间有故事。</p><span>一份关于中世纪的空间想象 <span class="footer-star">✳</span></span></footer>
+  </div>
+  <dialog id="about-dialog"><button class="dialog-close" aria-label="关闭关于本书">×</button><span class="eyebrow">BEHIND THE BOOK</span><h2>给历史，一个可以<br/>走进去的空间。</h2><p>CASTELLUM 是一部以建筑为线索的交互图志。用立体模型重新串联城墙、厅堂与院落，让宏大的历史回到具体的生活。</p><p>本卷以公元 10 世纪前后的西欧为叙事背景。模型是为探索而创作的概念复原，并非某一遗址的精确测绘：成熟石砌主堡、圆塔与完整幕墙的组合，也借鉴了 11—13 世纪的城堡形制。10 世纪各地堡垒差异很大，木构防御与土垒仍十分常见。</p><div class="about-colophon">VOL. 01 <span>建筑 · 生活 · 防御</span> c. 950 AD</div></dialog>
+  <input type="file" id="image-upload" accept="image/png,image/jpeg,image/webp,image/avif" hidden />
+  <div class="toast" id="toast" role="status"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
