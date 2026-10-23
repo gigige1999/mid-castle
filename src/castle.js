@@ -385,7 +385,8 @@ export function createCastle(container, callbacks={}){
   });}
  }
  function stageFor(id){return basementIds.includes(id)?'basement':keepIds.includes(id)?'keep':id==='hall'?'hall':'exterior';}
- function setStage(id){activeStage=stageFor(id);controls.enablePan=activeStage==='keep'||activeStage==='basement';controls.minZoom=controls.enablePan?.4:.7;}
+ function setActiveStage(stage){activeStage=stage;controls.enablePan=activeStage==='keep'||activeStage==='basement';controls.minZoom=controls.enablePan?.4:.7;}
+ function setStage(id){setActiveStage(stageFor(id));}
  function walkingSpace(id){return basementIds.includes(id)?'underground':keepIds.includes(id)?'keepfloor':interiorLayouts[id]?id:null;}
  function updateStages(blend){
   for(const [id,groups] of Object.entries(stages)){
@@ -412,20 +413,23 @@ export function createCastle(container, callbacks={}){
  const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
  const coreRooms=Object.fromEntries(Object.entries(interiorLayouts).map(([id,room])=>[id,{...room,center:new THREE.Vector3(...room.center)}]));
  const roofOwners=Object.fromEntries(Object.entries(interiorLayouts).map(([id,room])=>[id,room.roofOwner]));
- let hoverId=null,selectedId=null,focusedId=null,exploring=false,transition=null,transitionSerial=0,openRoofOwner=null,raf,lastTime=0;
+ let hoverId=null,selectedId=null,focusedId=null,exploring=false,transition=null,transitionSerial=0,openRoofOwner=null,previewState=null,raf,lastTime=0;
  let walkingEnabled=true,trackingCharacter=false,orbiting=false,orbitPausedUntil=0,portraitFit=1;
  const walker=createCastleWalker({scene,camera,domElement:renderer.domElement,collisionRoot:world,onStatus:state=>callbacks.onWalkState?.(state)});
  walker.setVisible(false);
- const life=createLifeWorld({scene,camera,collisionRoot:world,onInteract:entity=>interactLife(entity.type,entity.id)});
- function syncWalking(){walker.setEnabled(exploring&&walkingEnabled&&!transition);life.setEnabled(exploring&&!transition);}
+ const life=createLifeWorld({scene,camera,collisionRoot:world,onInteract:entity=>{
+  if(entity.type==='npc'&&callbacks.onLifeSelect)callbacks.onLifeSelect(entity);
+  else interactLife(entity.type,entity.id);
+ }});
+ function syncWalking(){walker.setEnabled(exploring&&walkingEnabled&&!transition&&!previewState);life.setEnabled(exploring&&!transition&&!previewState);}
  function interactLife(type,id){
-  if(!exploring||transition)return false;
+  if(!exploring||transition||previewState)return false;
   const entity=life.getMarkers().find(item=>item.type===type&&item.id===id);
   if(!entity)return false;
   if(!walkingEnabled){walkingEnabled=true;syncWalking();}
   callbacks.onLifeApproach?.({type,id});
   const started=walker.approach(entity.position,()=>{
-   if(!exploring||transition||!life.getMarkers().some(item=>item.type===type&&item.id===id))return;
+   if(!exploring||transition||previewState||!life.getMarkers().some(item=>item.type===type&&item.id===id))return;
    callbacks.onLifeInteract?.({type,id});
   });
   if(!started)callbacks.onLifeBlocked?.('暂时无法靠近，试试从另一侧过去');
@@ -440,19 +444,20 @@ export function createCastle(container, callbacks={}){
   const aspect=Math.max(w/h,.1),half=Math.max(11.65,12.8/aspect);
   portraitFit=half/11.65;controls.maxZoom=5.6*portraitFit;
   camera.left=-half*aspect;camera.right=half*aspect;camera.top=half;camera.bottom=-half;camera.updateProjectionMatrix();
-  if(focusedId)moveTo(corePose(focusedId),450);
+  if(previewState)moveTo(previewPose(previewState.id),450);
+  else if(focusedId)moveTo(corePose(focusedId),450);
  }
  const observer=new ResizeObserver(resize);observer.observe(container);resize();controls.update();
  coverPose=pose();overviewPose=clonePose(coverPose);
- function moveTo(next,duration=950){
+ function moveTo(next,duration=950,notify=previewState?'preview':'arrival'){
   // Flush residual orbit damping so a prior drag cannot fight a scripted camera move.
   controls.autoRotate=false;setHover(null);
   controls.enableDamping=false;controls.update();controls.enableDamping=true;
-  transition={serial:++transitionSerial,settledId:focusedId,start:performance.now(),duration:reduceMotion?1:duration,from:pose(),to:clonePose(next)};
+  transition={serial:++transitionSerial,settledId:notify==='preview'?previewState.id:focusedId,notify,start:performance.now(),duration:reduceMotion?1:duration,from:pose(),to:clonePose(next)};
   syncWalking();
  }
- function corePose(id){
-  const room=coreRooms[id];let zoom=room.zoom*Math.min(1.35,portraitFit);
+ function corePose(id,room=coreRooms[id]){
+  let zoom=room.zoom*Math.min(1.35,portraitFit);
   const direction=new THREE.Vector3(...(room.direction||[.26,.87,.43])).normalize();
   if(room.frameBounds){
    const [x1,z1,x2,z2]=room.frameBounds,right=new THREE.Vector3(direction.z,0,-direction.x).normalize(),up=new THREE.Vector3().crossVectors(direction,right).normalize();
@@ -477,6 +482,40 @@ export function createCastle(container, callbacks={}){
   }
   return{target,pos:target.clone().addScaledVector(direction,40),zoom};
  }
+ function previewPose(id){
+  if(activeStage!=='exterior')return corePose(activeStage==='basement'&&previewState.snapshot.activeStage!=='basement'?'undercroft':id);
+  // The courtyard cutaway uses the actual outer building, before its larger
+  // interior unfolds. Expanded room coordinates belong to a different stage.
+  const isKeep=keepIds.includes(id),center=isKeep?[2.7,3.5,-2.25]:id==='hall'?[3.84,.72,3.32]:interiorLayouts[id].center;
+  return corePose(id,{center:new THREE.Vector3(...center),direction:[.26,.87,.43],zoom:isKeep?2.7:id==='hall'?3:3.3});
+ }
+ function preview(id){
+  if(!exploring||!coreRooms[id])return false;
+  if(!previewState)previewState={id,snapshot:{activeStage,focusedId,selectedId,openRoofOwner,trackingCharacter,pose:clonePose(transition?.to||pose()),overviewPose:clonePose(overviewPose)}};
+  else previewState.id=id;
+  const snapshot=previewState.snapshot,nextStage=stageFor(id);
+  setActiveStage(snapshot.activeStage==='exterior'&&nextStage!=='basement'?'exterior':nextStage);
+  openRoofOwner=activeStage==='exterior'?(keepIds.includes(id)?'keep':id):null;
+  trackingCharacter=false;walker.setVisible(exploring&&activeStage===snapshot.activeStage);life.setHover(null);refreshHighlights();
+  moveTo(previewPose(id),850);
+  return true;
+ }
+ function clearPreview(){
+  if(!previewState)return null;
+  const snapshot=previewState.snapshot;previewState=null;
+  transition=null;++transitionSerial;
+  focusedId=snapshot.focusedId;selectedId=snapshot.selectedId;openRoofOwner=snapshot.openRoofOwner;trackingCharacter=snapshot.trackingCharacter;
+  overviewPose=clonePose(snapshot.overviewPose);setActiveStage(snapshot.activeStage);walker.setVisible(exploring);refreshHighlights();
+  return snapshot;
+ }
+ function cancelPreview(){
+  const snapshot=clearPreview();if(!snapshot)return false;
+  moveTo(snapshot.pose,700,'none');return true;
+ }
+ function finishTransition(current){
+  if(current.notify==='preview')callbacks.onPreviewSettled?.(current.settledId);
+  else if(current.notify!=='none')callbacks.onTransitionEnd?.(current.settledId);
+ }
  function enter(){
   if(exploring)return;
   coverPose=pose();exploring=true;selectedId=null;focusedId=null;openRoofOwner=null;
@@ -485,13 +524,14 @@ export function createCastle(container, callbacks={}){
   moveTo(overviewPose,850);
  }
  function overview(){
-  const wasFocused=Boolean(focusedId)||trackingCharacter;
+  const wasFocused=Boolean(focusedId)||trackingCharacter||Boolean(previewState);clearPreview();
   focusedId=null;openRoofOwner=null;highlight(null);
   setStage(null);
   trackingCharacter=false;walker.setSpace(null);life.setSpace(null);syncWalking();
   if(wasFocused)moveTo(overviewPose,1000);
  }
  function leave(){
+  clearPreview();
   trackingCharacter=false;walker.setVisible(false);
   exploring=false;focusedId=null;openRoofOwner=null;highlight(null);moveTo(coverPose,950);
   setStage(null);
@@ -499,29 +539,31 @@ export function createCastle(container, callbacks={}){
  function select(id){
   if(!id){overview();return;}
   if(!areas[id]&&!expansion.rooms[id])return;
+  const previewSnapshot=clearPreview();
   if(!exploring)enter();
   setStage(id);trackingCharacter=false;walker.setSpace(walkingSpace(id),coreRooms[id]?.entrySpawn);life.setSpace(id);walker.setVisible(true);
   highlight(id);openRoofOwner=roofOwners[id]||null;
   if(coreRooms[id]){
-   if(!focusedId)overviewPose=clonePose(transition?.to||pose());
+   if(!focusedId)overviewPose=clonePose(previewSnapshot?.overviewPose||transition?.to||pose());
    focusedId=id;moveTo(corePose(id),1100);
-  }else if(focusedId){
+  }else if(focusedId||previewSnapshot){
    focusedId=null;moveTo(overviewPose,1000);
   }
  }
  function arrive(id){
   if(!coreRooms[id]){select(id);return;}
+  const previewSnapshot=clearPreview();
   // The first arrival is one continuous move; no intermediate overview animation.
   if(!exploring){
    coverPose=pose();overviewPose=clonePose(coverPose);
    overviewPose.zoom=THREE.MathUtils.clamp(coverPose.zoom*1.18,controls.minZoom,2);
-  }else if(!focusedId)overviewPose=clonePose(transition?.to||pose());
+  }else if(!focusedId)overviewPose=clonePose(previewSnapshot?.overviewPose||transition?.to||pose());
   exploring=true;focusedId=id;openRoofOwner=roofOwners[id]||null;highlight(id);
   setStage(id);trackingCharacter=false;walker.setSpace(walkingSpace(id),coreRooms[id]?.entrySpawn,true);life.setSpace(id);walker.setVisible(true);walker.greet();
   moveTo(corePose(id),1400);
  }
  function findCharacter(){
-  if(!exploring)return;
+  if(!exploring||previewState)return;
   const position=walker.getPosition();if(!position)return;
   if(focusedId&&activeStage!=='basement'&&activeStage!=='keep'){moveTo(corePose(focusedId),600);walker.greet();return;}
   trackingCharacter=true;
@@ -537,6 +579,7 @@ export function createCastle(container, callbacks={}){
  }
  function reset(){
   trackingCharacter=false;
+  if(previewState){moveTo(previewPose(previewState.id));return;}
   if(focusedId){moveTo(corePose(focusedId));return;}
   const next=clonePose(exploring?overviewPose:coverPose);moveTo(next);
  }
@@ -555,7 +598,7 @@ export function createCastle(container, callbacks={}){
    if(exploring&&g.userData.room===hoverId){
     if(!m.userData.hoverMaterial){m.userData.hoverMaterial=m.userData.originalMaterial.clone();m.userData.hoverMaterial.emissive.setHex(0xb88c4b);m.userData.hoverMaterial.emissiveIntensity=.16;}
     m.material=m.userData.hoverMaterial;
-   }else if(g.userData.room===selectedId){
+   }else if(g.userData.room===(previewState?.id||selectedId)){
     if(!m.userData.highlightMaterial){m.userData.highlightMaterial=m.userData.originalMaterial.clone();m.userData.highlightMaterial.emissive.setHex(0x8c6234);m.userData.highlightMaterial.emissiveIntensity=.08;}
     m.material=m.userData.highlightMaterial;
    }else m.material=m.userData.originalMaterial;
@@ -592,8 +635,9 @@ export function createCastle(container, callbacks={}){
   const id=pick(e);
   if(exploring&&activeStage==='exterior'&&id==='undercroft'){callbacks.onSelect?.(id);return;}
   if(exploring&&life.pick(pointer)){callbacks.onHover?.(null);callbacks.onLifeHover?.(null);return;}
-  if(exploring&&walkingEnabled&&walker.handleClick(pointer)){callbacks.onHover?.(null);return;}
+  if(exploring&&walkingEnabled&&walker.handleClick(pointer)){callbacks.onHover?.(null);callbacks.onGroundClick?.();return;}
   if(id){if(exploring)callbacks.onSelect?.(id);else callbacks.onEnter?.();}
+  else if(exploring)callbacks.onGroundClick?.();
  });
  renderer.domElement.addEventListener('pointercancel',e=>{pointers.delete(e.pointerId);tap=null;});
  renderer.domElement.addEventListener('lostpointercapture',e=>{pointers.delete(e.pointerId);});
@@ -603,7 +647,7 @@ export function createCastle(container, callbacks={}){
   const interrupted=transition;transition=null;++transitionSerial;callbacks.onHover?.(null);callbacks.onLifeHover?.(null);
   // Taking control of the camera also completes the pending introduction reveal.
   syncWalking();
-  if(interrupted)callbacks.onTransitionEnd?.(focusedId);
+  if(interrupted)finishTransition(interrupted);
  });
  controls.addEventListener('end',()=>{orbiting=false;orbitPausedUntil=performance.now()+6000;});
  let contextLost=false;
@@ -617,7 +661,7 @@ export function createCastle(container, callbacks={}){
    camera.position.lerpVectors(current.from.pos,current.to.pos,ease);
    controls.target.lerpVectors(current.from.target,current.to.target,ease);
    camera.zoom=THREE.MathUtils.lerp(current.from.zoom,current.to.zoom,ease);camera.updateProjectionMatrix();
-   if(p===1&&current.serial===transitionSerial){transition=null;syncWalking();callbacks.onTransitionEnd?.(current.settledId);}
+   if(p===1&&current.serial===transitionSerial){transition=null;syncWalking();finishTransition(current);}
   }
   const blend=reduceMotion?1:1-Math.exp(-elapsed*6.5);
   for(const g of roofParts){
@@ -645,11 +689,11 @@ export function createCastle(container, callbacks={}){
   callbacks.onFrame?.(project,life.getMarkers());
  }
  raf=requestAnimationFrame(frame);
- return{enter,leave,overview,arrive,zoomIn:()=>zoom(1.17),zoomOut:()=>zoom(1/1.17),reset,select,project,renderer,scene,camera,
-  setCharacterRole(id){walker.setRole(id);walker.setVisible(exploring);syncWalking();},
+ return{enter,leave,overview,arrive,preview,cancelPreview,getPreview:()=>previewState?.id||null,zoomIn:()=>zoom(1.17),zoomOut:()=>zoom(1/1.17),reset,select,project,renderer,scene,camera,
+  setCharacterRole(id){walker.setRole(id);walker.setVisible(exploring&&(!previewState||activeStage===previewState.snapshot.activeStage));syncWalking();},
   setWalking(enabled){walkingEnabled=Boolean(enabled);syncWalking();},
   moveCharacter:(direction,pressed)=>walker.setDirection(direction,pressed),findCharacter,greetCharacter:()=>walker.greet(),
   setLifeState:snapshot=>life.sync(snapshot),isTransitioning:()=>Boolean(transition),interactLife,reactLife:(type,id)=>life.react(type,id),highlightLife:(type,id)=>life.setHover(type,id),getLifeMarkers:()=>life.getMarkers(),
   dispose(){cancelAnimationFrame(raf);observer.disconnect();walker.dispose();life.dispose();expansion.dispose?.();controls.dispose();renderer.dispose();},
-  getStats:()=>({calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,selectedId,focusedId,activeStage})};
+  getStats:()=>({calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,selectedId,focusedId,activeStage,previewId:previewState?.id||null})};
 }

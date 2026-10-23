@@ -9,6 +9,8 @@ import { createQuestBook } from './quests.js';
 import { createLifeState } from './life-state.js';
 import { collectibles, npcs, itemById, npcById } from './life-data.js';
 import { createLifeUI, itemIcon } from './life-ui.js';
+import { createResidentMarkers } from './resident-markers.js';
+import './room-preview.css';
 import './game-shell.css';
 
 const $ = s => document.querySelector(s);
@@ -20,6 +22,7 @@ const images = new Map();
 let model = null, exploring = false, showLabels = false, selected = null, category = 'all', uploadRoom = null, toastTimer;
 const started = performance.now();
 let arrivingRoom=null;
+let previewRoom=null,previewHadDetails=false;
 let walking=true;
 const life=createLifeState();
 const questBook=createQuestBook({life});
@@ -27,7 +30,8 @@ let pendingGuide=null;
 let noticeTimer;
 const lifeUI=createLifeUI({onGift:giveGift,onTalk:talkAgain,onNavigate:guideToRoomItem});
 const lifeLayer=document.createElement('div');lifeLayer.id='life-markers';lifeLayer.className='life-markers';experience.append(lifeLayer);
-const lifeMarkers=[...collectibles.map(item=>({...item,type:'item'})),...npcs.map(npc=>({...npc,type:'npc'}))].map(entity=>{
+const residentMarkers=createResidentMarkers({container:lifeLayer,npcs,onInteract:id=>startLifeInteraction('npc',id),onHighlight:id=>model?.highlightLife(id?'npc':null,id)});
+const lifeMarkers=collectibles.map(item=>({...item,type:'item'})).map(entity=>{
  const el=document.createElement('button');el.className='life-marker';el.dataset.type=entity.type;el.hidden=true;
  el.innerHTML=`<span aria-hidden="true">${entity.type==='item'?itemIcon(entity.id):'⋯'}</span><b>${entity.name}</b><small>${entity.type==='item'?'拾取':'交谈'}</small>`;
  el.setAttribute('aria-label',`${entity.type==='item'?'走近拾取':'走近交谈'}${entity.name}`);
@@ -35,6 +39,12 @@ const lifeMarkers=[...collectibles.map(item=>({...item,type:'item'})),...npcs.ma
  for(const event of ['pointerleave','blur'])el.addEventListener(event,()=>model?.highlightLife(null));
  el.addEventListener('click',()=>startLifeInteraction(entity.type,entity.id));lifeLayer.append(el);return {...entity,el};
 });
+const previewCard=document.createElement('section');previewCard.id='room-preview';previewCard.className='room-preview';previewCard.hidden=true;previewCard.setAttribute('aria-labelledby','preview-title');
+previewCard.innerHTML='<div class="preview-heading"><span>建筑剖面</span><button class="preview-close" aria-label="关闭剖面预览">×</button></div><h2 id="preview-title"></h2><p class="preview-description"></p><div class="preview-actions"><button class="preview-cancel">返回原处</button><button class="preview-enter">确认进入 →</button></div>';
+experience.append(previewCard);
+previewCard.querySelector('.preview-close').addEventListener('click',cancelRoomPreview);
+previewCard.querySelector('.preview-cancel').addEventListener('click',cancelRoomPreview);
+previewCard.querySelector('.preview-enter').addEventListener('click',()=>{if(previewRoom&&!model?.isTransitioning())selectRoom(previewRoom.id);});
 const residency = createResidency({onAssigned:role=>{
  questBook.start(role.id);walking=true;model?.setCharacterRole(role.id);model?.setWalking(true);arriveAtRoom(role.assignedRoom);
 },onReturn:selectRoom});
@@ -44,7 +54,7 @@ function updateAdventure(){
  const role=residency.current,visible=exploring&&Boolean(role)&&Boolean(model);
  $('#resident-adventure').hidden=!visible;
  $('#adventure-actions').hidden=!visible;
- $('#walk-pad').hidden=!visible||!walking||Boolean(arrivingRoom);
+ $('#walk-pad').hidden=!visible||!walking||Boolean(arrivingRoom)||Boolean(previewRoom);
  lifeUI.setVisible(visible);
  if(!role)return;
  questBook.visit(selected||'courtyard');
@@ -89,7 +99,8 @@ function rewardNotice(result,message=result.message){
  if(medals.length){clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>$('#game-notice').classList.remove('visible'),6000);}
 }
 function startLifeInteraction(type,id){
- if(!model||!exploring||arrivingRoom||document.querySelector('dialog[open]'))return false;
+ if(!model||!exploring||arrivingRoom||previewRoom||document.querySelector('dialog[open]'))return false;
+ residentMarkers.close();
  if(!walking){walking=true;model.setWalking(true);updateAdventure();}
  pendingGuide=null;hideDetails();spaceNavigation.close();
  const started=model.interactLife(type,id);
@@ -141,7 +152,7 @@ function settledInRoom(id){finishArrival(id);if(pendingGuide){const target=pendi
 function hideDetails(){panel.classList.remove('open');updateViewState();}
 function goToTask(id){selectRoom(id);hideDetails();spaceNavigation.close();}
 function interact(){
- if(!exploring||arrivingRoom||!model||document.querySelector('dialog[open]'))return;
+ if(!exploring||arrivingRoom||previewRoom||!model||document.querySelector('dialog[open]'))return;
  const state=questBook.state;
  if(state.finished){lifeUI.openBag();return;}
  const task=state.currentTask&&!state.currentTask.completed?state.currentTask:state.nextTask;
@@ -181,7 +192,7 @@ function showPlan(room,photo=false){
 $('#close-plan').addEventListener('click',()=>$('#plan-dialog').close());
 $('#plan-dialog').addEventListener('click',event=>{if(event.target!==$('#plan-dialog'))return;const r=event.target.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)event.target.close();});
 const labelElements = rooms.map(room => {
- const el = document.createElement('button');el.className = 'room-label' + (room.core ? ' core-label' : '');el.innerHTML = `<span class="label-dot"></span>${room.name}${room.core ? '<small>展开 ↗</small>' : ''}`;el.setAttribute('aria-label',`${room.interior ? '放大展开' : '了解'}${room.name}`);el.style.display='none';el.addEventListener('click',()=>selectRoom(room.id));$('#labels').appendChild(el);return {room,el};
+ const el = document.createElement('button');el.className = 'room-label' + (room.core ? ' core-label' : '');el.innerHTML = `<span class="label-dot"></span>${room.name}${room.core ? '<small>展开 ↗</small>' : ''}`;el.setAttribute('aria-label',`${room.interior ? '放大展开' : '了解'}${room.name}`);el.style.display='none';el.addEventListener('click',()=>previewRoomFromScene(room.id));$('#labels').appendChild(el);return {room,el};
 });
 function toast(text){$('#toast').textContent=text;$('#toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('show'),3200);}
 function updateViewState(){
@@ -190,18 +201,21 @@ function updateViewState(){
  experience.classList.toggle('is-exploring',exploring);
  experience.classList.toggle('has-detail',Boolean(room)&&panel.classList.contains('open'));
  experience.classList.toggle('is-room-focused',Boolean(room?.interior));
+ experience.classList.toggle('is-previewing',Boolean(previewRoom));
  $('#room-navigation').hidden=!exploring;
- $('#back-button').hidden=!room;
- $('#room-info').hidden=!room;
+ $('#back-button').hidden=!room&&!previewRoom;
+ $('#back-button').textContent=previewRoom?'← 取消预览':'← 城堡总览';
+ $('#back-button').setAttribute('aria-label',previewRoom?'取消剖面预览':'收起房间，返回城堡总览');
+ $('#room-info').hidden=!room||Boolean(previewRoom);
  $('#room-info').setAttribute('aria-expanded',String(panel.classList.contains('open')));
  $('#nav-cover').classList.toggle('active',!exploring);
  $('#nav-explore').classList.toggle('active',exploring);
  $('#enter-label').textContent=residency.current?'继续我的城堡生活':'开始我的城堡生活';
  $('#enter-button').setAttribute('aria-pressed',String(exploring));
- $('#view-mode-text').textContent=room?.interior?`${room.name} · 展开查看`:exploring?'3D 城堡探索':'3D 全景模型';
- $('#interaction-hint').textContent=['upper','basement'].includes(room?.level)?'房间相通可漫游 · 右键 / 双指平移 · 整层总览查看地图':exploring?'点发光物品拾取 · 点居民交谈 · B 行囊':'';
+ $('#view-mode-text').textContent=previewRoom?`${previewRoom.name} · 剖面预览`:room?.interior?`${room.name} · 展开查看`:exploring?'3D 城堡探索':'3D 全景模型';
+ $('#interaction-hint').textContent=previewRoom?'拖动查看剖面 · 确认后进入房间':['upper','basement'].includes(room?.level)?'房间相通可漫游 · 右键 / 双指平移 · 整层总览查看地图':exploring?'点物品拾取 · 点居民查看 · B 行囊':'';
  $('#toggle-labels').setAttribute('aria-pressed',String(showLabels));
- $('#current-space').textContent=room?`${categories[room.category]} / ${room.name}`:'城堡总览';
+ $('#current-space').textContent=previewRoom?`${previewRoom.name} / 剖面预览`:room?`${categories[room.category]} / ${room.name}`:'城堡总览';
  spaceNavigation.sync({exploring,selected});
  updateAdventure();
  labelElements.forEach(({el,room:r})=>{el.classList.toggle('selected',r.id===selected);el.setAttribute('aria-pressed',String(r.id===selected));});
@@ -213,6 +227,7 @@ function enterCastle(){
  model?.enter();updateViewState();renderDirectory();return true;
 }
 function leaveCastle(){
+ clearPreviewUI();residentMarkers.close();
  pendingGuide=null;lifeUI.close();
  arrivingRoom=null;experience.classList.remove('is-arriving');
  exploring=false;showLabels=false;selected=null;category='all';
@@ -221,14 +236,36 @@ function leaveCastle(){
  model?.leave();updateViewState();
  labelElements.forEach(({el})=>{el.style.display='none';el.classList.remove('dimmed');});
 }
+function clearPreviewUI(){
+ previewRoom=null;previewHadDetails=false;previewCard.hidden=true;experience.classList.remove('is-previewing');
+}
+function previewRoomFromScene(id){
+ const room=rooms.find(r=>r.id===id);if(!room||arrivingRoom)return;
+ if(!room.interior||!model){selectRoom(id);return;}
+ if(!enterCastle())return;
+ const hadDetails=previewRoom?previewHadDetails:panel.classList.contains('open');
+ if(!model.preview(id))return;
+ pendingGuide=null;residentMarkers.close();spaceNavigation.close();tooltip.style.display='none';
+ previewHadDetails=hadDetails;previewRoom=room;panel.classList.remove('open');
+ $('#adventure-body').hidden=true;$('#adventure-toggle').setAttribute('aria-expanded','false');
+ previewCard.querySelector('h2').textContent=room.name;
+ previewCard.querySelector('.preview-description').textContent=room.level==='basement'?'先看看地下层的布局。确认后沿石阶下行。':room.level==='upper'?'屋顶已展开，可以先看主堡内部。确认后进入房间漫游。':'屋顶已展开，可以先看室内陈设。确认后进入房间漫游。';
+ previewCard.querySelector('.preview-enter').disabled=true;previewCard.hidden=false;updateViewState();
+}
+function cancelRoomPreview(){
+ if(!previewRoom)return false;
+ const restore=previewHadDetails;clearPreviewUI();model?.cancelPreview();
+ panel.classList.toggle('open',restore&&Boolean(selected));tooltip.style.display='none';updateViewState();return true;
+}
 function selectRoom(id){
  const room=rooms.find(r=>r.id===id);if(!room)return;
- pendingGuide=null;
+ clearPreviewUI();residentMarkers.close();pendingGuide=null;
  if(!enterCastle())return;arrivingRoom=null;experience.classList.remove('is-arriving');selected=id;model?.select(id);tooltip.style.display='none';
  renderPanel(room);panel.classList.toggle('open',!['gallery','undercroft'].includes(id));updateViewState();renderDirectory();
 }
 function arriveAtRoom(id){
  const room=rooms.find(r=>r.id===id);if(!room)return;
+ clearPreviewUI();residentMarkers.close();
  pendingGuide=null;
  exploring=true;showLabels=false;category='all';directory.hidden=Boolean(model);selected=id;arrivingRoom=id;
  tooltip.style.display='none';panel.classList.remove('open');experience.classList.add('is-arriving');
@@ -242,7 +279,7 @@ function finishArrival(id){
  model?.greetCharacter();updateViewState();gameNotice('钥匙收好。点点发光的物品，把第一份发现装进行囊。');
 }
 function closePanel(){
- pendingGuide=null;
+ cancelRoomPreview();residentMarkers.close();pendingGuide=null;
  if(!selected)return;
  arrivingRoom=null;experience.classList.remove('is-arriving');
  selected=null;panel.classList.remove('open');model?.overview();
@@ -272,6 +309,7 @@ function updateLabels(project,markers=[]){
  updateLifeMarkers(project,markers);
  const mobile=innerWidth<=760;
  const currentRoom=rooms.find(r=>r.id===selected);
+ if(previewRoom){labelElements.forEach(({el})=>el.style.display='none');return;}
  const focused=currentRoom?.interior;
  const connectedFloor=['upper','basement'].includes(currentRoom?.level)?currentRoom.level:null;
  const floorOverview=['gallery','undercroft'].includes(selected);
@@ -304,9 +342,10 @@ function updateLabels(project,markers=[]){
 }
 function updateLifeMarkers(project,markers){
  const available=new Map(markers.map(marker=>[`${marker.type}/${marker.id}`,marker]));
- const blocked=!exploring||arrivingRoom||document.querySelector('dialog[open]')||model?.isTransitioning();
+ const blocked=!exploring||arrivingRoom||previewRoom||document.querySelector('dialog[open]')||model?.isTransitioning();
  const placed=[],mobile=innerWidth<=760,width=experience.clientWidth,height=experience.clientHeight;
  const maxX=width-((panel.classList.contains('open')&&!mobile)?370:15);
+ residentMarkers.sync(project,markers,{visible:exploring&&!rooms.find(r=>r.id===selected)?.interior,maxX,width,height,blocked:Boolean(blocked)||(mobile&&panel.classList.contains('open'))});
  for(const entity of lifeMarkers){
   const marker=available.get(`${entity.type}/${entity.id}`),el=entity.el;
   if(blocked||!marker||(mobile&&panel.classList.contains('open'))){el.hidden=true;continue;}
@@ -321,8 +360,9 @@ function updateLifeMarkers(project,markers){
 }
 
 $('#enter-button').addEventListener('click',()=>exploring?leaveCastle():enterCastle());
-$('#nav-explore').addEventListener('click',()=>{if(enterCastle())spaceNavigation.open();});
-$('#back-button').addEventListener('click',closePanel);
+$('#nav-explore').addEventListener('click',()=>{residentMarkers.close();if(enterCastle())spaceNavigation.open();});
+$('#all-spaces-button').addEventListener('click',()=>residentMarkers.close());
+$('#back-button').addEventListener('click',()=>{if(!cancelRoomPreview())closePanel();});
 $('#room-info').addEventListener('click',()=>{panel.classList.toggle('open');updateViewState();});
 $('#home-button').addEventListener('click',leaveCastle);
 $('#nav-cover').addEventListener('click',leaveCastle);
@@ -332,7 +372,7 @@ $('#reset-view').addEventListener('click',()=>model?.reset());
 $('#toggle-labels').setAttribute('aria-label','显示全部空间标记');
 $('#toggle-labels').title='显示或隐藏全部空间标记';
 $('#toggle-labels').addEventListener('click',()=>{if(!enterCastle())return;showLabels=!showLabels;updateViewState();});
-$('#nav-about').addEventListener('click',()=>$('#about-dialog').showModal());$('#about-dialog .dialog-close').addEventListener('click',()=>$('#about-dialog').close());$('#about-dialog').addEventListener('click',e=>{if(e.target===$('#about-dialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.querySelector('dialog[open]')){spaceNavigation.close();if(panel.classList.contains('open'))hideDetails();else closePanel();}});document.querySelectorAll('[data-category]').forEach(b=>b.addEventListener('click',()=>setCategory(b.dataset.category,true)));document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>setCategory(b.dataset.filter)));
+$('#nav-about').addEventListener('click',()=>$('#about-dialog').showModal());$('#about-dialog .dialog-close').addEventListener('click',()=>$('#about-dialog').close());$('#about-dialog').addEventListener('click',e=>{if(e.target===$('#about-dialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!e.defaultPrevented&&!document.querySelector('dialog[open]')){if(cancelRoomPreview()){e.preventDefault();return;}residentMarkers.close();spaceNavigation.close();if(panel.classList.contains('open'))hideDetails();else closePanel();}});document.querySelectorAll('[data-category]').forEach(b=>b.addEventListener('click',()=>setCategory(b.dataset.category,true)));document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>setCategory(b.dataset.filter)));
 
 let dbPromise;
 function db(){if(!dbPromise)dbPromise=new Promise((resolve,reject)=>{const request=indexedDB.open('castellum-images',1);request.onupgradeneeded=()=>request.result.createObjectStore('images');request.onsuccess=()=>resolve(request.result);request.onerror=()=>{dbPromise=null;reject(request.error);};});return dbPromise;}
@@ -350,9 +390,11 @@ function showHover(text,event){
 }
 try{
  model=createCastle($('#scene-container'),{
-  onEnter:enterCastle,onSelect:selectRoom,onTransitionEnd:settledInRoom,onWalkState:updateWalkingStatus,
+  onEnter:enterCastle,onSelect:previewRoomFromScene,onTransitionEnd:settledInRoom,onWalkState:updateWalkingStatus,
   onHover:(id,event)=>showHover(rooms.find(room=>room.id===id)?.name,event),
-  onLifeHover:(entity,event)=>showHover(entity?`${entity.type==='item'?'拾取':'交谈'} · ${entity.label}`:null,event),
+  onLifeHover:(entity,event)=>showHover(entity?.type==='item'?`拾取 · ${entity.label}`:null,event),
+  onLifeSelect:entity=>residentMarkers.select(entity.id),onGroundClick:()=>residentMarkers.close(),
+  onPreviewSettled:id=>{if(previewRoom?.id===id)previewCard.querySelector('.preview-enter').disabled=false;},
   onLifeInteract:handleLifeInteract,onLifeBlocked:gameNotice,
   onLifeApproach:()=>{if(!walking){walking=true;updateAdventure();}},
   onFrame:updateLabels,onError:handleGraphicsError,
