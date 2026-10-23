@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+<title id="title">马厩平面图</title><desc id="desc">马厩俯视布局：分栏与草料槽、马匹照料区、鞍具架、饮水与清理桶。室内陈设示意 · 依场景布局绘制，非实测图。</desc>
+<defs>
+<pattern id="planks" width=".22" height=".7" patternUnits="userSpaceOnUse"><rect width=".22" height=".7" fill="#ede0c8"/><path d="M0 0V.7M0 .35H.22" fill="none" stroke="#ad9776" stroke-opacity=".23" stroke-width=".006"/></pattern>
+<pattern id="hatch" width=".07" height=".07" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width=".07" height=".07" fill="#ded6c5"/><path d="M0 0V.07" stroke="#9e8a70" stroke-opacity=".45" stroke-width=".01"/></pattern>
+<pattern id="waterlines" width=".4" height=".28" patternUnits="userSpaceOnUse"><rect width=".4" height=".28" fill="#c8dadd"/><path d="M0 .2Q.1 .15 .2 .2T.4 .2" fill="none" stroke="#7f9ba2" stroke-width=".009" opacity=".5"/></pattern>
+</defs>
+<style>
+svg{background:#f8f2e8;color:#655546;font-family:"Songti SC","Noto Serif CJK SC",STSong,serif} .drawing *{stroke:#655546;stroke-width:1.1;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round} .floor{fill:url(#planks)}.masonry{fill:url(#hatch)}.wood{fill:#d6b98f}.timber{fill:#b79972}.stone{fill:#dcd5c4}.paper{fill:#f8f2e8}.linen{fill:#eee4ce}.rug{fill:#c49680}.blue{fill:#b9cdd0}.sage{fill:#bec5aa}.earth{fill:#e9dfca}.soil{fill:#c8b892}.pot{fill:#cbb29c}.brass{fill:#cdb179}.coal{fill:#8d8578}.hay{fill:#ddd1a4}.water{fill:url(#waterlines)}.line,.fine,.outline,.swing,.ripple{fill:none}.fine{stroke-width:.7;opacity:.66}.outline{stroke-width:.8;opacity:.62}.swing{stroke-width:.8;stroke-dasharray:3 3;opacity:.65}.ripple{stroke:#78949a;stroke-width:1.4}.ember{stroke:#d5af86;fill:none}.boundary{stroke-width:5;fill:none;stroke:#9e8b71}.yardpath{fill:none;stroke:#f3ebd9;stroke-width:24;stroke-linecap:butt}.chain{stroke-width:1.5;stroke-dasharray:2 2}.badge{text-anchor:middle;fill:#f8f2e8;font:10px Georgia,serif}.legend{fill:#655546;font-size:14px;letter-spacing:1px}
+</style>
+<rect x="20" y="20" width="760" height="560" rx="2" fill="none" stroke="#b6a48a" stroke-width=".65"/>
+<path d="M20 48V20h28M752 20h28v28M20 552v28h28M752 580h28v-28" fill="none" stroke="#8e795e" stroke-width="1.2"/>
+<text x="55" y="55" font-size="10" letter-spacing="3" fill="#8d7b62">CASTELLUM · SPATIAL ATLAS</text>
+<text x="55" y="95" font-size="28" letter-spacing="4">马厩</text>
+<text x="56" y="116" font-family="Georgia,serif" font-size="10" letter-spacing="1.8" fill="#8d7b62">THE STABLES</text>
+<text x="674" y="57" font-family="Georgia,serif" font-size="11" letter-spacing="2" fill="#8d7b62">PL. 08</text>
+<g transform="translate(728 97)" stroke="#655546" stroke-width=".9"><path d="M0 -10V14M-6 -3L0 -17L6 -3L0 -7Z" fill="#b5a58a"/><text x="0" y="-23" text-anchor="middle" stroke="none" fill="#655546" font-family="Georgia,serif" font-size="10">N</text></g>
+<path d="M55 132H745M55 476H745" stroke="#b9aa93" stroke-width=".7"/>
+<g class="drawing" transform="translate(400 299) scale(115.74803149606299) translate(4.6499999999999995 -1.7400000000000002)"><rect x="-5.62" y="0.5700000000000001" width="1.94" height="2.3400000000000003" rx="0" class="masonry"/>
+<rect x="-5.55" y="0.64" width="1.8" height="2.2" rx="0" class="floor"/>
+<rect x="-5.665" y="0.525" width="2.0300000000000002" height="2.43" rx="0" class="outline"/>
+<rect x="-5.1" y="0.5680000000000001" width="0.36000000000000004" height="0.145" rx="0" class="paper"/>
+<path d="M-5.1 0.605L-4.739999999999999 0.605" class="line"/>
+<path d="M-5.1 0.675L-4.739999999999999 0.675" class="line"/>
+<path d="M-4.92 0.5800000000000001L-4.92 0.7" class="line"/>
+<rect x="-4.343999999999999" y="0.5680000000000001" width="0.324" height="0.145" rx="0" class="paper"/>
+<path d="M-4.343999999999999 0.605L-4.02 0.605" class="line"/>
+<path d="M-4.343999999999999 0.675L-4.02 0.675" class="line"/>
+<path d="M-4.1819999999999995 0.5800000000000001L-4.1819999999999995 0.7" class="line"/>
+<rect x="-4.974" y="2.8150000000000004" width="0.396" height="0.14" rx="0" class="paper"/>
+<path d="M-4.974 2.8400000000000003L-4.974 2.4440000000000004" class="line"/>
+<path d="M-4.974 2.4440000000000004A0.396 0.396 0 0 1 -4.578 2.8400000000000003" class="swing"/>
+<rect x="-5.42" y="0.75" width="1.3" height="0.05" rx="0" class="wood"/>
+<rect x="-5.38" y="0.83" width="0.28" height="0.47" rx="0" class="hay"/>
+<path d="M-5.34 0.87L-5.32 1.23" class="fine"/>
+<path d="M-5.285 0.87L-5.265000000000001 1.23" class="fine"/>
+<path d="M-5.2299999999999995 0.87L-5.21 1.23" class="fine"/>
+<path d="M-5.175 0.87L-5.155 1.23" class="fine"/>
+<rect x="-5.42" y="1.45" width="1.3" height="0.05" rx="0" class="wood"/>
+<rect x="-5.38" y="1.53" width="0.28" height="0.47" rx="0" class="hay"/>
+<path d="M-5.34 1.5699999999999998L-5.32 1.93" class="fine"/>
+<path d="M-5.285 1.5699999999999998L-5.265000000000001 1.93" class="fine"/>
+<path d="M-5.2299999999999995 1.5699999999999998L-5.21 1.93" class="fine"/>
+<path d="M-5.175 1.5699999999999998L-5.155 1.93" class="fine"/>
+<rect x="-5.42" y="2.15" width="1.3" height="0.05" rx="0" class="wood"/>
+<rect x="-5.38" y="2.23" width="0.28" height="0.47" rx="0" class="hay"/>
+<path d="M-5.34 2.27L-5.32 2.63" class="fine"/>
+<path d="M-5.285 2.27L-5.265000000000001 2.63" class="fine"/>
+<path d="M-5.2299999999999995 2.27L-5.21 2.63" class="fine"/>
+<path d="M-5.175 2.27L-5.155 2.63" class="fine"/>
+<ellipse cx="-4.62" cy="1.12" rx="0.13" ry="0.25" class="wood"/>
+<ellipse cx="-4.62" cy="0.8900000000000001" rx="0.075" ry="0.13" class="timber"/>
+<rect x="-4.75" y="1.07" width="0.26" height="0.2" rx="0.02" class="rug"/>
+<path d="M-4.62 1.35q.12 .15 .04 .23" class="line"/>
+<ellipse cx="-4.62" cy="1.83" rx="0.13" ry="0.25" class="wood"/>
+<ellipse cx="-4.62" cy="1.6" rx="0.075" ry="0.13" class="timber"/>
+<rect x="-4.75" y="1.78" width="0.26" height="0.2" rx="0.02" class="rug"/>
+<path d="M-4.62 2.06q.12 .15 .04 .23" class="line"/>
+<circle cx="-4.08" cy="2.56" r="0.1" class="wood"/>
+<circle cx="-4.08" cy="2.56" r="0.08100000000000002" class="fine"/>
+<path d="M-4.149 2.52L-4.011 2.52" class="line"/>
+<path d="M-4.149 2.56L-4.011 2.56" class="line"/>
+<path d="M-4.149 2.6L-4.011 2.6" class="line"/>
+<circle cx="-4.3" cy="2.53" r="0.09" class="pot"/>
+<circle cx="-4.3" cy="2.53" r="0.052199999999999996" class="paper"/>
+<circle cx="-4.3" cy="2.53" r="0.027" class="fine"/>
+<rect x="-4.03" y="1.05" width="0.13" height="1.05" rx="0" class="wood"/>
+<rect x="-4.12" y="1.23" width="0.18" height="0.19" rx="0.035" class="rug"/>
+<rect x="-4.12" y="1.74" width="0.18" height="0.19" rx="0.035" class="rug"/></g><g transform="translate(332.8661417322834 219.1338582677165)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">1</text></g><g transform="translate(403.47244094488184 307.1023622047244)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">2</text></g><g transform="translate(470.60629921259834 266.59055118110234)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">3</text></g><g transform="translate(465.97637795275585 393.9133858267716)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">4</text></g>
+<g transform="translate(90 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">1</text><text class="legend" x="19" y="4">分栏与草料槽</text></g><g transform="translate(425 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">2</text><text class="legend" x="19" y="4">马匹照料区</text></g><g transform="translate(90 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">3</text><text class="legend" x="19" y="4">鞍具架</text></g><g transform="translate(425 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">4</text><text class="legend" x="19" y="4">饮水与清理桶</text></g>
+<text x="400" y="568" text-anchor="middle" font-size="10" letter-spacing="1.1" fill="#91806a">室内陈设示意 · 依场景布局绘制，非实测图</text>
+</svg>

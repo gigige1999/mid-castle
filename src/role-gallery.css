@@ -1,0 +1,49 @@
+.role-dialog.role-register{width:min(1060px,calc(100vw - 56px));padding-top:31px}
+.role-register .role-intro h2{margin-top:10px;font-size:29px}
+.role-register .role-layout{grid-template-columns:minmax(0,1fr) 224px;gap:23px;margin-top:23px}
+.role-register .role-options{position:relative;isolation:isolate;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.role-register .role-option{padding:8px 8px 12px;min-height:188px;align-items:center;justify-content:flex-start;gap:0;overflow:hidden;background:linear-gradient(155deg,#fff9eb88,#eddfc747)}
+.role-register .role-option:hover{transform:none;border-color:#a48a5c;background:#f4e8d3;box-shadow:0 3px 12px #644b2710}
+.role-register .role-option:has(input:checked){background:linear-gradient(155deg,#faf0d8,#e4cfab);border-color:#927044;box-shadow:inset 0 0 0 3px #f8eedb88}
+.role-register .role-option input{z-index:4}
+.role-register .role-option-copy{position:relative;z-index:2;text-align:center}
+.role-register .role-option-copy strong{font-size:14px;letter-spacing:2px}
+.role-register .role-option-copy small{font-size:7px;margin-top:4px;letter-spacing:.7px}
+.role-register .role-option-copy>span{font-size:8px;line-height:1.65;margin-top:7px;max-width:144px;letter-spacing:.2px}
+.role-register .role-check{z-index:2;top:11px;right:11px;height:11px;width:11px}
+.role-character-stage{display:grid;place-items:center;position:relative;width:100%;height:104px;flex-shrink:0;pointer-events:none}
+.role-character-stage:before{content:'';position:absolute;left:12%;right:12%;top:5px;bottom:4px;border-radius:50%;background:radial-gradient(ellipse,#fdf8edaa,transparent 70%)}
+.role-register .role-character-stage .role-symbol{width:52px;height:52px;margin:0;transition:opacity .18s}
+.role-register .has-character-models .role-symbol{opacity:0}
+.role-gallery-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;z-index:1;pointer-events:none}
+.role-register .role-assignment{align-self:stretch;padding:19px 17px;background:linear-gradient(155deg,#e6d4b44d,#d6be9438)}
+.role-register .role-assignment h3{font-size:21px;margin-top:18px;line-height:1.65}
+.role-register .assignment-greeting{font-family:var(--serif);font-size:11px;color:#987448;margin:0 0 11px;line-height:1.8}
+.role-register .assignment-greeting:before{content:'“';font-size:22px;line-height:1;vertical-align:middle;margin-right:3px;color:#b89a6d}
+.role-register .assignment-greeting:after{content:'”';font-size:22px;line-height:1;vertical-align:middle;margin-left:3px;color:#b89a6d}
+.role-register .role-footer{margin-top:20px;padding-top:16px}
+.role-register .role-footer .primary-button{min-width:224px;justify-content:center}
+.role-register .role-footer .primary-button>span{font-size:7px;letter-spacing:.6px}
+@media(max-width:760px){
+ .role-dialog.role-register{width:calc(100vw - 24px);padding:26px 18px 20px}
+ .role-register .role-intro h2{font-size:23px;letter-spacing:1px}
+ .role-register .role-layout{grid-template-columns:minmax(0,1fr);gap:14px;margin-top:18px}
+ .role-register .role-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ .role-register .role-option{min-height:168px;padding:8px 4px 12px;flex-direction:column;align-items:center;justify-content:flex-start}
+ .role-register .role-character-stage{height:108px}
+ .role-register .role-option-copy strong{font-size:12px;letter-spacing:1px}
+ .role-register .role-option-copy small{font-size:6px;letter-spacing:0;margin-top:3px}
+ .role-register .role-option-copy>span{display:none}
+ .role-register .role-check{right:6px;top:7px;width:8px;height:8px}
+ .role-register .role-assignment{padding:14px 16px}
+ .role-register .role-assignment h3{font-size:18px;margin:6px 0 8px}
+ .role-register .role-assignment h3 br{display:none}
+ .role-register .assignment-greeting{font-size:10px;margin-bottom:6px}
+ .role-register .role-footer{bottom:-20px;margin-top:14px}
+}
+@media(max-width:390px){
+ .role-register .role-character-stage{height:96px}
+ .role-register .role-option{min-height:152px}
+ .role-register .role-option-copy small{font-size:5.5px}
+}
+@media(prefers-reduced-motion:reduce){.role-register .role-symbol,.role-register .role-option{transition:none}}

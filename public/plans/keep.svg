@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+<title id="title">卧室平面图</title><desc id="desc">卧室俯视布局：帷幔主床、家人卧榻、木箱与书凳、织毯与烛台。室内陈设示意 · 依场景布局绘制，非实测图。</desc>
+<defs>
+<pattern id="planks" width=".22" height=".7" patternUnits="userSpaceOnUse"><rect width=".22" height=".7" fill="#ede0c8"/><path d="M0 0V.7M0 .35H.22" fill="none" stroke="#ad9776" stroke-opacity=".23" stroke-width=".006"/></pattern>
+<pattern id="hatch" width=".07" height=".07" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width=".07" height=".07" fill="#ded6c5"/><path d="M0 0V.07" stroke="#9e8a70" stroke-opacity=".45" stroke-width=".01"/></pattern>
+<pattern id="waterlines" width=".4" height=".28" patternUnits="userSpaceOnUse"><rect width=".4" height=".28" fill="#c8dadd"/><path d="M0 .2Q.1 .15 .2 .2T.4 .2" fill="none" stroke="#7f9ba2" stroke-width=".009" opacity=".5"/></pattern>
+</defs>
+<style>
+svg{background:#f8f2e8;color:#655546;font-family:"Songti SC","Noto Serif CJK SC",STSong,serif} .drawing *{stroke:#655546;stroke-width:1.1;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round} .floor{fill:url(#planks)}.masonry{fill:url(#hatch)}.wood{fill:#d6b98f}.timber{fill:#b79972}.stone{fill:#dcd5c4}.paper{fill:#f8f2e8}.linen{fill:#eee4ce}.rug{fill:#c49680}.blue{fill:#b9cdd0}.sage{fill:#bec5aa}.earth{fill:#e9dfca}.soil{fill:#c8b892}.pot{fill:#cbb29c}.brass{fill:#cdb179}.coal{fill:#8d8578}.hay{fill:#ddd1a4}.water{fill:url(#waterlines)}.line,.fine,.outline,.swing,.ripple{fill:none}.fine{stroke-width:.7;opacity:.66}.outline{stroke-width:.8;opacity:.62}.swing{stroke-width:.8;stroke-dasharray:3 3;opacity:.65}.ripple{stroke:#78949a;stroke-width:1.4}.ember{stroke:#d5af86;fill:none}.boundary{stroke-width:5;fill:none;stroke:#9e8b71}.yardpath{fill:none;stroke:#f3ebd9;stroke-width:24;stroke-linecap:butt}.chain{stroke-width:1.5;stroke-dasharray:2 2}.badge{text-anchor:middle;fill:#f8f2e8;font:10px Georgia,serif}.legend{fill:#655546;font-size:14px;letter-spacing:1px}
+</style>
+<rect x="20" y="20" width="760" height="560" rx="2" fill="none" stroke="#b6a48a" stroke-width=".65"/>
+<path d="M20 48V20h28M752 20h28v28M20 552v28h28M752 580h28v-28" fill="none" stroke="#8e795e" stroke-width="1.2"/>
+<text x="55" y="55" font-size="10" letter-spacing="3" fill="#8d7b62">CASTELLUM · SPATIAL ATLAS</text>
+<text x="55" y="95" font-size="28" letter-spacing="4">卧室</text>
+<text x="56" y="116" font-family="Georgia,serif" font-size="10" letter-spacing="1.8" fill="#8d7b62">THE LORD’S CHAMBER</text>
+<text x="674" y="57" font-family="Georgia,serif" font-size="11" letter-spacing="2" fill="#8d7b62">PL. 01</text>
+<g transform="translate(728 97)" stroke="#655546" stroke-width=".9"><path d="M0 -10V14M-6 -3L0 -17L6 -3L0 -7Z" fill="#b5a58a"/><text x="0" y="-23" text-anchor="middle" stroke="none" fill="#655546" font-family="Georgia,serif" font-size="10">N</text></g>
+<path d="M55 132H745M55 476H745" stroke="#b9aa93" stroke-width=".7"/>
+<g class="drawing" transform="translate(400 299) scale(131.25) translate(-1.82 3.2699999999999996)"><rect x="0.45" y="-4.29" width="2.74" height="2.04" rx="0" class="masonry"/>
+<rect x="0.52" y="-4.22" width="2.6" height="1.9" rx="0" class="floor"/>
+<rect x="0.405" y="-4.335" width="2.83" height="2.13" rx="0" class="outline"/>
+<rect x="1.17" y="-4.292" width="0.52" height="0.145" rx="0" class="paper"/>
+<path d="M1.17 -4.255L1.69 -4.255" class="line"/>
+<path d="M1.17 -4.185L1.69 -4.185" class="line"/>
+<path d="M1.43 -4.279999999999999L1.43 -4.16" class="line"/>
+<rect x="2.2620000000000005" y="-4.292" width="0.46799999999999997" height="0.145" rx="0" class="paper"/>
+<path d="M2.2620000000000005 -4.255L2.7300000000000004 -4.255" class="line"/>
+<path d="M2.2620000000000005 -4.185L2.7300000000000004 -4.185" class="line"/>
+<path d="M2.4960000000000004 -4.279999999999999L2.4960000000000004 -4.16" class="line"/>
+<rect x="1.352" y="-2.3449999999999998" width="0.42" height="0.14" rx="0" class="paper"/>
+<path d="M1.352 -2.32L1.352 -2.7399999999999998" class="line"/>
+<path d="M1.352 -2.7399999999999998A0.42 0.42 0 0 1 1.772 -2.32" class="swing"/>
+<rect x="1.02" y="-2.725" width="1.7" height="0.29" rx="0" class="rug"/>
+<rect x="1.065" y="-2.68" width="1.6099999999999999" height="0.19999999999999998" rx="0" class="fine"/>
+<path d="M1.06 -2.77L1.06 -2.725" class="fine"/>
+<path d="M1.06 -2.435L1.06 -2.39" class="fine"/>
+<path d="M1.1300000000000001 -2.77L1.1300000000000001 -2.725" class="fine"/>
+<path d="M1.1300000000000001 -2.435L1.1300000000000001 -2.39" class="fine"/>
+<path d="M1.2000000000000002 -2.77L1.2000000000000002 -2.725" class="fine"/>
+<path d="M1.2000000000000002 -2.435L1.2000000000000002 -2.39" class="fine"/>
+<path d="M1.2700000000000002 -2.77L1.2700000000000002 -2.725" class="fine"/>
+<path d="M1.2700000000000002 -2.435L1.2700000000000002 -2.39" class="fine"/>
+<path d="M1.3400000000000003 -2.77L1.3400000000000003 -2.725" class="fine"/>
+<path d="M1.3400000000000003 -2.435L1.3400000000000003 -2.39" class="fine"/>
+<path d="M1.4100000000000004 -2.77L1.4100000000000004 -2.725" class="fine"/>
+<path d="M1.4100000000000004 -2.435L1.4100000000000004 -2.39" class="fine"/>
+<path d="M1.4800000000000004 -2.77L1.4800000000000004 -2.725" class="fine"/>
+<path d="M1.4800000000000004 -2.435L1.4800000000000004 -2.39" class="fine"/>
+<path d="M1.5500000000000005 -2.77L1.5500000000000005 -2.725" class="fine"/>
+<path d="M1.5500000000000005 -2.435L1.5500000000000005 -2.39" class="fine"/>
+<path d="M1.6200000000000006 -2.77L1.6200000000000006 -2.725" class="fine"/>
+<path d="M1.6200000000000006 -2.435L1.6200000000000006 -2.39" class="fine"/>
+<path d="M1.6900000000000006 -2.77L1.6900000000000006 -2.725" class="fine"/>
+<path d="M1.6900000000000006 -2.435L1.6900000000000006 -2.39" class="fine"/>
+<path d="M1.7600000000000007 -2.77L1.7600000000000007 -2.725" class="fine"/>
+<path d="M1.7600000000000007 -2.435L1.7600000000000007 -2.39" class="fine"/>
+<path d="M1.8300000000000007 -2.77L1.8300000000000007 -2.725" class="fine"/>
+<path d="M1.8300000000000007 -2.435L1.8300000000000007 -2.39" class="fine"/>
+<path d="M1.9000000000000008 -2.77L1.9000000000000008 -2.725" class="fine"/>
+<path d="M1.9000000000000008 -2.435L1.9000000000000008 -2.39" class="fine"/>
+<path d="M1.9700000000000009 -2.77L1.9700000000000009 -2.725" class="fine"/>
+<path d="M1.9700000000000009 -2.435L1.9700000000000009 -2.39" class="fine"/>
+<path d="M2.040000000000001 -2.77L2.040000000000001 -2.725" class="fine"/>
+<path d="M2.040000000000001 -2.435L2.040000000000001 -2.39" class="fine"/>
+<path d="M2.1100000000000008 -2.77L2.1100000000000008 -2.725" class="fine"/>
+<path d="M2.1100000000000008 -2.435L2.1100000000000008 -2.39" class="fine"/>
+<path d="M2.1800000000000006 -2.77L2.1800000000000006 -2.725" class="fine"/>
+<path d="M2.1800000000000006 -2.435L2.1800000000000006 -2.39" class="fine"/>
+<path d="M2.2500000000000004 -2.77L2.2500000000000004 -2.725" class="fine"/>
+<path d="M2.2500000000000004 -2.435L2.2500000000000004 -2.39" class="fine"/>
+<path d="M2.3200000000000003 -2.77L2.3200000000000003 -2.725" class="fine"/>
+<path d="M2.3200000000000003 -2.435L2.3200000000000003 -2.39" class="fine"/>
+<path d="M2.39 -2.77L2.39 -2.725" class="fine"/>
+<path d="M2.39 -2.435L2.39 -2.39" class="fine"/>
+<path d="M2.46 -2.77L2.46 -2.725" class="fine"/>
+<path d="M2.46 -2.435L2.46 -2.39" class="fine"/>
+<path d="M2.53 -2.77L2.53 -2.725" class="fine"/>
+<path d="M2.53 -2.435L2.53 -2.39" class="fine"/>
+<path d="M2.5999999999999996 -2.77L2.5999999999999996 -2.725" class="fine"/>
+<path d="M2.5999999999999996 -2.435L2.5999999999999996 -2.39" class="fine"/>
+<path d="M2.6699999999999995 -2.77L2.6699999999999995 -2.725" class="fine"/>
+<path d="M2.6699999999999995 -2.435L2.6699999999999995 -2.39" class="fine"/>
+<rect x="0.835" y="-3.885" width="0.8300000000000001" height="1.27" rx="0.025" class="timber"/>
+<rect x="0.895" y="-3.815" width="0.71" height="1.13" rx="0.025" class="linen"/>
+<rect x="0.9199999999999999" y="-3.7849999999999997" width="0.66" height="0.2318" rx="0.035" class="paper"/>
+<rect x="0.895" y="-3.3232" width="0.71" height="0.5978" rx="0.015" class="rug"/>
+<path d="M0.9299999999999999 -3.2256L1.57 -3.2256" class="line"/>
+<path d="M0.9299999999999999 -2.8108L1.57 -2.8108" class="line"/>
+<circle cx="0.86" cy="-3.86" r="0.027" class="brass"/>
+<circle cx="0.86" cy="-2.64" r="0.027" class="brass"/>
+<circle cx="1.6400000000000001" cy="-3.86" r="0.027" class="brass"/>
+<circle cx="1.6400000000000001" cy="-2.64" r="0.027" class="brass"/>
+<rect x="1.9100000000000001" y="-3.815" width="0.68" height="1.1300000000000001" rx="0.025" class="timber"/>
+<rect x="1.97" y="-3.745" width="0.56" height="0.9900000000000001" rx="0.025" class="linen"/>
+<rect x="1.995" y="-3.715" width="0.51" height="0.20520000000000002" rx="0.035" class="paper"/>
+<rect x="1.97" y="-3.3148" width="0.56" height="0.5292" rx="0.015" class="blue"/>
+<path d="M2.005 -3.2284L2.495 -3.2284" class="line"/>
+<path d="M2.005 -2.8612L2.495 -2.8612" class="line"/>
+<rect x="0.61" y="-2.835" width="0.32" height="0.27" rx="0.02" class="wood"/>
+<path d="M0.6772 -2.835L0.6772 -2.5650000000000004" class="line"/>
+<path d="M0.8628 -2.835L0.8628 -2.5650000000000004" class="line"/>
+<rect x="0.745" y="-2.73" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="2.575" y="-4.15" width="0.39" height="0.3" rx="0.02" class="wood"/>
+<path d="M2.6569 -4.15L2.6569 -3.85" class="line"/>
+<path d="M2.8831 -4.15L2.8831 -3.85" class="line"/>
+<rect x="2.745" y="-4.03" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="2.59" y="-2.84" width="0.34" height="0.32" rx="0" class="wood"/>
+<circle cx="2.77" cy="-2.67" r="0.035" class="brass"/>
+<circle cx="2.77" cy="-2.67" r="0.011" class="paper"/>
+<circle cx="0.77" cy="-2.69" r="0.065" class="pot"/>
+<circle cx="0.77" cy="-2.69" r="0.0377" class="paper"/>
+<circle cx="0.77" cy="-2.69" r="0.0195" class="fine"/>
+<rect x="1.83" y="-4.16" width="0.61" height="0.16" rx="0" class="wood"/>
+<rect x="1.93" y="-4.14" width="0.17" height="0.12" rx="0" class="paper"/>
+<circle cx="2.77" cy="-3.54" r="0.12" class="wood"/>
+<circle cx="2.77" cy="-3.54" r="0.0924" class="fine"/></g><g transform="translate(323.875 317.37499999999994)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">1</text></g><g transform="translate(455.125 318.68749999999994)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">2</text></g><g transform="translate(524.6875 205.81249999999994)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">3</text></g><g transform="translate(410.5 389.56249999999994)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">4</text></g>
+<g transform="translate(90 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">1</text><text class="legend" x="19" y="4">帷幔主床</text></g><g transform="translate(425 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">2</text><text class="legend" x="19" y="4">家人卧榻</text></g><g transform="translate(90 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">3</text><text class="legend" x="19" y="4">木箱与书凳</text></g><g transform="translate(425 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">4</text><text class="legend" x="19" y="4">织毯与烛台</text></g>
+<text x="400" y="568" text-anchor="middle" font-size="10" letter-spacing="1.1" fill="#91806a">室内陈设示意 · 依场景布局绘制，非实测图</text>
+</svg>
