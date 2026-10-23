@@ -4,6 +4,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { interiorLayouts } from './room-layouts.js';
 import { createCastleWalker } from './walking.js';
 import { createLifeWorld } from './life-world.js';
+import { createInteriorExpansion } from './interior-expansion.js';
 
 const C = { stone:0xd3c6ae, light:0xe1d6bf, edge:0xb3a48c, roof:0x69736c, roofLight:0x828b7e, timber:0x806346, wood:0xb99a70, dark:0x403b31, green:0x829064, grass:0xa6ae83, soil:0x8a795c, path:0xd3c09a, water:0x91aca2, flag:0x98594a };
 let seed=812; const random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
@@ -349,6 +350,13 @@ export function createCastle(container, callbacks={}){
  // Flag poles and cloth with a restrained heraldic band.
  function flag(x,y,z){cyl(.025,.03,1.9,x,y+.95,z,M.timber,6);const g=new THREE.PlaneGeometry(.7,.4,12,3);g.translate(.36,0,0);const m=new THREE.Mesh(g,M.flag);m.position.set(x,y+1.52,z);m.rotation.y=.35;world.add(m);flags.push(m);box(.6,.075,.016,x+.33,y+1.52,z+.02,M.cloth);cone(.05,.12,x,y+1.98,z,M.iron,6);}
  flag(5.03,6.76,-4.4);flag(-6.25,4.84,-4.55);flag(1.2,3.9,5.25);
+ // A small cellar hatch makes the lower storey discoverable from the courtyard.
+ area('undercroft',()=>{
+  box(.72,.075,.64,0,.25,0,M.light);box(.54,.035,.48,0,.301,0,M.timber);
+  for(let x=-.2;x<.25;x+=.1)box(.065,.012,.44,x,.326,0,M.wood);
+  for(const z of [-.15,.15])box(.5,.015,.035,0,.339,z,M.iron);
+  const handle=mesh(new THREE.TorusGeometry(.05,.011,5,12),M.iron,.15,.358,.03);handle.rotation.x=Math.PI/2;
+ });
  // Merge static parts per material, preserving each clickable area's identity.
  function optimize(group){const buckets=new Map();group.updateMatrixWorld(true);group.traverse(o=>{if(!o.isMesh)return;const geo=o.geometry.clone();const relative=new THREE.Matrix4().copy(group.matrixWorld).invert().multiply(o.matrixWorld);geo.applyMatrix4(relative);const key=o.material.uuid;if(!buckets.has(key))buckets.set(key,{material:o.material,geos:[]});buckets.get(key).geos.push(geo);});const old=[...group.children];for(const o of old)group.remove(o);for(const {material,geos} of buckets.values()){const merged=mergeGeometries(geos.map(g=>{if(g.index)return g.toNonIndexed();return g;}),false);if(!merged)continue;const m=new THREE.Mesh(merged,material);m.castShadow=true;m.receiveShadow=true;m.userData.room=group.userData.room;group.add(m);for(const g of geos)g.dispose();}}
  optimize(defaultGroup);
@@ -357,7 +365,46 @@ export function createCastle(container, callbacks={}){
   optimize(g);g.userData.baseY=g.position.y;
   for(const m of g.children){m.material=m.material.clone();m.material.transparent=true;m.userData.isRoof=true;}
  }
- const selectableGroups=[...Object.values(areas),...cutawayParts,...roofParts];
+ // Detailed cutaways share the same scene and camera. The outer model dissolves
+ // away so neither terrain nor neighbouring roofs can cover the lower floor.
+ const exterior=new THREE.Group();exterior.name='castle-exterior';
+ for(const child of [...world.children])exterior.add(child);world.add(exterior);
+ const expansion=createInteriorExpansion({THREE,materials:M});world.add(expansion.root);expansion.root.visible=true;
+ const basementIds=['cellar','larder','armory','undercroft'];
+ const stages={exterior:[exterior],keep:[expansion.rooms.keep],hall:[expansion.rooms.hall],basement:basementIds.map(id=>expansion.rooms[id])};
+ let activeStage='exterior';
+ const stageWeights={exterior:1,keep:0,hall:0,basement:0};
+ // Every stage owns its materials: fading masonry must not dim another floor.
+ for(const [id,groups] of Object.entries(stages)){
+  const clones=new Map();
+  for(const group of groups){group.visible=id==='exterior';group.traverse(node=>{
+   if(!node.isMesh)return;
+   const clone=material=>{if(!clones.has(material)){const copy=material.clone();copy.userData.layerOpacity=copy.opacity;copy.userData.layerTransparent=copy.transparent;copy.userData.layerDepthWrite=copy.depthWrite;clones.set(material,copy);}return clones.get(material);};
+   node.material=Array.isArray(node.material)?node.material.map(clone):clone(node.material);
+  });}
+ }
+ function stageFor(id){return basementIds.includes(id)?'basement':id==='keep'||id==='hall'?id:'exterior';}
+ function setStage(id){activeStage=stageFor(id);}
+ function updateStages(blend){
+  for(const [id,groups] of Object.entries(stages)){
+   const before=stageWeights[id];
+   let value=stageWeights[id]=THREE.MathUtils.lerp(before,activeStage===id?1:0,blend);
+   if(value<.003)value=stageWeights[id]=0;else if(value>.997)value=stageWeights[id]=1;
+   if(value===1&&before===1)continue;
+   const visited=new Set();
+   for(const group of groups){group.visible=value>0;if(!value)continue;group.traverse(node=>{
+    if(!node.isMesh)return;
+    for(const material of Array.isArray(node.material)?node.material:[node.material]){
+     if(visited.has(material))continue;visited.add(material);
+     const base=node.userData.isRoof?1-THREE.MathUtils.smoothstep(node.parent.userData.openValue,.1,.9):material.userData.layerOpacity??1;
+     material.opacity=base*value;material.transparent=material.userData.layerTransparent||material.opacity<.999;
+     material.depthWrite=material.userData.layerDepthWrite!==false&&material.opacity>.45;
+    }
+   });}
+  }
+  ground.position.y=THREE.MathUtils.lerp(ground.position.y,activeStage==='basement'?-3.48:-1.63,blend);
+ }
+ const selectableGroups=[...Object.values(areas),...cutawayParts,...roofParts,...Object.values(expansion.rooms)];
  const hitObjects=selectableGroups.flatMap(g=>g.children);
  const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
  const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -403,13 +450,21 @@ export function createCastle(container, callbacks={}){
   syncWalking();
  }
  function corePose(id){
-  const room=coreRooms[id],zoom=room.zoom*Math.min(1.35,portraitFit);
+  const room=coreRooms[id];let zoom=room.zoom*Math.min(1.35,portraitFit);
   const direction=new THREE.Vector3(...(room.direction||[.26,.87,.43])).normalize();
+  if(room.frameBounds){
+   const [x1,z1,x2,z2]=room.frameBounds,right=new THREE.Vector3(direction.z,0,-direction.x).normalize(),up=new THREE.Vector3().crossVectors(direction,right).normalize();
+   const corners=[];for(const x of [x1,x2])for(const z of [z1,z2])for(const y of [room.center.y-.35,room.center.y+1.5])corners.push(new THREE.Vector3(x,y,z));
+   const extent=axis=>Math.max(...corners.map(p=>p.dot(axis)))-Math.min(...corners.map(p=>p.dot(axis)));
+   const desktop=window.innerWidth>760;
+   zoom=Math.min(zoom,(camera.right-camera.left)*(desktop?.60:.87)/extent(right),(camera.top-camera.bottom)*(desktop?.70:.40)/extent(up));
+  }
   const target=room.center.clone();
   if(window.innerWidth>760){
    // Place the room near 45% of the page width, leaving the right-hand description clear.
    const rect=container.getBoundingClientRect(),parent=container.parentElement.getBoundingClientRect();
-   const desiredX=(parent.left+parent.width*.45-rect.left)/Math.max(rect.width,1);
+   const centerFraction=room.frameBounds?(parent.width-Math.min(350,parent.width*.3))/parent.width*.5:.45;
+   const desiredX=(parent.left+parent.width*centerFraction-rect.left)/Math.max(rect.width,1);
    const right=new THREE.Vector3(direction.z,0,-direction.x).normalize();
    target.addScaledVector(right,(.5-desiredX)*(camera.right-camera.left)/zoom);
   }else{
@@ -423,25 +478,27 @@ export function createCastle(container, callbacks={}){
  function enter(){
   if(exploring)return;
   coverPose=pose();exploring=true;selectedId=null;focusedId=null;openRoofOwner=null;
-  trackingCharacter=false;walker.setSpace(null);life.setSpace(null);walker.setVisible(true);
+  setStage(null);trackingCharacter=false;walker.setSpace(null);life.setSpace(null);walker.setVisible(true);
   overviewPose=clonePose(coverPose);overviewPose.zoom=THREE.MathUtils.clamp(coverPose.zoom*1.18,controls.minZoom,2);
   moveTo(overviewPose,850);
  }
  function overview(){
   const wasFocused=Boolean(focusedId)||trackingCharacter;
   focusedId=null;openRoofOwner=null;highlight(null);
+  setStage(null);
   trackingCharacter=false;walker.setSpace(null);life.setSpace(null);syncWalking();
   if(wasFocused)moveTo(overviewPose,1000);
  }
  function leave(){
   trackingCharacter=false;walker.setVisible(false);
   exploring=false;focusedId=null;openRoofOwner=null;highlight(null);moveTo(coverPose,950);
+  setStage(null);
  }
  function select(id){
   if(!id){overview();return;}
-  if(!areas[id])return;
+  if(!areas[id]&&!expansion.rooms[id])return;
   if(!exploring)enter();
-  trackingCharacter=false;walker.setSpace(coreRooms[id]?id:null);life.setSpace(id);walker.setVisible(true);
+  setStage(id);trackingCharacter=false;walker.setSpace(basementIds.includes(id)?'underground':coreRooms[id]?id:null);life.setSpace(id);walker.setVisible(true);
   highlight(id);openRoofOwner=roofOwners[id]||null;
   if(coreRooms[id]){
    if(!focusedId)overviewPose=clonePose(transition?.to||pose());
@@ -458,13 +515,13 @@ export function createCastle(container, callbacks={}){
    overviewPose.zoom=THREE.MathUtils.clamp(coverPose.zoom*1.18,controls.minZoom,2);
   }else if(!focusedId)overviewPose=clonePose(transition?.to||pose());
   exploring=true;focusedId=id;openRoofOwner=roofOwners[id]||null;highlight(id);
-  trackingCharacter=false;walker.setSpace(id);life.setSpace(id);walker.setVisible(true);walker.greet();
+  setStage(id);trackingCharacter=false;walker.setSpace(basementIds.includes(id)?'underground':id);life.setSpace(id);walker.setVisible(true);walker.greet();
   moveTo(corePose(id),1400);
  }
  function findCharacter(){
   if(!exploring)return;
   const position=walker.getPosition();if(!position)return;
-  if(focusedId){moveTo(corePose(focusedId),600);walker.greet();return;}
+  if(focusedId&&activeStage!=='basement'){moveTo(corePose(focusedId),600);walker.greet();return;}
   trackingCharacter=true;
   const target=position.clone().add(new THREE.Vector3(0,.35,0));
   const direction=new THREE.Vector3(.26,.87,.43).normalize();
@@ -506,7 +563,10 @@ export function createCastle(container, callbacks={}){
   const r=renderer.domElement.getBoundingClientRect();
   pointer.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);
   raycaster.setFromCamera(pointer,camera);
-  const available=hitObjects.filter(m=>m.parent.visible&&(!m.userData.isRoof||m.parent.userData.openValue<.08));
+  const available=hitObjects.filter(m=>{
+   let parent=m;while(parent){if(!parent.visible)return false;parent=parent.parent;}
+   return !m.userData.isRoof||m.parent.userData.openValue<.08;
+  });
   return raycaster.intersectObjects(available,false)[0]?.object.userData.room||null;
  }
  const pointers=new Set();let tap=null;
@@ -516,7 +576,7 @@ export function createCastle(container, callbacks={}){
  });
  renderer.domElement.addEventListener('pointermove',e=>{
   if(tap&&Math.hypot(e.clientX-tap.x,e.clientY-tap.y)>6)tap=null;
-  if(pointers.size||e.pointerType==='touch')return;
+  if(pointers.size||e.pointerType==='touch'||transition)return;
   const id=pick(e),entity=exploring?life.hover(pointer):null;
   if(entity){setHover(null);renderer.domElement.style.cursor='pointer';callbacks.onHover?.(null);callbacks.onLifeHover?.(entity,e);return;}
   callbacks.onLifeHover?.(null);
@@ -526,8 +586,9 @@ export function createCastle(container, callbacks={}){
  renderer.domElement.addEventListener('pointerup',e=>{
   const clicked=tap&&tap.id===e.pointerId&&Math.hypot(e.clientX-tap.x,e.clientY-tap.y)<=6;
   pointers.delete(e.pointerId);tap=null;
-  if(!clicked||pointers.size)return;
+  if(!clicked||pointers.size||transition)return;
   const id=pick(e);
+  if(exploring&&activeStage==='exterior'&&id==='undercroft'){callbacks.onSelect?.(id);return;}
   if(exploring&&life.pick(pointer)){callbacks.onHover?.(null);callbacks.onLifeHover?.(null);return;}
   if(exploring&&walkingEnabled&&walker.handleClick(pointer)){callbacks.onHover?.(null);return;}
   if(id){if(exploring)callbacks.onSelect?.(id);else callbacks.onEnter?.();}
@@ -569,6 +630,7 @@ export function createCastle(container, callbacks={}){
    const desired=g.userData.room===openRoofOwner?1:0;
    g.userData.openValue=THREE.MathUtils.lerp(g.userData.openValue,desired,blend);g.scale.y=1-g.userData.openValue*.72;
   }
+  updateStages(blend);
   if(!reduceMotion)for(const f of flags){const p=f.geometry.attributes.position;for(let i=0;i<p.count;i++){const x=p.getX(i);p.setZ(i,Math.sin(x*6+time*.0025)*.055*(x/.7));}p.needsUpdate=true;}
   walker.update(elapsed,time/1000);life.update(elapsed,time/1000);
   if(trackingCharacter&&!transition){
@@ -586,6 +648,6 @@ export function createCastle(container, callbacks={}){
   setWalking(enabled){walkingEnabled=Boolean(enabled);syncWalking();},
   moveCharacter:(direction,pressed)=>walker.setDirection(direction,pressed),findCharacter,greetCharacter:()=>walker.greet(),
   setLifeState:snapshot=>life.sync(snapshot),isTransitioning:()=>Boolean(transition),interactLife,reactLife:(type,id)=>life.react(type,id),highlightLife:(type,id)=>life.setHover(type,id),getLifeMarkers:()=>life.getMarkers(),
-  dispose(){cancelAnimationFrame(raf);observer.disconnect();walker.dispose();life.dispose();controls.dispose();renderer.dispose();},
-  getStats:()=>({calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,selectedId,focusedId})};
+  dispose(){cancelAnimationFrame(raf);observer.disconnect();walker.dispose();life.dispose();expansion.dispose?.();controls.dispose();renderer.dispose();},
+  getStats:()=>({calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,selectedId,focusedId,activeStage})};
 }

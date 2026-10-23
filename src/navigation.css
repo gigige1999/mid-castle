@@ -72,14 +72,80 @@
 .space-navigation-dialog .space-nav-dismiss { min-height: 36px; min-width: 36px; font-size: 25px; }
 .space-navigation-dialog .space-nav-overview { font-size: 12px; min-height: 42px; }
 .space-navigation-dialog .space-nav-foot { font-size: 9px; }
+.floor-navigation {
+  position: absolute;
+  z-index: 6;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 264px;
+  max-width: calc(100% - 36px);
+  color: #856e4c;
+  text-align: center;
+  pointer-events: none;
+}
+.floor-navigation[hidden], .floor-nav-basement[hidden] { display: none; }
+.floor-nav-levels {
+  display: flex;
+  gap: 3px;
+  padding: 4px;
+  border: 1px solid #d5c7ad99;
+  border-radius: 30px;
+  background: #fbf8efed;
+  box-shadow: 0 4px 18px #78634308;
+  backdrop-filter: blur(12px);
+  pointer-events: auto;
+}
+.floor-nav-level {
+  flex: 1;
+  min-width: 0;
+  min-height: 34px;
+  border-radius: 24px;
+  padding: 7px 10px;
+  font-size: 10px;
+  white-space: nowrap;
+  color: #9a876a;
+  transition: background .2s ease, color .2s ease;
+}
+.floor-nav-level > span { margin-right: 7px; font-size: 9px; letter-spacing: .3px; opacity: .75; }
+.floor-nav-level:hover { background: #eee5d3; color: #6f593a; }
+.floor-nav-level[aria-pressed="true"] { background: #67725a; color: #fff9e9; }
+.floor-navigation[data-floor="basement"] .floor-nav-level[aria-pressed="true"] { background: #947448; }
+.floor-nav-level:focus-visible, .floor-nav-room:focus-visible { outline: 2px solid #a18451; outline-offset: 3px; }
+.floor-nav-status { margin: 7px 0 0; font-size: 8px; letter-spacing: .7px; line-height: 1.5; text-shadow: 0 1px 6px #fffdf5, 0 0 8px #fffdf5; }
+.floor-nav-basement { display: flex; justify-content: center; gap: 4px; margin-top: 8px; pointer-events: auto; }
+.floor-nav-room { flex: 1; min-width: 0; min-height: 28px; padding: 5px 6px; border: 1px solid #d8c8ab8c; border-radius: 7px; background: #fbf7ece8; color: #9a8260; font-size: 9px; white-space: nowrap; backdrop-filter: blur(10px); transition: background .2s ease, color .2s ease; }
+.floor-nav-room:hover, .floor-nav-room[aria-pressed="true"] { background: #e9dcc0; border-color: #bda074; color: #725734; }
+@media (min-width: 761px) {
+  #experience.has-detail .floor-navigation { top: 82px; left: calc((100% - 350px) / 2); max-width: calc(100% - 390px); }
+  #experience:has(#adventure-toggle[aria-expanded="true"]) .floor-navigation { top: auto; bottom: calc(136px + env(safe-area-inset-bottom, 0px)); }
+}
+@media (min-width: 761px) and (max-width: 1100px) {
+  .floor-navigation { top: 82px; }
+}
 @media (min-width: 761px) {
   .is-exploring .cover-copy { opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(-12px); }
 }
 @media (max-width: 760px) {
   .space-navigation { display: none; }
   .space-navigation-dialog { padding: 22px 18px 16px; }
+  .floor-navigation { top: 78px; width: 240px; }
+  .floor-nav-level { min-height: 32px; padding: 7px 8px; font-size: 9px; }
+  .floor-nav-level > span { font-size: 8px; margin-right: 6px; }
+  .floor-nav-status { font-size: 7px; margin-top: 5px; }
+  .floor-nav-basement { margin-top: 6px; gap: 3px; }
+  .floor-nav-room { min-height: 28px; font-size: 8px; padding: 5px 3px; }
+  #experience:has(#adventure-toggle[aria-expanded="true"]) .floor-navigation { top: auto; bottom: calc(116px + env(safe-area-inset-bottom, 0px)); left: auto; right: 16px; width: calc(100% - 144px); max-width: 240px; transform: none; }
+  #experience:has(#adventure-toggle[aria-expanded="true"]) .floor-nav-level { padding-left: 2px; padding-right: 2px; }
+  #experience:has(#adventure-toggle[aria-expanded="true"]) .floor-nav-level > span { margin-right: 4px; }
+  #experience.has-detail .floor-navigation { top: 17px; bottom: auto; left: 16px; right: auto; width: 240px; max-width: calc(100% - 76px); transform: none; }
+}
+@media (max-height: 480px) and (orientation: landscape) {
+  #experience .floor-navigation { top: 61px; bottom: auto; left: 17px; right: auto; width: 220px; max-width: calc(100% - 36px); transform: none; }
+  #experience.has-detail .floor-navigation { top: 8px; }
+  #experience:has(#adventure-toggle[aria-expanded="true"]):not(.has-detail) .floor-navigation { top: 61px; bottom: auto; left: auto; right: 17px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .space-navigation,
-  .space-nav-item { transition: none; }
+  .space-nav-item, .floor-nav-level, .floor-nav-room { transition: none; }
 }

@@ -1,3 +1,4 @@
+import { expansionLayouts } from './interior-expansion.js';
 // Shared anchors keep the scene, room labels and room assignments in agreement.
 export const interiorLayouts = {
   keep:     { center: [1.82, 3.55, -3.15], roofOwner: 'keep', roofPosition: [1.82, 6.85, -3.15], zoom: 4.7 },
@@ -14,3 +15,8 @@ export const interiorLayouts = {
   infirmary: { center: [-2.55, .72, 1.65], direction: [.12,.98,.14], roofOwner: 'infirmary', roofPosition: [-2.55, 2.5, 1.65], zoom: 5.2 },
   weavery: { center: [-.85, .72, 3.87], direction: [-.12,.98,-.14], roofOwner: 'weavery', roofPosition: [-.85, 2.4, 3.87], zoom: 5.5 },
 };
+
+for(const [id,{walk,...layout}] of Object.entries(expansionLayouts)){
+  interiorLayouts[id]={...interiorLayouts[id],...layout,roofPosition:interiorLayouts[id]?.roofPosition||layout.center,
+    level:['cellar','larder','armory','undercroft'].includes(id)?'basement':id==='keep'?'upper':'ground'};
+}

@@ -1,10 +1,10 @@
 // Objects sit just above existing furnishings; these anchors are shared with markers.
 export const itemPlacements = {
-  linen: { position: [2.25, 3.95, -3.13], rotation: -.18 },
+  linen: { position: [1.15, 3.95, -4.28], rotation: -.18 },
   candle: { position: [3.55, 4.10, -3.37], rotation: 0 },
   parchment: { position: [1.75, 4.19, -1.12], rotation: -.25 },
   key: { position: [3.62, 3.95, -.85], rotation: .25 },
-  ribbon: { position: [3.4, 1.23, 3.32], rotation: .4 },
+  ribbon: { position: [3.4, 1.23, 2.8], rotation: .4 },
   bread: { position: [4.56, 1.07, 1.55], rotation: -.35 },
   apple: { position: [-4.08, .88, 2.56], rotation: .15 },
   iron: { position: [-3.60, 1.02, 3.94], rotation: .5 },

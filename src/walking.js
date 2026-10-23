@@ -103,7 +103,7 @@ export function createCastleWalker({scene,camera,domElement,collisionRoot=scene,
       else {
         const held=new Set([...keys].map(key=>keyDirections[key]).concat([...touchDirections]));
         let x=Number(held.has('right'))-Number(held.has('left')),z=Number(held.has('up'))-Number(held.has('down'));
-        const speed=space? .63:1.3;
+        const speed=layout.speed??(space? .63:1.3);
         if(x||z){
           camera.getWorldDirection(forward);forward.y=0;if(forward.lengthSq()<.001)forward.set(0,0,-1);forward.normalize();right.crossVectors(forward,up).normalize();direction.copy(forward).multiplyScalar(z).addScaledVector(right,x).normalize();
           moving=tryStep(direction.x*speed*dt,direction.z*speed*dt);if(moving)turnToward(direction.x,direction.z,dt);

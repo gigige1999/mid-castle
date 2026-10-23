@@ -199,7 +199,7 @@ function updateViewState(){
  $('#enter-label').textContent=residency.current?'继续我的城堡生活':'开始我的城堡生活';
  $('#enter-button').setAttribute('aria-pressed',String(exploring));
  $('#view-mode-text').textContent=room?.interior?`${room.name} · 展开查看`:exploring?'3D 城堡探索':'3D 全景模型';
- $('#interaction-hint').textContent=exploring?'点发光物品拾取 · 点居民交谈 · B 行囊':'';
+ $('#interaction-hint').textContent=room?.level==='basement'?'点击石廊行走 · B1 切换房间 · 1F 返回庭院':exploring?'点发光物品拾取 · 点居民交谈 · B 行囊':'';
  $('#toggle-labels').setAttribute('aria-pressed',String(showLabels));
  $('#current-space').textContent=room?`${categories[room.category]} / ${room.name}`:'城堡总览';
  spaceNavigation.sync({exploring,selected});
@@ -252,7 +252,7 @@ function renderPanel(room){
  const image=images.get(room.id);const plan=floorPlans[room.id];const index=rooms.findIndex(r=>r.id===room.id);
  const resident=residency.current;
  const assignment=resident?.assignedRoom===room.id?`<div class="room-assignment-tag">你的分配房间 · ${resident.name}</div>`:resident?.roomIds.includes(room.id)?`<div class="room-assignment-tag">${resident.name}的日常活动空间</div>`:'';
- panel.innerHTML=`<button class="detail-return">← 收起房间，返回城堡总览</button><div class="detail-top"><span>SPACE ${room.number} / THE CASTLE</span><button class="close-detail" aria-label="关闭介绍">×</button></div><h2>${room.name}</h2>${assignment}<p class="detail-english">${room.english}</p><span class="detail-category">${categories[room.category]}</span>${room.interior?'<p class="room-focus-note">房间已展开，可拖动或缩放查看内部陈设。</p>':''}<div class="visual-tabs" role="group" aria-label="空间图片类型"><button class="show-floorplan" aria-pressed="true">空间平面</button><button class="show-photo" aria-pressed="false" ${image?'':'disabled'}>区域图片</button></div><button class="detail-visual is-plan" title="放大${room.name}平面图" aria-label="放大${room.name}平面图"><img alt="${plan.alt}" src="${plan.src}"/></button><div class="image-tools"><button class="enlarge-plan">查看大图 ↗</button><button class="upload-image">${image?'更换图片':'上传图片'}</button>${image?'<button class="remove-image">移除图片</button>':''}</div><p class="plan-footnote">家具与功能布局示意 · 非实测图</p><p class="detail-description">${room.description}</p><div class="detail-facts"><div><span>空间职能</span><strong>${room.role}</strong></div><div><span>空间中的人</span><strong>${room.people}</strong></div></div><p class="detail-tip">${room.note}</p><div class="detail-pager"><button class="prev-room" aria-label="上一个空间">← 上一个空间</button><span>${String(index+1).padStart(2,'0')} / ${String(rooms.length).padStart(2,'0')}</span><button class="next-room" aria-label="下一个空间">下一个空间 →</button></div>`;
+ panel.innerHTML=`<button class="detail-return">← 收起房间，返回城堡总览</button><div class="detail-top"><span>SPACE ${room.number} / THE CASTLE</span><button class="close-detail" aria-label="关闭介绍">×</button></div><h2>${room.name}</h2>${assignment}<p class="detail-english">${room.english}</p><span class="detail-category">${categories[room.category]}</span>${room.interior?`<p class="room-focus-note">${room.level==='basement'?'地下四区由石廊相连，收起介绍后可点击空地漫游。顶部 1F 返回庭院。':['keep','hall'].includes(room.id)?'已展开宽敞的室内剖面，家具之间留出可行走的过道。':'房间已展开，可拖动或缩放查看内部陈设。'}</p>`:''}<div class="visual-tabs" role="group" aria-label="空间图片类型"><button class="show-floorplan" aria-pressed="true">空间平面</button><button class="show-photo" aria-pressed="false" ${image?'':'disabled'}>区域图片</button></div><button class="detail-visual is-plan" title="放大${room.name}平面图" aria-label="放大${room.name}平面图"><img alt="${plan.alt}" src="${plan.src}"/></button><div class="image-tools"><button class="enlarge-plan">查看大图 ↗</button><button class="upload-image">${image?'更换图片':'上传图片'}</button>${image?'<button class="remove-image">移除图片</button>':''}</div><p class="plan-footnote">家具与功能布局示意 · 非实测图</p><p class="detail-description">${room.description}</p><div class="detail-facts"><div><span>空间职能</span><strong>${room.role}</strong></div><div><span>空间中的人</span><strong>${room.people}</strong></div></div><p class="detail-tip">${room.note}</p><div class="detail-pager"><button class="prev-room" aria-label="上一个空间">← 上一个空间</button><span>${String(index+1).padStart(2,'0')} / ${String(rooms.length).padStart(2,'0')}</span><button class="next-room" aria-label="下一个空间">下一个空间 →</button></div>`;
  panel.scrollTop=0;panel.querySelector('.detail-return').addEventListener('click',closePanel);panel.querySelector('.close-detail').addEventListener('click',hideDetails);let photoVisible=false;
  panel.querySelector('.detail-visual').addEventListener('click',()=>showPlan(room,photoVisible));
  panel.querySelector('.enlarge-plan').addEventListener('click',()=>showPlan(room,photoVisible));
@@ -271,7 +271,9 @@ function setCategory(value,selectFirst=false){if(!enterCastle())return;category=
 function updateLabels(project,markers=[]){
  updateLifeMarkers(project,markers);
  const mobile=innerWidth<=760;
- const focused=rooms.find(r=>r.id===selected)?.interior;
+ const currentRoom=rooms.find(r=>r.id===selected);
+ const focused=currentRoom?.interior;
+ const underground=currentRoom?.level==='basement';
  const bounds=experience.getBoundingClientRect();
  const sceneBounds=$('#scene-container').getBoundingClientRect();
  const minLeft=mobile?12:experience.clientWidth*.12;
@@ -280,8 +282,11 @@ function updateLabels(project,markers=[]){
  const maxBottom=experience.clientHeight-160;
  const positions=[];
  labelElements.forEach(({room,el})=>{
-  if(!exploring||focused||(!showLabels&&!room.core&&residency.current?.assignedRoom!==room.id&&selected!==room.id)){el.style.display='none';return;}
-  const position=room.interior&&selected!==room.id?room.roofPosition:room.position;
+  const below=room.level==='basement',entrance=room.id==='undercroft'&&!underground;
+  if(!exploring||(focused&&!underground)||(underground&&!below)||(!underground&&below&&!entrance)||(!underground&&!entrance&&!showLabels&&!room.core&&residency.current?.assignedRoom!==room.id&&selected!==room.id)){el.style.display='none';return;}
+  const name=entrance?'地下入口 ↓':room.name;
+  if(el.dataset.label!==name){el.dataset.label=name;el.innerHTML=`<span class="label-dot"></span>${name}${room.core?'<small>展开 ↗</small>':''}`;el.setAttribute('aria-label',entrance?'沿石阶进入地下层':`展开${room.name}`);}
+  const position=entrance?[0,.6,0]:below?room.position:room.interior&&selected!==room.id?room.roofPosition:room.position;
   const p=project(position);
   if(!p.visible||p.x<Math.max(sceneBounds.left-bounds.left,0)||p.x>maxRight+40||p.y<minTop-35||p.y>maxBottom+35){el.style.display='none';return;}
   const width=room.core?105:room.name.length*(mobile?8:9)+34;

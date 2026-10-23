@@ -26,6 +26,19 @@ function setup(x,y,w,h,interior=true) {
     door(x+w*.32,y+h,Math.min(w*.22,.42));
   }
 }
+function basementSetup(x,y,w,h,openings){
+  setup(x,y,w,h,false);
+  rect(x-.08,y-.08,w+.16,h+.16,'masonry');rect(x,y,w,h,'stone');rect(x-.13,y-.13,w+.26,h+.26,'outline');
+  for(let z=y+.48;z<y+h;z+=.48)line(x,z,x+w,z,'fine');
+  for(let row=0;row<h/.48;row++)for(let xx=x+.48+(row%2)*.48;xx<x+w;xx+=.96)line(xx,y+row*.48,xx,Math.min(y+h,y+(row+1)*.48),'fine');
+  for(const [edge,at] of openings){
+    if(edge==='east'||edge==='west'){
+      const xx=edge==='east'?x+w:x;rect(xx-.15,at-.48,.3,.96,'stone');line(xx-.3,at,xx+.3,at,'swing');
+    }else{
+      const yy=edge==='north'?y:y+h;rect(at-.48,yy-.15,.96,.3,'stone');line(at,yy-.3,at,yy+.3,'swing');
+    }
+  }
+}
 function windowAt(x,y,w){rect(x,y-.072,w,.145,'paper');line(x,y-.035,x+w,y-.035);line(x,y+.035,x+w,y+.035);line(x+w/2,y-.06,x+w/2,y+.06);}
 function door(x,y,w){rect(x,y-.025,w,.14,'paper');line(x,y,x,y-w);path(`M${x} ${y-w}A${w} ${w} 0 0 1 ${x+w} ${y}`,'swing');}
 function bed(x,y,w=.63,d=1.08,royal=false){
@@ -39,9 +52,9 @@ function jar(x,y,r=.07){circle(x,y,r,'pot');circle(x,y,r*.58,'paper');circle(x,y
 function barrel(x,y,r=.16){circle(x,y,r,'wood');circle(x,y,r*.81,'fine');for(const d of [-.4,0,.4])line(x-r*.69,y+d*r,x+r*.69,y+d*r);}
 function shelf(x,y,w=.7,h=.2){rect(x-w/2,y-h/2,w,h,'wood');line(x-w/2+.025,y-h/2+.035,x+w/2-.025,y-h/2+.035);for(let i=0;i<4;i++)jar(x-w*.34+w*.225*i,y+.012,Math.min(h*.28,w*.075));}
 function candle(x,y){circle(x,y,.035,'brass');circle(x,y,.011,'paper');}
-function table(x,y,w,d,feast=false){
+function table(x,y,w,d,feast=false,benches=true){
   rect(x-w/2,y-d/2,w,d,'wood',.025);line(x-w/2+.045,y-d/2+.045,x+w/2-.045,y-d/2+.045);line(x-w/2+.045,y+d/2-.045,x+w/2-.045,y+d/2-.045);
-  for(const dy of [-d*.86,d*.86])rect(x-w/2+.045,y+dy-.065,w-.09,.13,'wood',.02);
+  if(benches)for(const dy of [-d*.86,d*.86])rect(x-w/2+.045,y+dy-.065,w-.09,.13,'wood',.02);
   if(feast){rect(x-w*.37,y-d*.22,w*.74,d*.44,'linen');for(let i=0;i<5;i++){const xx=x-w*.36+i*w*.18;circle(xx,y,.055,'paper');jar(xx,y-d*.32,.023);}candle(x-w*.3,y);candle(x+w*.3,y);}
   else {rect(x-w*.17,y-d*.27,w*.34,d*.54,'paper');path(`M${x-w*.14} ${y}q${w*.08} ${-d*.2} ${w*.12} 0t${w*.12} 0`,'fine');candle(x-w*.4,y);candle(x+w*.4,y);}
 }
@@ -54,11 +67,13 @@ function horse(x,y){ellipse(x,y,.13,.25,'wood');ellipse(x,y-.23,.075,.13,'timber
 
 const drawings = {
   keep(){
-    setup(.52,-4.22,2.6,1.9);rug(1.87,-2.58,1.7,.29);bed(1.25,-3.25,.78,1.22,true);bed(2.25,-3.25);
-    chest(.77,-2.7,.32,.27);chest(2.77,-4,.39,.3);rect(2.59,-2.84,.34,.32,'wood');candle(2.77,-2.67);jar(.77,-2.69,.065);
-    rect(1.83,-4.16,.61,.16,'wood');rect(1.93,-4.14,.17,.12,'paper');stool(2.77,-3.54,.12);
-    mark(1,1.24,-3.13);mark(2,2.24,-3.12);mark(3,2.77,-3.98);mark(4,1.9,-2.58);
-    return ['帷幔主床','家人卧榻','木箱与书凳','织毯与烛台'];
+    setup(-1.4,-6.3,6.4,5);rug(1.05,-2.5,3.2,1.05);rug(3.6,-4.05,1.65,1.8,'blue');
+    bed(-.25,-4.4,1.06,1.95,true);bed(1.15,-4.4,1.06,1.95);
+    chest(-.7,-5.87,1.05,.45);chest(.9,-5.87,1.35,.45);shelf(3.65,-5.86,1.75,.44);
+    hearth(4.52,-4.4,.76,.72);rect(3.875,-3.19,.95,.62,'wood',.025);rect(4.15,-3.05,.3,.34,'paper');line(4.3,-3.04,4.3,-2.72);candle(4.62,-2.85);chair(3.13,-2.95,.48);
+    rect(-1.225,-2.47,1.35,.78,'wood',.02);circle(-.65,-2.08,.26,'brass');circle(-.65,-2.08,.21,'blue');jar(-.13,-2.08,.11);rect(-1.095,-2.205,.27,.31,'linen');
+    mark(1,.45,-4.4);mark(2,.9,-5.87);mark(3,4.35,-2.88);mark(4,-.65,-2.08);
+    return ['帷幔主床与家人卧榻','木箱与沿墙书架','壁炉旁的阅读角','盥洗台与清水盆'];
   },
   chapel(){
     setup(3.275,-4.225,1.65,2.45);rug(4.12,-2.98,.5,1.6,'blue');rect(3.78,-4.07,.68,.42,'stone');rect(3.84,-4.04,.56,.3,'linen');
@@ -78,9 +93,13 @@ const drawings = {
     jar(3.49,-.87,.1);jar(3.72,-.87,.08);mark(1,4.48,-1.46);mark(2,3.61,-1.31);mark(3,3.98,-.42);mark(4,4.61,-.65);return ['陶罐货架','叠放物资箱','酒桶与腌藏桶','食物麻袋'];
   },
   hall(){
-    setup(2.015,2.345,3.65,1.95);rug(3.78,3.32,2.65,1.32);table(3.78,3.32,2.25,.48,true);chair(5.13,3.29,.31);
-    hearth(2.4,2.69,.62);shelf(5.02,2.54,.8,.2);barrel(5.21,3.82,.15);jar(2.42,3.87,.13);stool(2.38,3.43,.115);
-    mark(1,3.78,3.32);mark(2,5.13,3.29);mark(3,2.4,2.69);mark(4,5.02,2.54);return ['长桌、餐具与桌旗','领主主位','石砌壁炉','餐具与酒食架'];
+    setup(.2,0,7.4,5.8);rug(3.9,2.8,5.1,2.7);table(3.9,2.8,3.8,.72,true,false);
+    for(const z of [2.08,3.52])for(const [x1,x2] of [[2,3.05],[3.75,5.8]])rect(x1,z-.13,x2-x1,.26,'wood',.02);
+    hearth(3.9,.6,1.4,.72);shelf(1.55,.48,2.2,.52);shelf(6.18,.47,2.15,.52);
+    rect(6.8,2.15,.6,1.7,'wood',.02);for(const z of [2.4,2.95,3.45]){circle(7.1,z,.16,'brass');circle(7.1,z,.095,'linen');}
+    chest(6.58,5.24,1.44,.5);rect(6.08,5.07,.25,.34,'blue');rect(6.58,5.07,.25,.34,'blue');barrel(.85,5.06,.295);barrel(1.35,5.14,.205);
+    for(const x of [1.1,2.6,5.2,6.7])rect(x-.23,.03,.46,.11,x<3?'rug':'blue');
+    mark(1,3.9,2.8);mark(2,3.9,.6);mark(3,7.1,3);mark(4,1.55,.48);return ['宴会长桌与宽敞通道','石砌壁炉','侍餐台与盛食盘','餐具架与饮食储备'];
   },
   kitchen(){
     setup(4.11,.64,1.6,1.44);hearth(5.17,.95,.58);circle(5.17,.97,.14,'coal');circle(5.17,.97,.105,'pot');line(5.02,.97,5.32,.97);
@@ -145,6 +164,38 @@ const drawings = {
     mark(1,-1.26,3.85);mark(2,-.35,3.44);mark(3,-.225,4.27);mark(4,-.2,4.08);
     return ['木织机与经纬线','染色线团与纱线架','木染盆与染液','布卷与修补用料'];
   },
+  cellar(){
+    basementSetup(-5.6,-4.3,4.9,3.7,[['east',-2.3],['south',-3.175]]);
+    rect(-4.9,-4.07,3.6,.76,'wood');
+    for(const x of [-4.45,-3.57,-2.69,-1.81]){rect(x-.235,-4,.47,.62,'wood',.12);for(const z of [-3.94,-3.69,-3.44])line(x-.235,z,x+.235,z);circle(x,-3.69,.035,'brass');}
+    barrel(-5.08,-2.65,.2625);barrel(-5.08,-1.88,.2625);rect(-2.05,-1.84,1.1,.72,'wood',.02);jar(-1.7,-1.5,.12);jar(-1.3,-1.45,.085);candle(-1.13,-1.58);rect(-3.9,-1.975,1.4,.65,'linen');
+    mark(1,-3.57,-3.69);mark(2,-5.08,-2.65);mark(3,-1.5,-1.48);mark(4,-3.2,-1.1);
+    return ['双层酒桶架','直立储酒桶','量酒器与清点台','通往中央石廊'];
+  },
+  larder(){
+    basementSetup(.7,-4.3,4.9,3.7,[['west',-2.3],['south',3.175]]);
+    rect(1.1,-4.08,3.7,.72,'wood');for(let i=0;i<7;i++){sack(1.4+i*.48,-3.72,.2);jar(1.4+i*.48,-3.98,.08);}
+    for(const z of [-2.7,-2.1,-1.55])sack(5.08,z,.25);
+    rect(1.05,-1.9,1.35,.7,'wood',.02);rect(1.34,-1.725,.72,.35,'timber');for(const x of [1.45,1.65,1.85])circle(x,-1.55,.075,'sage');jar(2.15,-1.6,.09);
+    for(const x of [1.3,2.1,2.9,3.7,4.5]){line(x,-4.27,x,-4.12);ellipse(x,-4.13,.07,.11,'sage');}
+    mark(1,2.85,-3.72);mark(2,5.08,-2.1);mark(3,1.725,-1.55);mark(4,3.175,-1.1);
+    return ['垫高货架、粮袋与陶罐','备用粮袋','分装与清点木案','通往中央石廊'];
+  },
+  armory(){
+    basementSetup(-5.6,.6,4.9,3.7,[['east',2.3],['north',-3.175]]);
+    for(const z of [1.45,2.15,2.85,3.55]){rect(-5.35,z-.21,.5,.42,'wood');line(-5.3,z,-4.85,z);path(`M-4.85 ${z}l-.12 -.07v.14z`,'coal');ellipse(-5.02,z+.17,.16,.21,z<2.5?'rug':'blue');circle(-5.02,z+.17,.045,'coal');}
+    rect(-4.52,3.55,3.2,.5,'wood');for(const x of [-4.15,-3.5,-2.85,-2.2,-1.55]){chest(x,3.8,.5,.38);circle(x,3.81,.115,'coal');line(x,3.7,x,3.92);}
+    rect(-2.08,1.1,1.1,.74,'wood',.02);line(-1.88,1.4,-1.21,1.4);rect(-1.79,1.28,.055,.24,'brass');rect(-1.35,1.42,.2,.3,'linen');
+    mark(1,-5.02,2.15);mark(2,-2.85,3.8);mark(3,-1.53,1.47);mark(4,-3.175,1.05);
+    return ['枪矛架与木盾','装备箱与头盔架','器械整备台','通往中央石廊'];
+  },
+  undercroft(){
+    basementSetup(.7,.6,4.9,3.7,[['west',2.3],['north',3.175]]);
+    rect(4.195,2.565,1.13,1.43,'stone');for(let i=0;i<7;i++)line(4.195,2.57+i*.2,5.325,2.57+i*.2);line(4.24,2.65,4.24,4);line(5.28,2.65,5.28,4);path('M4.76 2.68V3.78m-.12 -.2.12 .2.12 -.2','line');
+    rect(1.15,3.525,2.2,.55,'wood',.02);rect(1.425,3.63,.25,.34,'blue');candle(2.2,3.8);jar(3,3.8,.12);circle(4.65,1.35,.45,'stone');circle(4.65,1.35,.31,'blue');rug(2.45,1.6,1.8,1.1,'blue');
+    mark(1,4.76,3.3);mark(2,2.25,3.8);mark(3,4.65,1.35);mark(4,1.2,2.3);
+    return ['通往地上的石阶','登记木案与照明','石砌蓄水盆','连接三间地窖的石廊'];
+  },
   garden(){
     setup(-1.3,.38,2.64,2.4,false);rect(-1.17,.51,2.37,2.14,'earth');
     for(let x=-1.17;x<1.21;x+=.22){rect(x,.46,.045,.11,'wood');rect(x,2.6,.045,.11,'wood');}for(let y=.51;y<2.66;y+=.22){rect(-1.22,y,.11,.045,'wood');rect(1.15,y,.11,.045,'wood');}
@@ -196,7 +247,7 @@ for(const room of rooms){
   const furniture=pieces.join('\n');
   const badges=marks.map(m=>`<g transform="translate(${x+(m.x-cx)*s} ${y+(m.y-cy)*s})"><circle r="10" fill="${P.ink}" stroke="${P.paper}" stroke-width="2"/><text class="badge" y="3.4">${m.n}</text></g>`).join('');
   const legends=legend.map((label,i)=>{const col=i%2,row=Math.floor(i/2);return `<g transform="translate(${90+col*335} ${510+row*29})"><circle r="9" fill="${P.ink}"/><text class="badge" y="3.4">${i+1}</text><text class="legend" x="19" y="4">${label}</text></g>`;}).join('');
-  const caption=room.interior?'室内陈设示意 · 依场景布局绘制，非实测图':'区域布局示意 · 依场景关系绘制，非实测图';
+  const caption=room.level==='basement'?'地下层陈设示意 · 开口通往中央石廊，非实测图':room.interior?'室内陈设示意 · 依场景布局绘制，非实测图':'区域布局示意 · 依场景关系绘制，非实测图';
   const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
 <title id="title">${esc(room.name)}平面图</title><desc id="desc">${esc(room.name)}俯视布局：${legend.join('、')}。${caption}。</desc>
 <defs>

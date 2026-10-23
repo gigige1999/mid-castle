@@ -6,7 +6,11 @@ const spaceGroups = [
   { name: '厨房与储备', ids: ['kitchen', 'storage', 'granary'] },
   { name: '工艺与劳作', ids: ['forge', 'weavery', 'stable', 'garden'] },
   { name: '院落与防御', ids: ['courtyard', 'barracks', 'gate', 'tower', 'moat'] },
+  { name: '地下与储藏', ids: ['undercroft', 'cellar', 'larder', 'armory'] },
 ];
+
+const basementIds = ['undercroft', 'cellar', 'larder', 'armory'];
+const upperFloorIds = ['keep', 'chapel', 'council', 'storage'];
 
 export function createSpaceNavigation({ rooms, onSelect, onOverview, getAssigned }) {
   const compact = window.matchMedia('(max-width: 760px)');
@@ -29,6 +33,44 @@ export function createSpaceNavigation({ rooms, onSelect, onOverview, getAssigned
   const entries = [];
   const overviewButtons = [];
   const roomsById = new Map(rooms.map(room => [room.id, room]));
+
+  const floorNavigation = element('nav', 'floor-navigation');
+  floorNavigation.setAttribute('aria-label', '城堡楼层导航');
+  floorNavigation.hidden = true;
+  const floorButtons = element('div', 'floor-nav-levels');
+  const floorStatus = element('p', 'floor-nav-status');
+  floorStatus.setAttribute('aria-live', 'polite');
+  const basementLinks = element('div', 'floor-nav-basement');
+  basementLinks.setAttribute('aria-label', '地下空间');
+  const floors = [
+    { id: 'upper', number: '2F', label: '主堡', description: '主堡上层', room: 'keep' },
+    { id: 'ground', number: '1F', label: '庭院', description: '地面城堡', room: null },
+    { id: 'basement', number: 'B1', label: '地下', description: '地下空间', room: 'undercroft' },
+  ].map(floor => {
+    const button = element('button', 'floor-nav-level');
+    button.type = 'button';
+    button.append(element('span', '', floor.number), document.createTextNode(floor.label));
+    button.setAttribute('aria-label', `${floor.number} ${floor.description}`);
+    button.addEventListener('click', () => {
+      close();
+      if (floor.room) onSelect(floor.room);
+      else onOverview();
+    });
+    floorButtons.append(button);
+    return { ...floor, button };
+  });
+  const basementEntries = basementIds.map(id => roomsById.get(id)).filter(Boolean).map(room => {
+    const button = element('button', 'floor-nav-room', room.name);
+    button.type = 'button';
+    button.addEventListener('click', () => {
+      close();
+      onSelect(room.id);
+    });
+    basementLinks.append(button);
+    return { room, button };
+  });
+  floorNavigation.append(floorButtons, floorStatus, basementLinks);
+  document.querySelector('#experience').append(floorNavigation);
 
   function element(tag, className, text) {
     const node = document.createElement(tag);
@@ -104,6 +146,7 @@ export function createSpaceNavigation({ rooms, onSelect, onOverview, getAssigned
     sidebar.classList.toggle('is-open', visible);
     sidebar.inert = !visible;
     sidebar.setAttribute('aria-hidden', String(!visible));
+    floorNavigation.hidden = !exploring;
     if (trigger) {
       trigger.hidden = !exploring;
       trigger.setAttribute('aria-controls', compact.matches ? dialog.id : sidebar.id);
@@ -151,6 +194,15 @@ export function createSpaceNavigation({ rooms, onSelect, onOverview, getAssigned
       if (!selected) button.setAttribute('aria-current', 'location');
       else button.removeAttribute('aria-current');
     });
+    const floorId = basementIds.includes(selected) ? 'basement' : upperFloorIds.includes(selected) ? 'upper' : 'ground';
+    const activeFloor = floors.find(floor => floor.id === floorId);
+    floors.forEach(({ id, button }) => button.setAttribute('aria-pressed', String(id === floorId)));
+    floorNavigation.dataset.floor = floorId;
+    basementLinks.hidden = floorId !== 'basement';
+    basementEntries.forEach(({ room, button }) => button.setAttribute('aria-pressed', String(room.id === selected)));
+    const roomName = roomsById.get(selected)?.name;
+    const statusText = roomName ? `${activeFloor.description} · ${roomName}` : '地面城堡 · 庭院总览';
+    if (floorStatus.textContent !== statusText) floorStatus.textContent = statusText;
     updateVisibility();
   }
 

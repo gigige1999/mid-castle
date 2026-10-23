@@ -1,4 +1,5 @@
 import { npcPlacements } from './life-placements.js';
+import { expansionLayouts, undergroundWalkLayout } from './interior-expansion.js';
 // Walkable floor regions follow the furniture positions in castle.js. Coordinates
 // are world x/z; the small clearance keeps bodies away from furniture and walls.
 const rect=(x1,z1,x2,z2)=>({rect:[x1,z1,x2,z2]});
@@ -72,6 +73,9 @@ export const walkLayouts={
     rect(-1.585,3.53,-.935,4.15),rect(-.6,3.345,-.10,3.535),rect(-.35,4.07,-.05,4.37),
   ],.455,.085),
 };
+
+for(const [id,layout] of Object.entries(expansionLayouts))walkLayouts[id]={...layout.walk,speed:.95};
+walkLayouts.underground={...undergroundWalkLayout,speed:1.15};
 
 function insidePolygon(x,z,points){let inside=false;for(let i=0,j=points.length-1;i<points.length;j=i++){const [ax,az]=points[i],[bx,bz]=points[j];if((az>z)!==(bz>z)&&x<(bx-ax)*(z-az)/(bz-az)+ax)inside=!inside;}return inside;}
 
