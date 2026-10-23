@@ -393,7 +393,7 @@ export function createCastle(container, callbacks={}){
    const before=stageWeights[id];
    let value=stageWeights[id]=THREE.MathUtils.lerp(before,activeStage===id?1:0,blend);
    if(value<.003)value=stageWeights[id]=0;else if(value>.997)value=stageWeights[id]=1;
-   if(value===1&&before===1)continue;
+   if(value===before&&(value===0||value===1))continue;
    const visited=new Set();
    for(const group of groups){group.visible=value>0;if(!value)continue;group.traverse(node=>{
     if(!node.isMesh)return;
@@ -435,7 +435,7 @@ export function createCastle(container, callbacks={}){
   if(!started)callbacks.onLifeBlocked?.('暂时无法靠近，试试从另一侧过去');
   return started;
  }
- let coverPose,overviewPose;
+ let coverPose,overviewPose,projectionBounds;
  function pose(){return{pos:camera.position.clone(),target:controls.target.clone(),zoom:camera.zoom};}
  function clonePose(value){return{pos:value.pos.clone(),target:value.target.clone(),zoom:value.zoom};}
  function resize(){
@@ -449,12 +449,21 @@ export function createCastle(container, callbacks={}){
  }
  const observer=new ResizeObserver(resize);observer.observe(container);resize();controls.update();
  coverPose=pose();overviewPose=clonePose(coverPose);
- function moveTo(next,duration=950,notify=previewState?'preview':'arrival'){
+ function moveTo(next,duration=680,notify=previewState?'preview':'arrival'){
   // Flush residual orbit damping so a prior drag cannot fight a scripted camera move.
   controls.autoRotate=false;setHover(null);
   controls.enableDamping=false;controls.update();controls.enableDamping=true;
-  transition={serial:++transitionSerial,settledId:notify==='preview'?previewState.id:focusedId,notify,start:performance.now(),duration:reduceMotion?1:duration,from:pose(),to:clonePose(next)};
+  const from=pose(),to=clonePose(next);
+  const fromOrbit=new THREE.Spherical().setFromVector3(from.pos.clone().sub(from.target));
+  const toOrbit=new THREE.Spherical().setFromVector3(to.pos.clone().sub(to.target));
+  toOrbit.theta=fromOrbit.theta+THREE.MathUtils.euclideanModulo(toOrbit.theta-fromOrbit.theta+Math.PI,Math.PI*2)-Math.PI;
+  const settledId=notify==='preview'?previewState.id:focusedId??(transition?.notify==='arrival'?transition.settledId:null);
+  transition={serial:++transitionSerial,settledId,notify,start:performance.now(),duration:reduceMotion?1:duration,from,to,fromOrbit,toOrbit};
   syncWalking();
+ }
+ function courtyardPose(){
+  const target=new THREE.Vector3(-.8,.5,.15),direction=new THREE.Vector3(.48,.78,.62).normalize();
+  return{target,pos:target.clone().addScaledVector(direction,40),zoom:1.35*Math.min(1.15,portraitFit)};
  }
  function corePose(id,room=coreRooms[id]){
   let zoom=room.zoom*Math.min(1.35,portraitFit);
@@ -491,13 +500,14 @@ export function createCastle(container, callbacks={}){
  }
  function preview(id){
   if(!exploring||!coreRooms[id])return false;
+  if(previewState?.id===id)return true;
   if(!previewState)previewState={id,snapshot:{activeStage,focusedId,selectedId,openRoofOwner,trackingCharacter,pose:clonePose(transition?.to||pose()),overviewPose:clonePose(overviewPose)}};
   else previewState.id=id;
   const snapshot=previewState.snapshot,nextStage=stageFor(id);
   setActiveStage(snapshot.activeStage==='exterior'&&nextStage!=='basement'?'exterior':nextStage);
   openRoofOwner=activeStage==='exterior'?(keepIds.includes(id)?'keep':id):null;
   trackingCharacter=false;walker.setVisible(exploring&&activeStage===snapshot.activeStage);life.setHover(null);refreshHighlights();
-  moveTo(previewPose(id),850);
+  moveTo(previewPose(id),560);
   return true;
  }
  function clearPreview(){
@@ -510,7 +520,7 @@ export function createCastle(container, callbacks={}){
  }
  function cancelPreview(){
   const snapshot=clearPreview();if(!snapshot)return false;
-  moveTo(snapshot.pose,700,'none');return true;
+  moveTo(snapshot.pose,540,'none');return true;
  }
  function finishTransition(current){
   if(current.notify==='preview')callbacks.onPreviewSettled?.(current.settledId);
@@ -520,20 +530,20 @@ export function createCastle(container, callbacks={}){
   if(exploring)return;
   coverPose=pose();exploring=true;selectedId=null;focusedId=null;openRoofOwner=null;
   setStage(null);trackingCharacter=false;walker.setSpace(null);life.setSpace(null);walker.setVisible(true);
-  overviewPose=clonePose(coverPose);overviewPose.zoom=THREE.MathUtils.clamp(coverPose.zoom*1.18,controls.minZoom,2);
-  moveTo(overviewPose,850);
+  overviewPose=courtyardPose();
+  moveTo(overviewPose,740);
  }
  function overview(){
   const wasFocused=Boolean(focusedId)||trackingCharacter||Boolean(previewState);clearPreview();
   focusedId=null;openRoofOwner=null;highlight(null);
   setStage(null);
   trackingCharacter=false;walker.setSpace(null);life.setSpace(null);syncWalking();
-  if(wasFocused)moveTo(overviewPose,1000);
+  if(wasFocused)moveTo(overviewPose,620);
  }
  function leave(){
   clearPreview();
   trackingCharacter=false;walker.setVisible(false);
-  exploring=false;focusedId=null;openRoofOwner=null;highlight(null);moveTo(coverPose,950);
+  exploring=false;focusedId=null;openRoofOwner=null;highlight(null);moveTo(coverPose,680);
   setStage(null);
  }
  function select(id){
@@ -545,22 +555,27 @@ export function createCastle(container, callbacks={}){
   highlight(id);openRoofOwner=roofOwners[id]||null;
   if(coreRooms[id]){
    if(!focusedId)overviewPose=clonePose(previewSnapshot?.overviewPose||transition?.to||pose());
-   focusedId=id;moveTo(corePose(id),1100);
+   focusedId=id;moveTo(corePose(id),680);
   }else if(focusedId||previewSnapshot){
-   focusedId=null;moveTo(overviewPose,1000);
+   focusedId=null;moveTo(overviewPose,620);
   }
  }
  function arrive(id){
+  if(id==='courtyard'){
+   clearPreview();if(!exploring)coverPose=pose();
+   exploring=true;focusedId=null;openRoofOwner=null;highlight(null);setStage(null);trackingCharacter=false;
+   walker.setSpace(null,undefined,true);life.setSpace(null);walker.setVisible(true);walker.greet();
+   overviewPose=courtyardPose();moveTo(overviewPose,740);transition.settledId='courtyard';return;
+  }
   if(!coreRooms[id]){select(id);return;}
   const previewSnapshot=clearPreview();
   // The first arrival is one continuous move; no intermediate overview animation.
   if(!exploring){
-   coverPose=pose();overviewPose=clonePose(coverPose);
-   overviewPose.zoom=THREE.MathUtils.clamp(coverPose.zoom*1.18,controls.minZoom,2);
+   coverPose=pose();overviewPose=courtyardPose();
   }else if(!focusedId)overviewPose=clonePose(previewSnapshot?.overviewPose||transition?.to||pose());
   exploring=true;focusedId=id;openRoofOwner=roofOwners[id]||null;highlight(id);
   setStage(id);trackingCharacter=false;walker.setSpace(walkingSpace(id),coreRooms[id]?.entrySpawn,true);life.setSpace(id);walker.setVisible(true);walker.greet();
-  moveTo(corePose(id),1400);
+  moveTo(corePose(id),760);
  }
  function findCharacter(){
   if(!exploring||previewState)return;
@@ -583,7 +598,9 @@ export function createCastle(container, callbacks={}){
   if(focusedId){moveTo(corePose(focusedId));return;}
   const next=clonePose(exploring?overviewPose:coverPose);moveTo(next);
  }
- function project(position){const v=new THREE.Vector3(...position).project(camera);const r=container.getBoundingClientRect(),p=container.parentElement.getBoundingClientRect();return{x:(v.x*.5+.5)*r.width+r.left-p.left,y:(-v.y*.5+.5)*r.height+r.top-p.top,visible:v.z<1&&v.z>-1};}
+ function measureProjection(){projectionBounds={scene:container.getBoundingClientRect(),parent:container.parentElement.getBoundingClientRect()};}
+ const projectedPoint=new THREE.Vector3();
+ function project(position){if(!projectionBounds)measureProjection();const v=projectedPoint.set(...position).project(camera),{scene:r,parent:p}=projectionBounds;return{x:(v.x*.5+.5)*r.width+r.left-p.left,y:(-v.y*.5+.5)*r.height+r.top-p.top,visible:v.z<1&&v.z>-1};}
  function highlight(id){
   selectedId=id;
   refreshHighlights();
@@ -615,55 +632,63 @@ export function createCastle(container, callbacks={}){
   return raycaster.intersectObjects(available,false)[0]?.object.userData.room||null;
  }
  const pointers=new Set();let tap=null;
+ function interruptCamera(){
+  trackingCharacter=false;orbitPausedUntil=performance.now()+6000;controls.autoRotate=false;setHover(null);life.setHover(null);
+  const interrupted=transition;transition=null;++transitionSerial;callbacks.onHover?.(null);callbacks.onLifeHover?.(null);
+  syncWalking();if(interrupted)finishTransition(interrupted);
+ }
  renderer.domElement.addEventListener('pointerdown',e=>{
   pointers.add(e.pointerId);
   tap=pointers.size===1&&e.button===0?{id:e.pointerId,x:e.clientX,y:e.clientY}:null;
- });
+  if(pointers.size>1)interruptCamera();
+ },{capture:true});
  renderer.domElement.addEventListener('pointermove',e=>{
-  if(tap&&Math.hypot(e.clientX-tap.x,e.clientY-tap.y)>6)tap=null;
+  if(pointers.size&&(!tap||Math.hypot(e.clientX-tap.x,e.clientY-tap.y)>6)){tap=null;if(transition||trackingCharacter)interruptCamera();}
   if(pointers.size||e.pointerType==='touch'||transition)return;
   const id=pick(e),entity=exploring?life.hover(pointer):null;
   if(entity){setHover(null);renderer.domElement.style.cursor='pointer';callbacks.onHover?.(null);callbacks.onLifeHover?.(entity,e);return;}
   callbacks.onLifeHover?.(null);
   setHover(exploring?id:null);renderer.domElement.style.cursor=id?'pointer':'grab';
   callbacks.onHover?.(exploring?id:null,e);
- });
+ },{capture:true});
  renderer.domElement.addEventListener('pointerup',e=>{
   const clicked=tap&&tap.id===e.pointerId&&Math.hypot(e.clientX-tap.x,e.clientY-tap.y)<=6;
   pointers.delete(e.pointerId);tap=null;
-  if(!clicked||pointers.size||transition)return;
+  if(!clicked||pointers.size)return;
+  if(transition)interruptCamera();
   const id=pick(e);
-  if(exploring&&activeStage==='exterior'&&id==='undercroft'){callbacks.onSelect?.(id);return;}
-  if(exploring&&life.pick(pointer)){callbacks.onHover?.(null);callbacks.onLifeHover?.(null);return;}
-  if(exploring&&walkingEnabled&&walker.handleClick(pointer)){callbacks.onHover?.(null);callbacks.onGroundClick?.();return;}
-  if(id){if(exploring)callbacks.onSelect?.(id);else callbacks.onEnter?.();}
+  if(exploring&&activeStage==='exterior'&&id==='undercroft'){callbacks.onTap?.(e);callbacks.onSelect?.(id);return;}
+  if(exploring&&life.pick(pointer)){callbacks.onTap?.(e);callbacks.onHover?.(null);callbacks.onLifeHover?.(null);return;}
+  if(exploring&&walkingEnabled&&walker.handleClick(pointer)){callbacks.onTap?.(e);callbacks.onHover?.(null);callbacks.onGroundClick?.();return;}
+  if(id){callbacks.onTap?.(e);if(exploring)callbacks.onSelect?.(id);else callbacks.onEnter?.();}
   else if(exploring)callbacks.onGroundClick?.();
  });
  renderer.domElement.addEventListener('pointercancel',e=>{pointers.delete(e.pointerId);tap=null;});
  renderer.domElement.addEventListener('lostpointercapture',e=>{pointers.delete(e.pointerId);});
  renderer.domElement.addEventListener('pointerleave',()=>{setHover(null);life.setHover(null);renderer.domElement.style.cursor='grab';callbacks.onHover?.(null);callbacks.onLifeHover?.(null);});
  controls.addEventListener('start',()=>{
-  trackingCharacter=false;orbiting=true;orbitPausedUntil=performance.now()+6000;controls.autoRotate=false;setHover(null);life.setHover(null);
-  const interrupted=transition;transition=null;++transitionSerial;callbacks.onHover?.(null);callbacks.onLifeHover?.(null);
-  // Taking control of the camera also completes the pending introduction reveal.
-  syncWalking();
-  if(interrupted)finishTransition(interrupted);
+  orbiting=true;controls.autoRotate=false;
+  // Pointerdown alone is a tap, not a request to stop the camera. A real drag,
+  // pinch, wheel gesture or accepted click takes over at its current position.
+  if(!pointers.size)interruptCamera();
  });
  controls.addEventListener('end',()=>{orbiting=false;orbitPausedUntil=performance.now()+6000;});
  let contextLost=false;
  renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();contextLost=true;callbacks.onError?.();});
  renderer.domElement.addEventListener('webglcontextrestored',()=>{contextLost=false;callbacks.onRestored?.();});
+ const cameraOrbit=new THREE.Spherical(),cameraOffset=new THREE.Vector3();
  function frame(time){
   raf=requestAnimationFrame(frame);if(document.hidden||contextLost){lastTime=time;return;}
   const elapsed=Math.min((time-(lastTime||time))/1000,.05);lastTime=time;
   if(transition){
-   const current=transition,p=Math.min((time-current.start)/current.duration,1),ease=p*p*p*(p*(p*6-15)+10);
-   camera.position.lerpVectors(current.from.pos,current.to.pos,ease);
+   const current=transition,p=Math.min((time-current.start)/current.duration,1),ease=1-Math.pow(1-p,3);
    controls.target.lerpVectors(current.from.target,current.to.target,ease);
+   cameraOrbit.set(THREE.MathUtils.lerp(current.fromOrbit.radius,current.toOrbit.radius,ease),THREE.MathUtils.lerp(current.fromOrbit.phi,current.toOrbit.phi,ease),THREE.MathUtils.lerp(current.fromOrbit.theta,current.toOrbit.theta,ease));
+   camera.position.copy(controls.target).add(cameraOffset.setFromSpherical(cameraOrbit));
    camera.zoom=THREE.MathUtils.lerp(current.from.zoom,current.to.zoom,ease);camera.updateProjectionMatrix();
-   if(p===1&&current.serial===transitionSerial){transition=null;syncWalking();finishTransition(current);}
+   if(p===1&&current.serial===transitionSerial){camera.position.copy(current.to.pos);transition=null;syncWalking();finishTransition(current);}
   }
-  const blend=reduceMotion?1:1-Math.exp(-elapsed*6.5);
+  const blend=reduceMotion?1:1-Math.exp(-elapsed*9);
   for(const g of roofParts){
    const desired=g.userData.room===openRoofOwner?1:0;
    g.userData.openValue=THREE.MathUtils.lerp(g.userData.openValue,desired,blend);
@@ -686,7 +711,8 @@ export function createCastle(container, callbacks={}){
   controls.autoRotate=!exploring&&!reduceMotion&&!transition&&!orbiting&&time>=orbitPausedUntil&&!document.querySelector('#role-dialog[open]');
   controls.update(elapsed);
   if(!document.querySelector('#role-dialog[open]')||transition)renderer.render(scene,camera);
-  callbacks.onFrame?.(project,life.getMarkers());
+  // Measure once before marker writes; per-marker layout reads stall animation.
+  measureProjection();callbacks.onFrame?.(project,life.getMarkers());
  }
  raf=requestAnimationFrame(frame);
  return{enter,leave,overview,arrive,preview,cancelPreview,getPreview:()=>previewState?.id||null,zoomIn:()=>zoom(1.17),zoomOut:()=>zoom(1/1.17),reset,select,project,renderer,scene,camera,

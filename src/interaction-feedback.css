@@ -1,0 +1,17 @@
+/* Independent scale keeps the existing camera HUD positioning intact. */
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.scene-tap-feedback{position:absolute;width:32px;height:32px;margin:-16px 0 0 -16px;border:1.5px solid #b9995c;border-radius:50%;background:#fff6d41f;box-shadow:0 0 0 5px #fff9e52b;z-index:6;pointer-events:none}
+.scene-tap-feedback::after{content:'';position:absolute;inset:12px;border-radius:50%;background:#fff9e1;box-shadow:0 0 6px #b9995c77}
+body :is(.room-navigation button,.scene-tools button,.floor-navigation button,.space-nav-item,.space-nav-overview,.room-label,.life-marker,#adventure-actions button,#confirm-role,.role-option,#enter-button){
+ transition:background .16s,color .16s,border-color .16s,box-shadow .18s,opacity .2s,scale .2s cubic-bezier(.2,.8,.2,1),transform .24s cubic-bezier(.2,.8,.2,1),bottom .3s;
+}
+body :is(.room-navigation button,.scene-tools button,.floor-navigation button,.space-nav-item,.space-nav-overview,.room-label,.life-marker,#adventure-actions button,#confirm-role,.role-option,#enter-button):active:not(:disabled){
+ scale:.96;transition-duration:.07s;
+}
+body :is(.floor-navigation button,.space-nav-item,.space-nav-overview,.room-navigation button):focus-visible{
+ outline:2px solid #a78c62;outline-offset:3px;
+}
+@media(prefers-reduced-motion:reduce){
+ body :is(.room-navigation button,.scene-tools button,.floor-navigation button,.space-nav-item,.space-nav-overview,.room-label,.life-marker,#adventure-actions button,#confirm-role,.role-option,#enter-button){transition:none}
+ body :is(.room-navigation button,.scene-tools button,.floor-navigation button,.space-nav-item,.space-nav-overview,.room-label,.life-marker,#adventure-actions button,#confirm-role,.role-option,#enter-button):active:not(:disabled){scale:1}
+}

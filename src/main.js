@@ -10,11 +10,14 @@ import { createLifeState } from './life-state.js';
 import { collectibles, npcs, itemById, npcById } from './life-data.js';
 import { createLifeUI, itemIcon } from './life-ui.js';
 import { createResidentMarkers } from './resident-markers.js';
+import { createSceneFeedback } from './scene-feedback.js';
 import './room-preview.css';
 import './game-shell.css';
+import './interaction-feedback.css';
 
 const $ = s => document.querySelector(s);
 const experience = $('#experience');
+const showSceneTap = createSceneFeedback(experience);
 const panel = $('#detail-panel');
 const directory = $('#space-directory');
 const tooltip = $('#hover-tooltip');
@@ -44,9 +47,9 @@ previewCard.innerHTML='<div class="preview-heading"><span>建筑剖面</span><bu
 experience.append(previewCard);
 previewCard.querySelector('.preview-close').addEventListener('click',cancelRoomPreview);
 previewCard.querySelector('.preview-cancel').addEventListener('click',cancelRoomPreview);
-previewCard.querySelector('.preview-enter').addEventListener('click',()=>{if(previewRoom&&!model?.isTransitioning())selectRoom(previewRoom.id);});
+previewCard.querySelector('.preview-enter').addEventListener('click',()=>{if(previewRoom)selectRoom(previewRoom.id);});
 const residency = createResidency({onAssigned:role=>{
- questBook.start(role.id);walking=true;model?.setCharacterRole(role.id);model?.setWalking(true);arriveAtRoom(role.assignedRoom);
+ questBook.start(role.id);walking=true;model?.setCharacterRole(role.id);model?.setWalking(true);arriveAtRoom('courtyard');
 },onReturn:selectRoom});
 const spaceNavigation=createSpaceNavigation({rooms,onSelect:selectRoom,onOverview:closePanel,getAssigned:()=>residency.current?.assignedRoom});
 $('#all-spaces-button span').textContent=rooms.length;
@@ -85,7 +88,7 @@ function updateAdventure(){
  $('#quest-interact').disabled=Boolean(arrivingRoom);
  $('#toggle-walking').textContent=walking?'暂停漫游':'继续漫游';
  $('#toggle-walking').setAttribute('aria-pressed',String(walking));
- $('#walking-status').textContent=arrivingRoom?'正在领取房间钥匙…':walking?'点击一处空地，迈出第一步。':'漫游已暂停，仍可旋转和探索模型。';
+ $('#walking-status').textContent=arrivingRoom==='courtyard'?'穿过城门，来到庭院…':arrivingRoom?'正在前往房间…':walking?'点击一处空地，迈出第一步。':'漫游已暂停，仍可旋转和探索模型。';
  for(const button of document.querySelectorAll('#adventure-trail button,#adventure-actions button:not(#quest-interact)'))button.disabled=Boolean(arrivingRoom);
 }
 function gameNotice(message){
@@ -172,7 +175,7 @@ function updateWalkingStatus(state){
  if(exploring&&walking&&!arrivingRoom)$('#walking-status').textContent=state.message||'走累了，就在这里歇一歇。';
 }
 $('#toggle-walking').addEventListener('click',()=>{walking=!walking;model?.setWalking(walking);updateAdventure();});
-$('#walk-courtyard').addEventListener('click',()=>{closePanel();walking=true;model?.setWalking(true);model?.findCharacter();updateAdventure();});
+$('#walk-courtyard').addEventListener('click',()=>{walking=true;model?.setWalking(true);arriveAtRoom('courtyard');});
 $('#find-character').addEventListener('click',()=>model?.findCharacter());
 document.querySelectorAll('[data-walk]').forEach(button=>{
  const release=()=>{button.classList.remove('is-held');model?.moveCharacter(button.dataset.walk,false);};
@@ -212,10 +215,10 @@ function updateViewState(){
  $('#nav-explore').classList.toggle('active',exploring);
  $('#enter-label').textContent=residency.current?'继续我的城堡生活':'开始我的城堡生活';
  $('#enter-button').setAttribute('aria-pressed',String(exploring));
- $('#view-mode-text').textContent=previewRoom?`${previewRoom.name} · 剖面预览`:room?.interior?`${room.name} · 展开查看`:exploring?'3D 城堡探索':'3D 全景模型';
+ $('#view-mode-text').textContent=previewRoom?`${previewRoom.name} · 剖面预览`:room?.interior?`${room.name} · 展开查看`:exploring?'庭院 · 自由探索':'3D 全景模型';
  $('#interaction-hint').textContent=previewRoom?'拖动查看剖面 · 确认后进入房间':['upper','basement'].includes(room?.level)?'房间相通可漫游 · 右键 / 双指平移 · 整层总览查看地图':exploring?'点物品拾取 · 点居民查看 · B 行囊':'';
  $('#toggle-labels').setAttribute('aria-pressed',String(showLabels));
- $('#current-space').textContent=previewRoom?`${previewRoom.name} / 剖面预览`:room?`${categories[room.category]} / ${room.name}`:'城堡总览';
+ $('#current-space').textContent=previewRoom?`${previewRoom.name} / 剖面预览`:room?`${categories[room.category]} / ${room.name}`:exploring?'庭院 / 城堡总览':'城堡总览';
  spaceNavigation.sync({exploring,selected});
  updateAdventure();
  labelElements.forEach(({el,room:r})=>{el.classList.toggle('selected',r.id===selected);el.setAttribute('aria-pressed',String(r.id===selected));});
@@ -249,8 +252,8 @@ function previewRoomFromScene(id){
  previewHadDetails=hadDetails;previewRoom=room;panel.classList.remove('open');
  $('#adventure-body').hidden=true;$('#adventure-toggle').setAttribute('aria-expanded','false');
  previewCard.querySelector('h2').textContent=room.name;
- previewCard.querySelector('.preview-description').textContent=room.level==='basement'?'先看看地下层的布局。确认后沿石阶下行。':room.level==='upper'?'屋顶已展开，可以先看主堡内部。确认后进入房间漫游。':'屋顶已展开，可以先看室内陈设。确认后进入房间漫游。';
- previewCard.querySelector('.preview-enter').disabled=true;previewCard.hidden=false;updateViewState();
+ previewCard.querySelector('.preview-description').textContent=room.level==='basement'?'先看看地下层的布局。确认后沿石阶下行。':room.level==='upper'?'先看看主堡内部的布局。确认后进入房间漫游。':'先看看屋顶下的室内陈设。确认后进入房间漫游。';
+ previewCard.hidden=false;updateViewState();
 }
 function cancelRoomPreview(){
  if(!previewRoom)return false;
@@ -265,18 +268,19 @@ function selectRoom(id){
 }
 function arriveAtRoom(id){
  const room=rooms.find(r=>r.id===id);if(!room)return;
- clearPreviewUI();residentMarkers.close();
+ clearPreviewUI();residentMarkers.close();spaceNavigation.close();lifeUI.close();
  pendingGuide=null;
- exploring=true;showLabels=false;category='all';directory.hidden=Boolean(model);selected=id;arrivingRoom=id;
+ exploring=true;showLabels=false;category='all';directory.hidden=Boolean(model);selected=id==='courtyard'?null:id;arrivingRoom=id;
  tooltip.style.display='none';panel.classList.remove('open');experience.classList.add('is-arriving');
- renderPanel(room);updateViewState();renderDirectory();
+ $('#adventure-body').hidden=true;$('#adventure-toggle').setAttribute('aria-expanded','false');
+ if(id!=='courtyard')renderPanel(room);updateViewState();renderDirectory();
  if(model)model.arrive(id);else finishArrival(id);
 }
 function finishArrival(id){
- if(!arrivingRoom||arrivingRoom!==id||selected!==id)return;
+ if(!arrivingRoom||arrivingRoom!==id||(id==='courtyard'?selected!==null:selected!==id))return;
  arrivingRoom=null;experience.classList.remove('is-arriving');
- if(!model)panel.classList.add('open');
- model?.greetCharacter();updateViewState();gameNotice('钥匙收好。点点发光的物品，把第一份发现装进行囊。');
+ if(!model&&id!=='courtyard')panel.classList.add('open');
+ model?.greetCharacter();updateViewState();gameNotice(id==='courtyard'?'点空地在庭院走走，或拾起一件发光的物品。':'钥匙收好。点点发光的物品，把第一份发现装进行囊。');
 }
 function closePanel(){
  cancelRoomPreview();residentMarkers.close();pendingGuide=null;
@@ -390,11 +394,10 @@ function showHover(text,event){
 }
 try{
  model=createCastle($('#scene-container'),{
-  onEnter:enterCastle,onSelect:previewRoomFromScene,onTransitionEnd:settledInRoom,onWalkState:updateWalkingStatus,
+  onEnter:enterCastle,onSelect:previewRoomFromScene,onTransitionEnd:settledInRoom,onWalkState:updateWalkingStatus,onTap:showSceneTap,
   onHover:(id,event)=>showHover(rooms.find(room=>room.id===id)?.name,event),
   onLifeHover:(entity,event)=>showHover(entity?.type==='item'?`拾取 · ${entity.label}`:null,event),
   onLifeSelect:entity=>residentMarkers.select(entity.id),onGroundClick:()=>residentMarkers.close(),
-  onPreviewSettled:id=>{if(previewRoom?.id===id)previewCard.querySelector('.preview-enter').disabled=false;},
   onLifeInteract:handleLifeInteract,onLifeBlocked:gameNotice,
   onLifeApproach:()=>{if(!walking){walking=true;updateAdventure();}},
   onFrame:updateLabels,onError:handleGraphicsError,
