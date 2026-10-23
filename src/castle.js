@@ -370,8 +370,9 @@ export function createCastle(container, callbacks={}){
  const exterior=new THREE.Group();exterior.name='castle-exterior';
  for(const child of [...world.children])exterior.add(child);world.add(exterior);
  const expansion=createInteriorExpansion({THREE,materials:M});world.add(expansion.root);expansion.root.visible=true;
- const basementIds=['cellar','larder','armory','undercroft'];
- const stages={exterior:[exterior],keep:[expansion.rooms.keep],hall:[expansion.rooms.hall],basement:basementIds.map(id=>expansion.rooms[id])};
+ const basementIds=Object.keys(expansion.rooms).filter(id=>interiorLayouts[id]?.level==='basement');
+ const keepIds=Object.keys(expansion.rooms).filter(id=>interiorLayouts[id]?.level==='upper');
+ const stages={exterior:[exterior],keep:keepIds.map(id=>expansion.rooms[id]),hall:[expansion.rooms.hall],basement:basementIds.map(id=>expansion.rooms[id])};
  let activeStage='exterior';
  const stageWeights={exterior:1,keep:0,hall:0,basement:0};
  // Every stage owns its materials: fading masonry must not dim another floor.
@@ -383,8 +384,9 @@ export function createCastle(container, callbacks={}){
    node.material=Array.isArray(node.material)?node.material.map(clone):clone(node.material);
   });}
  }
- function stageFor(id){return basementIds.includes(id)?'basement':id==='keep'||id==='hall'?id:'exterior';}
- function setStage(id){activeStage=stageFor(id);}
+ function stageFor(id){return basementIds.includes(id)?'basement':keepIds.includes(id)?'keep':id==='hall'?'hall':'exterior';}
+ function setStage(id){activeStage=stageFor(id);controls.enablePan=activeStage==='keep'||activeStage==='basement';controls.minZoom=controls.enablePan?.4:.7;}
+ function walkingSpace(id){return basementIds.includes(id)?'underground':keepIds.includes(id)?'keepfloor':interiorLayouts[id]?id:null;}
  function updateStages(blend){
   for(const [id,groups] of Object.entries(stages)){
    const before=stageWeights[id];
@@ -457,13 +459,13 @@ export function createCastle(container, callbacks={}){
    const corners=[];for(const x of [x1,x2])for(const z of [z1,z2])for(const y of [room.center.y-.35,room.center.y+1.5])corners.push(new THREE.Vector3(x,y,z));
    const extent=axis=>Math.max(...corners.map(p=>p.dot(axis)))-Math.min(...corners.map(p=>p.dot(axis)));
    const desktop=window.innerWidth>760;
-   zoom=Math.min(zoom,(camera.right-camera.left)*(desktop?.60:.87)/extent(right),(camera.top-camera.bottom)*(desktop?.70:.40)/extent(up));
+   zoom=Math.min(zoom,(camera.right-camera.left)*(desktop?(room.overview?.85:.60):.90)/extent(right),(camera.top-camera.bottom)*(desktop?.72:room.overview?.57:.40)/extent(up));
   }
   const target=room.center.clone();
   if(window.innerWidth>760){
    // Place the room near 45% of the page width, leaving the right-hand description clear.
    const rect=container.getBoundingClientRect(),parent=container.parentElement.getBoundingClientRect();
-   const centerFraction=room.frameBounds?(parent.width-Math.min(350,parent.width*.3))/parent.width*.5:.45;
+   const centerFraction=room.overview?.5:room.frameBounds?(parent.width-Math.min(350,parent.width*.3))/parent.width*.5:.45;
    const desiredX=(parent.left+parent.width*centerFraction-rect.left)/Math.max(rect.width,1);
    const right=new THREE.Vector3(direction.z,0,-direction.x).normalize();
    target.addScaledVector(right,(.5-desiredX)*(camera.right-camera.left)/zoom);
@@ -471,7 +473,7 @@ export function createCastle(container, callbacks={}){
    // The bottom sheet occupies 44svh: keep the opened room in the remaining upper field.
    const right=new THREE.Vector3(direction.z,0,-direction.x).normalize();
    const up=new THREE.Vector3().crossVectors(direction,right).normalize();
-   target.addScaledVector(up,(.33-.5)*(camera.top-camera.bottom)/zoom);
+   target.addScaledVector(up,((room.overview?.47:.33)-.5)*(camera.top-camera.bottom)/zoom);
   }
   return{target,pos:target.clone().addScaledVector(direction,40),zoom};
  }
@@ -498,7 +500,7 @@ export function createCastle(container, callbacks={}){
   if(!id){overview();return;}
   if(!areas[id]&&!expansion.rooms[id])return;
   if(!exploring)enter();
-  setStage(id);trackingCharacter=false;walker.setSpace(basementIds.includes(id)?'underground':coreRooms[id]?id:null);life.setSpace(id);walker.setVisible(true);
+  setStage(id);trackingCharacter=false;walker.setSpace(walkingSpace(id),coreRooms[id]?.entrySpawn);life.setSpace(id);walker.setVisible(true);
   highlight(id);openRoofOwner=roofOwners[id]||null;
   if(coreRooms[id]){
    if(!focusedId)overviewPose=clonePose(transition?.to||pose());
@@ -515,13 +517,13 @@ export function createCastle(container, callbacks={}){
    overviewPose.zoom=THREE.MathUtils.clamp(coverPose.zoom*1.18,controls.minZoom,2);
   }else if(!focusedId)overviewPose=clonePose(transition?.to||pose());
   exploring=true;focusedId=id;openRoofOwner=roofOwners[id]||null;highlight(id);
-  setStage(id);trackingCharacter=false;walker.setSpace(basementIds.includes(id)?'underground':id);life.setSpace(id);walker.setVisible(true);walker.greet();
+  setStage(id);trackingCharacter=false;walker.setSpace(walkingSpace(id),coreRooms[id]?.entrySpawn,true);life.setSpace(id);walker.setVisible(true);walker.greet();
   moveTo(corePose(id),1400);
  }
  function findCharacter(){
   if(!exploring)return;
   const position=walker.getPosition();if(!position)return;
-  if(focusedId&&activeStage!=='basement'){moveTo(corePose(focusedId),600);walker.greet();return;}
+  if(focusedId&&activeStage!=='basement'&&activeStage!=='keep'){moveTo(corePose(focusedId),600);walker.greet();return;}
   trackingCharacter=true;
   const target=position.clone().add(new THREE.Vector3(0,.35,0));
   const direction=new THREE.Vector3(.26,.87,.43).normalize();

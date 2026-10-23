@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
-<title id="title">礼拜堂平面图</title><desc id="desc">礼拜堂俯视布局：祭坛与双烛、经书讲台、祈祷长椅、圣水盆。室内陈设示意 · 依场景布局绘制，非实测图。</desc>
+<title id="title">礼拜堂平面图</title><desc id="desc">礼拜堂俯视布局：祭坛与烛台、长椅与中央祈祷通道、经书讲台、通往主堡长廊。室内陈设示意 · 依场景布局绘制，非实测图。</desc>
 <defs>
 <pattern id="planks" width=".22" height=".7" patternUnits="userSpaceOnUse"><rect width=".22" height=".7" fill="#ede0c8"/><path d="M0 0V.7M0 .35H.22" fill="none" stroke="#ad9776" stroke-opacity=".23" stroke-width=".006"/></pattern>
 <pattern id="hatch" width=".07" height=".07" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width=".07" height=".07" fill="#ded6c5"/><path d="M0 0V.07" stroke="#9e8a70" stroke-opacity=".45" stroke-width=".01"/></pattern>
@@ -16,54 +16,55 @@ svg{background:#f8f2e8;color:#655546;font-family:"Songti SC","Noto Serif CJK SC"
 <text x="674" y="57" font-family="Georgia,serif" font-size="11" letter-spacing="2" fill="#8d7b62">PL. 02</text>
 <g transform="translate(728 97)" stroke="#655546" stroke-width=".9"><path d="M0 -10V14M-6 -3L0 -17L6 -3L0 -7Z" fill="#b5a58a"/><text x="0" y="-23" text-anchor="middle" stroke="none" fill="#655546" font-family="Georgia,serif" font-size="10">N</text></g>
 <path d="M55 132H745M55 476H745" stroke="#b9aa93" stroke-width=".7"/>
-<g class="drawing" transform="translate(400 299) scale(105.3763440860215) translate(-4.1 2.9999999999999996)"><rect x="3.205" y="-4.295" width="1.79" height="2.5900000000000003" rx="0" class="masonry"/>
-<rect x="3.275" y="-4.225" width="1.65" height="2.45" rx="0" class="floor"/>
-<rect x="3.1599999999999997" y="-4.34" width="1.88" height="2.68" rx="0" class="outline"/>
-<rect x="3.6875" y="-4.297" width="0.33" height="0.145" rx="0" class="paper"/>
-<path d="M3.6875 -4.26L4.0175 -4.26" class="line"/>
-<path d="M3.6875 -4.1899999999999995L4.0175 -4.1899999999999995" class="line"/>
-<path d="M3.8525 -4.284999999999999L3.8525 -4.165" class="line"/>
-<rect x="4.3805" y="-4.297" width="0.297" height="0.145" rx="0" class="paper"/>
-<path d="M4.3805 -4.26L4.677499999999999 -4.26" class="line"/>
-<path d="M4.3805 -4.1899999999999995L4.677499999999999 -4.1899999999999995" class="line"/>
-<path d="M4.529 -4.284999999999999L4.529 -4.165" class="line"/>
-<rect x="3.803" y="-1.7999999999999994" width="0.363" height="0.14" rx="0" class="paper"/>
-<path d="M3.803 -1.7749999999999995L3.803 -2.1379999999999995" class="line"/>
-<path d="M3.803 -2.1379999999999995A0.363 0.363 0 0 1 4.166 -1.7749999999999995" class="swing"/>
-<rect x="3.87" y="-3.7800000000000002" width="0.5" height="1.6" rx="0" class="blue"/>
-<rect x="3.915" y="-3.7350000000000003" width="0.41000000000000003" height="1.51" rx="0" class="fine"/>
-<path d="M3.91 -3.825L3.91 -3.7800000000000002" class="fine"/>
-<path d="M3.91 -2.1799999999999997L3.91 -2.135" class="fine"/>
-<path d="M3.98 -3.825L3.98 -3.7800000000000002" class="fine"/>
-<path d="M3.98 -2.1799999999999997L3.98 -2.135" class="fine"/>
-<path d="M4.05 -3.825L4.05 -3.7800000000000002" class="fine"/>
-<path d="M4.05 -2.1799999999999997L4.05 -2.135" class="fine"/>
-<path d="M4.12 -3.825L4.12 -3.7800000000000002" class="fine"/>
-<path d="M4.12 -2.1799999999999997L4.12 -2.135" class="fine"/>
-<path d="M4.19 -3.825L4.19 -3.7800000000000002" class="fine"/>
-<path d="M4.19 -2.1799999999999997L4.19 -2.135" class="fine"/>
-<path d="M4.260000000000001 -3.825L4.260000000000001 -3.7800000000000002" class="fine"/>
-<path d="M4.260000000000001 -2.1799999999999997L4.260000000000001 -2.135" class="fine"/>
-<path d="M4.330000000000001 -3.825L4.330000000000001 -3.7800000000000002" class="fine"/>
-<path d="M4.330000000000001 -2.1799999999999997L4.330000000000001 -2.135" class="fine"/>
-<rect x="3.78" y="-4.07" width="0.68" height="0.42" rx="0" class="stone"/>
-<rect x="3.84" y="-4.04" width="0.56" height="0.3" rx="0" class="linen"/>
-<path d="M4.12 -4.16v.22M4.045 -4.09h.15" class="line"/>
-<circle cx="3.88" cy="-3.9" r="0.035" class="brass"/>
-<circle cx="3.88" cy="-3.9" r="0.011" class="paper"/>
-<circle cx="4.36" cy="-3.9" r="0.035" class="brass"/>
-<circle cx="4.36" cy="-3.9" r="0.011" class="paper"/>
-<rect x="3.66" y="-3.3899999999999997" width="0.92" height="0.18" rx="0.015" class="wood"/>
-<path d="M3.69 -3.3499999999999996L4.55 -3.3499999999999996" class="line"/>
-<rect x="3.66" y="-2.92" width="0.92" height="0.18" rx="0.015" class="wood"/>
-<path d="M3.69 -2.88L4.55 -2.88" class="line"/>
-<rect x="3.66" y="-2.45" width="0.92" height="0.18" rx="0.015" class="wood"/>
-<path d="M3.69 -2.41L4.55 -2.41" class="line"/>
-<rect x="3.42" y="-4.04" width="0.28" height="0.3" rx="0" class="wood"/>
-<rect x="3.45" y="-4.01" width="0.22" height="0.24" rx="0" class="paper"/>
-<path d="M3.56 -4L3.56 -3.79" class="line"/>
-<circle cx="4.69" cy="-2.1" r="0.115" class="stone"/>
-<circle cx="4.69" cy="-2.1" r="0.07" class="blue"/></g><g transform="translate(402.1075268817205 207.32258064516122)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">1</text></g><g transform="translate(343.0967741935484 205.2150537634408)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">2</text></g><g transform="translate(402.1075268817205 316.9139784946236)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">3</text></g><g transform="translate(462.17204301075276 393.8387096774193)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">4</text></g>
-<g transform="translate(90 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">1</text><text class="legend" x="19" y="4">祭坛与双烛</text></g><g transform="translate(425 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">2</text><text class="legend" x="19" y="4">经书讲台</text></g><g transform="translate(90 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">3</text><text class="legend" x="19" y="4">祈祷长椅</text></g><g transform="translate(425 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">4</text><text class="legend" x="19" y="4">圣水盆</text></g>
+<g class="drawing" transform="translate(400 299) scale(41.64305949008499) translate(3 5.5)"><rect x="-6.1" y="-9.1" width="6.2" height="7.2" rx="0" class="masonry"/>
+<rect x="-6" y="-9" width="6" height="7" rx="0" class="floor"/>
+<rect x="-6.08" y="-9.08" width="6.16" height="7.16" rx="0" class="masonry"/>
+<rect x="-5.97" y="-8.97" width="5.94" height="6.94" rx="0" class="stone"/>
+<rect x="-4" y="-2.16" width="2" height="0.32" rx="0" class="stone"/>
+<path d="M-3 -2.32L-3 -1.68" class="swing"/>
+<rect x="-3.65" y="-9.072" width="1.3" height="0.145" rx="0" class="paper"/>
+<path d="M-3.65 -9.035L-2.3499999999999996 -9.035" class="line"/>
+<path d="M-3.65 -8.965L-2.3499999999999996 -8.965" class="line"/>
+<path d="M-3 -9.06L-3 -8.94" class="line"/>
+<rect x="-4.25" y="-8.175" width="2.5" height="0.95" rx="0" class="stone"/>
+<rect x="-4" y="-8.042" width="2" height="0.6839999999999999" rx="0" class="linen"/>
+<circle cx="-3.8" cy="-7.7" r="0.035" class="brass"/>
+<circle cx="-3.8" cy="-7.7" r="0.011" class="paper"/>
+<circle cx="-2.2" cy="-7.7" r="0.035" class="brass"/>
+<circle cx="-2.2" cy="-7.7" r="0.011" class="paper"/>
+<path d="M-3 -7.985L-3 -7.415" class="line"/>
+<path d="M-3.13 -7.76L-2.87 -7.76" class="line"/>
+<rect x="-5.675" y="-8.525" width="0.85" height="0.55" rx="0.02" class="wood"/>
+<path d="M-5.4965 -8.525L-5.4965 -7.975" class="line"/>
+<path d="M-5.0035 -8.525L-5.0035 -7.975" class="line"/>
+<rect x="-5.275" y="-8.28" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-1.175" y="-8.525" width="0.85" height="0.55" rx="0.02" class="wood"/>
+<path d="M-0.9964999999999999 -8.525L-0.9964999999999999 -7.975" class="line"/>
+<path d="M-0.5035000000000001 -8.525L-0.5035000000000001 -7.975" class="line"/>
+<rect x="-0.775" y="-8.28" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-5.2" y="-6.01" width="1.5" height="0.42" rx="0.04" class="wood"/>
+<path d="M-5.050000000000001 -5.926L-3.85 -5.926" class="line"/>
+<rect x="-2.3" y="-6.01" width="1.5" height="0.42" rx="0.04" class="wood"/>
+<path d="M-2.1500000000000004 -5.926L-0.95 -5.926" class="line"/>
+<rect x="-5.2" y="-4.71" width="1.5" height="0.42" rx="0.04" class="wood"/>
+<path d="M-5.050000000000001 -4.626L-3.85 -4.626" class="line"/>
+<rect x="-2.3" y="-4.71" width="1.5" height="0.42" rx="0.04" class="wood"/>
+<path d="M-2.1500000000000004 -4.626L-0.95 -4.626" class="line"/>
+<rect x="-1.175" y="-3.5" width="0.65" height="0.6" rx="0.025" class="wood"/>
+<path d="M-1.1300000000000001 -3.455L-0.57 -3.455" class="line"/>
+<path d="M-1.1300000000000001 -2.9450000000000003L-0.57 -2.9450000000000003" class="line"/>
+<rect x="-0.9605" y="-3.362" width="0.22100000000000003" height="0.324" rx="0" class="paper"/>
+<path d="M-0.941 -3.2q0.052000000000000005 -0.12 0.078 0t0.078 0" class="fine"/>
+<circle cx="-1.1099999999999999" cy="-3.2" r="0.035" class="brass"/>
+<circle cx="-1.1099999999999999" cy="-3.2" r="0.011" class="paper"/>
+<circle cx="-0.59" cy="-3.2" r="0.035" class="brass"/>
+<circle cx="-0.59" cy="-3.2" r="0.011" class="paper"/>
+<circle cx="-5.22" cy="-3.15" r="0.225" class="pot"/>
+<ellipse cx="-5.13" cy="-3.15" rx="0.09000000000000001" ry="0.045000000000000005" class="sage"/>
+<ellipse cx="-5.192188470506254" cy="-3.064404913533436" rx="0.09000000000000001" ry="0.045000000000000005" class="sage"/>
+<ellipse cx="-5.292811529493745" cy="-3.0970993272936775" rx="0.09000000000000001" ry="0.045000000000000005" class="sage"/>
+<ellipse cx="-5.292811529493745" cy="-3.2029006727063223" rx="0.09000000000000001" ry="0.045000000000000005" class="sage"/>
+<ellipse cx="-5.192188470506254" cy="-3.2355950864665637" rx="0.09000000000000001" ry="0.045000000000000005" class="sage"/></g><g transform="translate(400 207.38526912181302)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">1</text></g><g transform="translate(339.61756373937675 286.50708215297453)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">2</text></g><g transform="translate(489.53257790368275 394.77903682719545)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">3</text></g><g transform="translate(400 437.25495750708217)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">4</text></g>
+<g transform="translate(90 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">1</text><text class="legend" x="19" y="4">祭坛与烛台</text></g><g transform="translate(425 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">2</text><text class="legend" x="19" y="4">长椅与中央祈祷通道</text></g><g transform="translate(90 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">3</text><text class="legend" x="19" y="4">经书讲台</text></g><g transform="translate(425 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">4</text><text class="legend" x="19" y="4">通往主堡长廊</text></g>
 <text x="400" y="568" text-anchor="middle" font-size="10" letter-spacing="1.1" fill="#91806a">室内陈设示意 · 依场景布局绘制，非实测图</text>
 </svg>

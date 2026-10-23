@@ -1,3 +1,4 @@
+import { keepItemPlacements } from './keep-wing.js';
 // Objects sit just above existing furnishings; these anchors are shared with markers.
 export const itemPlacements = {
   linen: { position: [1.15, 3.95, -4.28], rotation: -.18 },
@@ -14,6 +15,8 @@ export const itemPlacements = {
   salve: { position: [-2.25, 1.07, .87], rotation: .2 },
   yarn: { position: [-.35, .99, 3.44], rotation: -.25 },
 };
+
+for(const [id,position] of Object.entries(keepItemPlacements))itemPlacements[id]={...itemPlacements[id],position};
 
 export const npcPlacements = {
   martha: { position: [1.5, .235, 3.35], rotation: -.8, phase: .4 },

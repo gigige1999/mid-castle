@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
-<title id="title">储藏室平面图</title><desc id="desc">储藏室俯视布局：陶罐货架、叠放物资箱、酒桶与腌藏桶、食物麻袋。室内陈设示意 · 依场景布局绘制，非实测图。</desc>
+<title id="title">储藏室平面图</title><desc id="desc">储藏室俯视布局：沿墙家政物资架、带锁木箱、织物整理木案、通往主堡长廊。室内陈设示意 · 依场景布局绘制，非实测图。</desc>
 <defs>
 <pattern id="planks" width=".22" height=".7" patternUnits="userSpaceOnUse"><rect width=".22" height=".7" fill="#ede0c8"/><path d="M0 0V.7M0 .35H.22" fill="none" stroke="#ad9776" stroke-opacity=".23" stroke-width=".006"/></pattern>
 <pattern id="hatch" width=".07" height=".07" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width=".07" height=".07" fill="#ded6c5"/><path d="M0 0V.07" stroke="#9e8a70" stroke-opacity=".45" stroke-width=".01"/></pattern>
@@ -16,72 +16,66 @@ svg{background:#f8f2e8;color:#655546;font-family:"Songti SC","Noto Serif CJK SC"
 <text x="674" y="57" font-family="Georgia,serif" font-size="11" letter-spacing="2" fill="#8d7b62">PL. 04</text>
 <g transform="translate(728 97)" stroke="#655546" stroke-width=".9"><path d="M0 -10V14M-6 -3L0 -17L6 -3L0 -7Z" fill="#b5a58a"/><text x="0" y="-23" text-anchor="middle" stroke="none" fill="#655546" font-family="Georgia,serif" font-size="10">N</text></g>
 <path d="M55 132H745M55 476H745" stroke="#b9aa93" stroke-width=".7"/>
-<g class="drawing" transform="translate(400 299) scale(151.5463917525773) translate(-4.1 0.8599999999999999)"><rect x="3.18" y="-1.73" width="1.8399999999999999" height="1.7400000000000002" rx="0" class="masonry"/>
-<rect x="3.25" y="-1.66" width="1.7" height="1.6" rx="0" class="floor"/>
-<rect x="3.135" y="-1.775" width="1.93" height="1.83" rx="0" class="outline"/>
-<rect x="3.675" y="-1.732" width="0.34" height="0.145" rx="0" class="paper"/>
-<path d="M3.675 -1.6949999999999998L4.015 -1.6949999999999998" class="line"/>
-<path d="M3.675 -1.625L4.015 -1.625" class="line"/>
-<path d="M3.8449999999999998 -1.72L3.8449999999999998 -1.5999999999999999" class="line"/>
-<rect x="4.389" y="-1.732" width="0.306" height="0.145" rx="0" class="paper"/>
-<path d="M4.389 -1.6949999999999998L4.695 -1.6949999999999998" class="line"/>
-<path d="M4.389 -1.625L4.695 -1.625" class="line"/>
-<path d="M4.542 -1.72L4.542 -1.5999999999999999" class="line"/>
-<rect x="3.794" y="-0.08499999999999983" width="0.374" height="0.14" rx="0" class="paper"/>
-<path d="M3.794 -0.05999999999999983L3.794 -0.43399999999999983" class="line"/>
-<path d="M3.794 -0.43399999999999983A0.374 0.374 0 0 1 4.168 -0.05999999999999983" class="swing"/>
-<rect x="4.069999999999999" y="-1.58" width="0.8" height="0.2" rx="0" class="wood"/>
-<path d="M4.095 -1.5450000000000002L4.845 -1.5450000000000002" class="line"/>
-<circle cx="4.1979999999999995" cy="-1.468" r="0.05600000000000001" class="pot"/>
-<circle cx="4.1979999999999995" cy="-1.468" r="0.03248" class="paper"/>
-<circle cx="4.1979999999999995" cy="-1.468" r="0.016800000000000002" class="fine"/>
-<circle cx="4.377999999999999" cy="-1.468" r="0.05600000000000001" class="pot"/>
-<circle cx="4.377999999999999" cy="-1.468" r="0.03248" class="paper"/>
-<circle cx="4.377999999999999" cy="-1.468" r="0.016800000000000002" class="fine"/>
-<circle cx="4.558" cy="-1.468" r="0.05600000000000001" class="pot"/>
-<circle cx="4.558" cy="-1.468" r="0.03248" class="paper"/>
-<circle cx="4.558" cy="-1.468" r="0.016800000000000002" class="fine"/>
-<circle cx="4.7379999999999995" cy="-1.468" r="0.05600000000000001" class="pot"/>
-<circle cx="4.7379999999999995" cy="-1.468" r="0.03248" class="paper"/>
-<circle cx="4.7379999999999995" cy="-1.468" r="0.016800000000000002" class="fine"/>
-<rect x="3.41" y="-1.51" width="0.42" height="0.4" rx="0.02" class="wood"/>
-<path d="M3.4982 -1.51L3.4982 -1.11" class="line"/>
-<path d="M3.7418 -1.51L3.7418 -1.11" class="line"/>
-<rect x="3.595" y="-1.34" width="0.05" height="0.06" rx="0" class="brass"/>
-<rect x="3.9800000000000004" y="-1.43" width="0.34" height="0.3" rx="0.02" class="wood"/>
-<path d="M4.0514 -1.43L4.0514 -1.1300000000000001" class="line"/>
-<path d="M4.248600000000001 -1.43L4.248600000000001 -1.1300000000000001" class="line"/>
-<rect x="4.125" y="-1.31" width="0.05" height="0.06" rx="0" class="brass"/>
-<circle cx="3.6" cy="-0.42" r="0.15" class="wood"/>
-<circle cx="3.6" cy="-0.42" r="0.1215" class="fine"/>
-<path d="M3.4965 -0.48L3.7035 -0.48" class="line"/>
-<path d="M3.4965 -0.42L3.7035 -0.42" class="line"/>
-<path d="M3.4965 -0.36L3.7035 -0.36" class="line"/>
-<ellipse cx="4.59" cy="-0.55" rx="0.1" ry="0.08000000000000002" class="linen"/>
-<path d="M4.54 -0.5920000000000001q0.05 0.034999999999999996 0.1 0" class="fine"/>
-<circle cx="4.59" cy="-0.6030000000000001" r="0.014000000000000002" class="timber"/>
-<circle cx="4" cy="-0.42" r="0.15" class="wood"/>
-<circle cx="4" cy="-0.42" r="0.1215" class="fine"/>
-<path d="M3.8965 -0.48L4.1035 -0.48" class="line"/>
-<path d="M3.8965 -0.42L4.1035 -0.42" class="line"/>
-<path d="M3.8965 -0.36L4.1035 -0.36" class="line"/>
-<ellipse cx="4.59" cy="-0.76" rx="0.1" ry="0.08000000000000002" class="linen"/>
-<path d="M4.54 -0.802q0.05 0.034999999999999996 0.1 0" class="fine"/>
-<circle cx="4.59" cy="-0.8130000000000001" r="0.014000000000000002" class="timber"/>
-<circle cx="4.4" cy="-0.42" r="0.15" class="wood"/>
-<circle cx="4.4" cy="-0.42" r="0.1215" class="fine"/>
-<path d="M4.2965 -0.48L4.503500000000001 -0.48" class="line"/>
-<path d="M4.2965 -0.42L4.503500000000001 -0.42" class="line"/>
-<path d="M4.2965 -0.36L4.503500000000001 -0.36" class="line"/>
-<ellipse cx="4.59" cy="-0.97" rx="0.1" ry="0.08000000000000002" class="linen"/>
-<path d="M4.54 -1.012q0.05 0.034999999999999996 0.1 0" class="fine"/>
-<circle cx="4.59" cy="-1.023" r="0.014000000000000002" class="timber"/>
-<circle cx="3.49" cy="-0.87" r="0.1" class="pot"/>
-<circle cx="3.49" cy="-0.87" r="0.057999999999999996" class="paper"/>
-<circle cx="3.49" cy="-0.87" r="0.03" class="fine"/>
-<circle cx="3.72" cy="-0.87" r="0.08" class="pot"/>
-<circle cx="3.72" cy="-0.87" r="0.0464" class="paper"/>
-<circle cx="3.72" cy="-0.87" r="0.024" class="fine"/></g><g transform="translate(457.58762886597947 208.0721649484536)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">1</text></g><g transform="translate(325.74226804123714 230.8041237113402)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">2</text></g><g transform="translate(381.8144329896908 365.680412371134)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">3</text></g><g transform="translate(477.28865979381453 330.82474226804123)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">4</text></g>
-<g transform="translate(90 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">1</text><text class="legend" x="19" y="4">陶罐货架</text></g><g transform="translate(425 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">2</text><text class="legend" x="19" y="4">叠放物资箱</text></g><g transform="translate(90 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">3</text><text class="legend" x="19" y="4">酒桶与腌藏桶</text></g><g transform="translate(425 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">4</text><text class="legend" x="19" y="4">食物麻袋</text></g>
+<g class="drawing" transform="translate(400 299) scale(41.64305949008499) translate(8 -5.5)"><rect x="-12.1" y="1.9" width="8.2" height="7.2" rx="0" class="masonry"/>
+<rect x="-12" y="2" width="8" height="7" rx="0" class="floor"/>
+<rect x="-12.08" y="1.92" width="8.16" height="7.16" rx="0" class="masonry"/>
+<rect x="-11.97" y="2.03" width="7.94" height="6.94" rx="0" class="floor"/>
+<rect x="-9" y="1.84" width="2" height="0.32" rx="0" class="floor"/>
+<path d="M-8 1.68L-8 2.32" class="swing"/>
+<rect x="-8.65" y="8.928" width="1.3" height="0.145" rx="0" class="paper"/>
+<path d="M-8.65 8.965L-7.3500000000000005 8.965" class="line"/>
+<path d="M-8.65 9.035L-7.3500000000000005 9.035" class="line"/>
+<path d="M-8 8.94L-8 9.06" class="line"/>
+<rect x="-11.5" y="8.24" width="2" height="0.48" rx="0" class="wood"/>
+<rect x="-11.36" y="8.3264" width="0.32" height="0.3072" rx="0.02" class="rug"/>
+<rect x="-10.899999999999999" y="8.3264" width="0.32" height="0.3072" rx="0.02" class="blue"/>
+<rect x="-10.439999999999998" y="8.3264" width="0.32" height="0.3072" rx="0.02" class="linen"/>
+<rect x="-9.979999999999997" y="8.3264" width="0.32" height="0.3072" rx="0.02" class="sage"/>
+<rect x="-9" y="8.24" width="2" height="0.48" rx="0" class="wood"/>
+<rect x="-8.86" y="8.3264" width="0.32" height="0.3072" rx="0.02" class="rug"/>
+<rect x="-8.399999999999999" y="8.3264" width="0.32" height="0.3072" rx="0.02" class="blue"/>
+<rect x="-7.939999999999999" y="8.3264" width="0.32" height="0.3072" rx="0.02" class="linen"/>
+<rect x="-7.479999999999999" y="8.3264" width="0.32" height="0.3072" rx="0.02" class="sage"/>
+<rect x="-6.5" y="8.24" width="2" height="0.48" rx="0" class="wood"/>
+<rect x="-6.36" y="8.3264" width="0.32" height="0.3072" rx="0.02" class="rug"/>
+<rect x="-5.9" y="8.3264" width="0.32" height="0.3072" rx="0.02" class="blue"/>
+<rect x="-5.44" y="8.3264" width="0.32" height="0.3072" rx="0.02" class="linen"/>
+<rect x="-4.98" y="8.3264" width="0.32" height="0.3072" rx="0.02" class="sage"/>
+<rect x="-11.725" y="3.21" width="1.05" height="0.58" rx="0.02" class="wood"/>
+<path d="M-11.5045 3.21L-11.5045 3.79" class="line"/>
+<path d="M-10.895499999999998 3.21L-10.895499999999998 3.79" class="line"/>
+<rect x="-11.225" y="3.47" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-11.725" y="6.26" width="1.05" height="0.58" rx="0.02" class="wood"/>
+<path d="M-11.5045 6.26L-11.5045 6.84" class="line"/>
+<path d="M-10.895499999999998 6.26L-10.895499999999998 6.84" class="line"/>
+<rect x="-11.225" y="6.52" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-10.225" y="3.21" width="1.05" height="0.58" rx="0.02" class="wood"/>
+<path d="M-10.0045 3.21L-10.0045 3.79" class="line"/>
+<path d="M-9.395499999999998 3.21L-9.395499999999998 3.79" class="line"/>
+<rect x="-9.725" y="3.47" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-10.225" y="6.26" width="1.05" height="0.58" rx="0.02" class="wood"/>
+<path d="M-10.0045 6.26L-10.0045 6.84" class="line"/>
+<path d="M-9.395499999999998 6.26L-9.395499999999998 6.84" class="line"/>
+<rect x="-9.725" y="6.52" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-8.4" y="5.2" width="2.8" height="1" rx="0" class="wood"/>
+<rect x="-8.203999999999999" y="5.38" width="0.44799999999999995" height="0.64" rx="0.02" class="rug"/>
+<rect x="-7.56" y="5.38" width="0.44799999999999995" height="0.64" rx="0.02" class="blue"/>
+<rect x="-6.9159999999999995" y="5.38" width="0.44799999999999995" height="0.64" rx="0.02" class="linen"/>
+<rect x="-6.271999999999999" y="5.38" width="0.44799999999999995" height="0.64" rx="0.02" class="sage"/>
+<rect x="-5.699999999999999" y="6.7" width="1.2" height="0.6" rx="0.02" class="wood"/>
+<path d="M-5.4479999999999995 6.7L-5.4479999999999995 7.3" class="line"/>
+<path d="M-4.752 6.7L-4.752 7.3" class="line"/>
+<rect x="-5.125" y="6.97" width="0.05" height="0.06" rx="0" class="brass"/>
+<circle cx="-4.7" cy="3.45" r="0.325" class="wood"/>
+<circle cx="-4.7" cy="3.45" r="0.26325000000000004" class="fine"/>
+<path d="M-4.92425 3.3200000000000003L-4.475750000000001 3.3200000000000003" class="line"/>
+<path d="M-4.92425 3.45L-4.475750000000001 3.45" class="line"/>
+<path d="M-4.92425 3.58L-4.475750000000001 3.58" class="line"/>
+<circle cx="-4.7" cy="4.3" r="0.325" class="wood"/>
+<circle cx="-4.7" cy="4.3" r="0.26325000000000004" class="fine"/>
+<path d="M-4.92425 4.17L-4.475750000000001 4.17" class="line"/>
+<path d="M-4.92425 4.3L-4.475750000000001 4.3" class="line"/>
+<path d="M-4.92425 4.43L-4.475750000000001 4.43" class="line"/></g><g transform="translate(295.89235127478753 423.09631728045326)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">1</text></g><g transform="translate(266.7422096317281 215.71388101983)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">2</text></g><g transform="translate(441.64305949008497 307.328611898017)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">3</text></g><g transform="translate(400 160.74504249291786)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">4</text></g>
+<g transform="translate(90 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">1</text><text class="legend" x="19" y="4">沿墙家政物资架</text></g><g transform="translate(425 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">2</text><text class="legend" x="19" y="4">带锁木箱</text></g><g transform="translate(90 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">3</text><text class="legend" x="19" y="4">织物整理木案</text></g><g transform="translate(425 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">4</text><text class="legend" x="19" y="4">通往主堡长廊</text></g>
 <text x="400" y="568" text-anchor="middle" font-size="10" letter-spacing="1.1" fill="#91806a">室内陈设示意 · 依场景布局绘制，非实测图</text>
 </svg>

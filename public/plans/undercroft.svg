@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
-<title id="title">石阶前厅平面图</title><desc id="desc">石阶前厅俯视布局：通往地上的石阶、登记木案与照明、石砌蓄水盆、连接三间地窖的石廊。地下层陈设示意 · 开口通往中央石廊，非实测图。</desc>
+<title id="title">石阶前厅平面图</title><desc id="desc">石阶前厅俯视布局：北翼：酒窖、酿造与粮食、蓄水厅与维护步道、南翼：器械、封存与纪念、石阶入口与连通门洞。地下全层 · 八室经石廊与侧门互通，非实测图。</desc>
 <defs>
 <pattern id="planks" width=".22" height=".7" patternUnits="userSpaceOnUse"><rect width=".22" height=".7" fill="#ede0c8"/><path d="M0 0V.7M0 .35H.22" fill="none" stroke="#ad9776" stroke-opacity=".23" stroke-width=".006"/></pattern>
 <pattern id="hatch" width=".07" height=".07" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width=".07" height=".07" fill="#ded6c5"/><path d="M0 0V.07" stroke="#9e8a70" stroke-opacity=".45" stroke-width=".01"/></pattern>
@@ -16,134 +16,440 @@ svg{background:#f8f2e8;color:#655546;font-family:"Songti SC","Noto Serif CJK SC"
 <text x="674" y="57" font-family="Georgia,serif" font-size="11" letter-spacing="2" fill="#8d7b62">PL. 22</text>
 <g transform="translate(728 97)" stroke="#655546" stroke-width=".9"><path d="M0 -10V14M-6 -3L0 -17L6 -3L0 -7Z" fill="#b5a58a"/><text x="0" y="-23" text-anchor="middle" stroke="none" fill="#655546" font-family="Georgia,serif" font-size="10">N</text></g>
 <path d="M55 132H745M55 476H745" stroke="#b9aa93" stroke-width=".7"/>
-<g class="drawing" transform="translate(400 299) scale(78.19148936170212) translate(-3.1500000000000004 -2.45)"><rect x="0.62" y="0.52" width="5.0600000000000005" height="3.8600000000000003" rx="0" class="masonry"/>
-<rect x="0.7" y="0.6" width="4.9" height="3.7" rx="0" class="stone"/>
-<rect x="0.57" y="0.47" width="5.16" height="3.96" rx="0" class="outline"/>
-<path d="M0.7 1.08L5.6000000000000005 1.08" class="fine"/>
-<path d="M0.7 1.56L5.6000000000000005 1.56" class="fine"/>
-<path d="M0.7 2.04L5.6000000000000005 2.04" class="fine"/>
-<path d="M0.7 2.52L5.6000000000000005 2.52" class="fine"/>
-<path d="M0.7 3L5.6000000000000005 3" class="fine"/>
-<path d="M0.7 3.48L5.6000000000000005 3.48" class="fine"/>
-<path d="M0.7 3.96L5.6000000000000005 3.96" class="fine"/>
-<path d="M1.18 0.6L1.18 1.08" class="fine"/>
-<path d="M2.1399999999999997 0.6L2.1399999999999997 1.08" class="fine"/>
-<path d="M3.0999999999999996 0.6L3.0999999999999996 1.08" class="fine"/>
-<path d="M4.06 0.6L4.06 1.08" class="fine"/>
-<path d="M5.02 0.6L5.02 1.08" class="fine"/>
-<path d="M1.66 1.08L1.66 1.56" class="fine"/>
-<path d="M2.62 1.08L2.62 1.56" class="fine"/>
-<path d="M3.58 1.08L3.58 1.56" class="fine"/>
-<path d="M4.54 1.08L4.54 1.56" class="fine"/>
-<path d="M5.5 1.08L5.5 1.56" class="fine"/>
-<path d="M1.18 1.56L1.18 2.04" class="fine"/>
-<path d="M2.1399999999999997 1.56L2.1399999999999997 2.04" class="fine"/>
-<path d="M3.0999999999999996 1.56L3.0999999999999996 2.04" class="fine"/>
-<path d="M4.06 1.56L4.06 2.04" class="fine"/>
-<path d="M5.02 1.56L5.02 2.04" class="fine"/>
-<path d="M1.66 2.04L1.66 2.52" class="fine"/>
-<path d="M2.62 2.04L2.62 2.52" class="fine"/>
-<path d="M3.58 2.04L3.58 2.52" class="fine"/>
-<path d="M4.54 2.04L4.54 2.52" class="fine"/>
-<path d="M5.5 2.04L5.5 2.52" class="fine"/>
-<path d="M1.18 2.52L1.18 3" class="fine"/>
-<path d="M2.1399999999999997 2.52L2.1399999999999997 3" class="fine"/>
-<path d="M3.0999999999999996 2.52L3.0999999999999996 3" class="fine"/>
-<path d="M4.06 2.52L4.06 3" class="fine"/>
-<path d="M5.02 2.52L5.02 3" class="fine"/>
-<path d="M1.66 3L1.66 3.48" class="fine"/>
-<path d="M2.62 3L2.62 3.48" class="fine"/>
-<path d="M3.58 3L3.58 3.48" class="fine"/>
-<path d="M4.54 3L4.54 3.48" class="fine"/>
-<path d="M5.5 3L5.5 3.48" class="fine"/>
-<path d="M1.18 3.48L1.18 3.96" class="fine"/>
-<path d="M2.1399999999999997 3.48L2.1399999999999997 3.96" class="fine"/>
-<path d="M3.0999999999999996 3.48L3.0999999999999996 3.96" class="fine"/>
-<path d="M4.06 3.48L4.06 3.96" class="fine"/>
-<path d="M5.02 3.48L5.02 3.96" class="fine"/>
-<path d="M1.66 3.96L1.66 4.3" class="fine"/>
-<path d="M2.62 3.96L2.62 4.3" class="fine"/>
-<path d="M3.58 3.96L3.58 4.3" class="fine"/>
-<path d="M4.54 3.96L4.54 4.3" class="fine"/>
-<path d="M5.5 3.96L5.5 4.3" class="fine"/>
-<rect x="0.5499999999999999" y="1.8199999999999998" width="0.3" height="0.96" rx="0" class="stone"/>
-<path d="M0.39999999999999997 2.3L1 2.3" class="swing"/>
-<rect x="2.695" y="0.44999999999999996" width="0.96" height="0.3" rx="0" class="stone"/>
-<path d="M3.175 0.3L3.175 0.8999999999999999" class="swing"/>
-<rect x="4.195" y="2.565" width="1.13" height="1.43" rx="0" class="stone"/>
-<path d="M4.195 2.57L5.325 2.57" class="line"/>
-<path d="M4.195 2.77L5.325 2.77" class="line"/>
-<path d="M4.195 2.9699999999999998L5.325 2.9699999999999998" class="line"/>
-<path d="M4.195 3.17L5.325 3.17" class="line"/>
-<path d="M4.195 3.37L5.325 3.37" class="line"/>
-<path d="M4.195 3.57L5.325 3.57" class="line"/>
-<path d="M4.195 3.77L5.325 3.77" class="line"/>
-<path d="M4.24 2.65L4.24 4" class="line"/>
-<path d="M5.28 2.65L5.28 4" class="line"/>
-<path d="M4.76 2.68V3.78m-.12 -.2.12 .2.12 -.2" class="line"/>
-<rect x="1.15" y="3.525" width="2.2" height="0.55" rx="0.02" class="wood"/>
-<rect x="1.425" y="3.63" width="0.25" height="0.34" rx="0" class="blue"/>
-<circle cx="2.2" cy="3.8" r="0.035" class="brass"/>
-<circle cx="2.2" cy="3.8" r="0.011" class="paper"/>
-<circle cx="3" cy="3.8" r="0.12" class="pot"/>
-<circle cx="3" cy="3.8" r="0.0696" class="paper"/>
-<circle cx="3" cy="3.8" r="0.036" class="fine"/>
-<circle cx="4.65" cy="1.35" r="0.45" class="stone"/>
-<circle cx="4.65" cy="1.35" r="0.31" class="blue"/>
-<rect x="1.5500000000000003" y="1.05" width="1.8" height="1.1" rx="0" class="blue"/>
-<rect x="1.5950000000000002" y="1.095" width="1.71" height="1.01" rx="0" class="fine"/>
-<path d="M1.5900000000000003 1.0050000000000001L1.5900000000000003 1.05" class="fine"/>
-<path d="M1.5900000000000003 2.1500000000000004L1.5900000000000003 2.1950000000000003" class="fine"/>
-<path d="M1.6600000000000004 1.0050000000000001L1.6600000000000004 1.05" class="fine"/>
-<path d="M1.6600000000000004 2.1500000000000004L1.6600000000000004 2.1950000000000003" class="fine"/>
-<path d="M1.7300000000000004 1.0050000000000001L1.7300000000000004 1.05" class="fine"/>
-<path d="M1.7300000000000004 2.1500000000000004L1.7300000000000004 2.1950000000000003" class="fine"/>
-<path d="M1.8000000000000005 1.0050000000000001L1.8000000000000005 1.05" class="fine"/>
-<path d="M1.8000000000000005 2.1500000000000004L1.8000000000000005 2.1950000000000003" class="fine"/>
-<path d="M1.8700000000000006 1.0050000000000001L1.8700000000000006 1.05" class="fine"/>
-<path d="M1.8700000000000006 2.1500000000000004L1.8700000000000006 2.1950000000000003" class="fine"/>
-<path d="M1.9400000000000006 1.0050000000000001L1.9400000000000006 1.05" class="fine"/>
-<path d="M1.9400000000000006 2.1500000000000004L1.9400000000000006 2.1950000000000003" class="fine"/>
-<path d="M2.0100000000000007 1.0050000000000001L2.0100000000000007 1.05" class="fine"/>
-<path d="M2.0100000000000007 2.1500000000000004L2.0100000000000007 2.1950000000000003" class="fine"/>
-<path d="M2.0800000000000005 1.0050000000000001L2.0800000000000005 1.05" class="fine"/>
-<path d="M2.0800000000000005 2.1500000000000004L2.0800000000000005 2.1950000000000003" class="fine"/>
-<path d="M2.1500000000000004 1.0050000000000001L2.1500000000000004 1.05" class="fine"/>
-<path d="M2.1500000000000004 2.1500000000000004L2.1500000000000004 2.1950000000000003" class="fine"/>
-<path d="M2.22 1.0050000000000001L2.22 1.05" class="fine"/>
-<path d="M2.22 2.1500000000000004L2.22 2.1950000000000003" class="fine"/>
-<path d="M2.29 1.0050000000000001L2.29 1.05" class="fine"/>
-<path d="M2.29 2.1500000000000004L2.29 2.1950000000000003" class="fine"/>
-<path d="M2.36 1.0050000000000001L2.36 1.05" class="fine"/>
-<path d="M2.36 2.1500000000000004L2.36 2.1950000000000003" class="fine"/>
-<path d="M2.4299999999999997 1.0050000000000001L2.4299999999999997 1.05" class="fine"/>
-<path d="M2.4299999999999997 2.1500000000000004L2.4299999999999997 2.1950000000000003" class="fine"/>
-<path d="M2.4999999999999996 1.0050000000000001L2.4999999999999996 1.05" class="fine"/>
-<path d="M2.4999999999999996 2.1500000000000004L2.4999999999999996 2.1950000000000003" class="fine"/>
-<path d="M2.5699999999999994 1.0050000000000001L2.5699999999999994 1.05" class="fine"/>
-<path d="M2.5699999999999994 2.1500000000000004L2.5699999999999994 2.1950000000000003" class="fine"/>
-<path d="M2.6399999999999992 1.0050000000000001L2.6399999999999992 1.05" class="fine"/>
-<path d="M2.6399999999999992 2.1500000000000004L2.6399999999999992 2.1950000000000003" class="fine"/>
-<path d="M2.709999999999999 1.0050000000000001L2.709999999999999 1.05" class="fine"/>
-<path d="M2.709999999999999 2.1500000000000004L2.709999999999999 2.1950000000000003" class="fine"/>
-<path d="M2.779999999999999 1.0050000000000001L2.779999999999999 1.05" class="fine"/>
-<path d="M2.779999999999999 2.1500000000000004L2.779999999999999 2.1950000000000003" class="fine"/>
-<path d="M2.8499999999999988 1.0050000000000001L2.8499999999999988 1.05" class="fine"/>
-<path d="M2.8499999999999988 2.1500000000000004L2.8499999999999988 2.1950000000000003" class="fine"/>
-<path d="M2.9199999999999986 1.0050000000000001L2.9199999999999986 1.05" class="fine"/>
-<path d="M2.9199999999999986 2.1500000000000004L2.9199999999999986 2.1950000000000003" class="fine"/>
-<path d="M2.9899999999999984 1.0050000000000001L2.9899999999999984 1.05" class="fine"/>
-<path d="M2.9899999999999984 2.1500000000000004L2.9899999999999984 2.1950000000000003" class="fine"/>
-<path d="M3.0599999999999983 1.0050000000000001L3.0599999999999983 1.05" class="fine"/>
-<path d="M3.0599999999999983 2.1500000000000004L3.0599999999999983 2.1950000000000003" class="fine"/>
-<path d="M3.129999999999998 1.0050000000000001L3.129999999999998 1.05" class="fine"/>
-<path d="M3.129999999999998 2.1500000000000004L3.129999999999998 2.1950000000000003" class="fine"/>
-<path d="M3.199999999999998 1.0050000000000001L3.199999999999998 1.05" class="fine"/>
-<path d="M3.199999999999998 2.1500000000000004L3.199999999999998 2.1950000000000003" class="fine"/>
-<path d="M3.269999999999998 1.0050000000000001L3.269999999999998 1.05" class="fine"/>
-<path d="M3.269999999999998 2.1500000000000004L3.269999999999998 2.1950000000000003" class="fine"/>
-<path d="M3.3399999999999976 1.0050000000000001L3.3399999999999976 1.05" class="fine"/>
-<path d="M3.3399999999999976 2.1500000000000004L3.3399999999999976 2.1950000000000003" class="fine"/></g><g transform="translate(525.8882978723403 365.4627659574468)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">1</text></g><g transform="translate(329.62765957446805 404.55851063829783)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">2</text></g><g transform="translate(517.2872340425532 212.98936170212767)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">3</text></g><g transform="translate(247.52659574468083 287.27127659574467)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">4</text></g>
-<g transform="translate(90 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">1</text><text class="legend" x="19" y="4">通往地上的石阶</text></g><g transform="translate(425 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">2</text><text class="legend" x="19" y="4">登记木案与照明</text></g><g transform="translate(90 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">3</text><text class="legend" x="19" y="4">石砌蓄水盆</text></g><g transform="translate(425 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">4</text><text class="legend" x="19" y="4">连接三间地窖的石廊</text></g>
-<text x="400" y="568" text-anchor="middle" font-size="10" letter-spacing="1.1" fill="#91806a">地下层陈设示意 · 开口通往中央石廊，非实测图</text>
+<g class="drawing" transform="translate(400 299) scale(17.647058823529413) translate(0 0)"><rect x="-11.4" y="-8.4" width="22.8" height="16.8" rx="0" class="masonry"/>
+<rect x="-11.3" y="-8.3" width="22.6" height="16.6" rx="0" class="stone"/>
+<rect x="-11.08" y="-8.08" width="5.66" height="7.0600000000000005" rx="0" class="masonry"/>
+<rect x="-10.97" y="-7.97" width="5.44" height="6.840000000000001" rx="0" class="stone"/>
+<rect x="-9.15" y="-1.26" width="1.8" height="0.32" rx="0" class="stone"/>
+<path d="M-8.25 -1.4200000000000002L-8.25 -0.78" class="swing"/>
+<rect x="-5.66" y="-5.3" width="0.32" height="1.6" rx="0" class="stone"/>
+<path d="M-5.8 -4.5L-5.2 -4.5" class="swing"/>
+<rect x="-10.4" y="-7.65" width="4.3" height="0.8" rx="0" class="wood"/>
+<rect x="-10.24" y="-7.554" width="0.48" height="0.6080000000000001" rx="0.12" class="wood"/>
+<path d="M-10.24 -7.4L-9.76 -7.4" class="line"/>
+<path d="M-10.24 -7.1L-9.76 -7.1" class="line"/>
+<rect x="-9.39" y="-7.554" width="0.48" height="0.6080000000000001" rx="0.12" class="wood"/>
+<path d="M-9.39 -7.4L-8.91 -7.4" class="line"/>
+<path d="M-9.39 -7.1L-8.91 -7.1" class="line"/>
+<rect x="-8.540000000000001" y="-7.554" width="0.48" height="0.6080000000000001" rx="0.12" class="wood"/>
+<path d="M-8.540000000000001 -7.4L-8.06 -7.4" class="line"/>
+<path d="M-8.540000000000001 -7.1L-8.06 -7.1" class="line"/>
+<rect x="-7.690000000000001" y="-7.554" width="0.48" height="0.6080000000000001" rx="0.12" class="wood"/>
+<path d="M-7.690000000000001 -7.4L-7.210000000000001 -7.4" class="line"/>
+<path d="M-7.690000000000001 -7.1L-7.210000000000001 -7.1" class="line"/>
+<rect x="-6.840000000000002" y="-7.554" width="0.48" height="0.6080000000000001" rx="0.12" class="wood"/>
+<path d="M-6.840000000000002 -7.4L-6.360000000000001 -7.4" class="line"/>
+<path d="M-6.840000000000002 -7.1L-6.360000000000001 -7.1" class="line"/>
+<rect x="-9.4" y="-5.300000000000001" width="2.1" height="0.8" rx="0" class="wood"/>
+<rect x="-9.24" y="-5.204000000000001" width="0.48" height="0.6080000000000001" rx="0.12" class="wood"/>
+<path d="M-9.24 -5.050000000000001L-8.76 -5.050000000000001" class="line"/>
+<path d="M-9.24 -4.75L-8.76 -4.75" class="line"/>
+<rect x="-8.39" y="-5.204000000000001" width="0.48" height="0.6080000000000001" rx="0.12" class="wood"/>
+<path d="M-8.39 -5.050000000000001L-7.91 -5.050000000000001" class="line"/>
+<path d="M-8.39 -4.75L-7.91 -4.75" class="line"/>
+<circle cx="-10.3" cy="-6.05" r="0.3" class="wood"/>
+<circle cx="-10.3" cy="-6.05" r="0.243" class="fine"/>
+<path d="M-10.507000000000001 -6.17L-10.093 -6.17" class="line"/>
+<path d="M-10.507000000000001 -6.05L-10.093 -6.05" class="line"/>
+<path d="M-10.507000000000001 -5.93L-10.093 -5.93" class="line"/>
+<circle cx="-10.3" cy="-5.2" r="0.3" class="wood"/>
+<circle cx="-10.3" cy="-5.2" r="0.243" class="fine"/>
+<path d="M-10.507000000000001 -5.32L-10.093 -5.32" class="line"/>
+<path d="M-10.507000000000001 -5.2L-10.093 -5.2" class="line"/>
+<path d="M-10.507000000000001 -5.08L-10.093 -5.08" class="line"/>
+<circle cx="-10.3" cy="-2.6" r="0.3" class="wood"/>
+<circle cx="-10.3" cy="-2.6" r="0.243" class="fine"/>
+<path d="M-10.507000000000001 -2.72L-10.093 -2.72" class="line"/>
+<path d="M-10.507000000000001 -2.6L-10.093 -2.6" class="line"/>
+<path d="M-10.507000000000001 -2.48L-10.093 -2.48" class="line"/>
+<rect x="-7.1" y="-3.15" width="1.2" height="0.8" rx="0.025" class="wood"/>
+<path d="M-7.055 -3.105L-5.945 -3.105" class="line"/>
+<path d="M-7.055 -2.395L-5.945 -2.395" class="line"/>
+<rect x="-6.704" y="-2.966" width="0.40800000000000003" height="0.43200000000000005" rx="0" class="paper"/>
+<path d="M-6.668 -2.75q0.096 -0.16000000000000003 0.144 0t0.144 0" class="fine"/>
+<circle cx="-6.98" cy="-2.75" r="0.035" class="brass"/>
+<circle cx="-6.98" cy="-2.75" r="0.011" class="paper"/>
+<circle cx="-6.02" cy="-2.75" r="0.035" class="brass"/>
+<circle cx="-6.02" cy="-2.75" r="0.011" class="paper"/>
+<rect x="-6.5" y="-6.6" width="0.6" height="1.1" rx="0" class="wood"/>
+<circle cx="-6.2" cy="-6.435" r="0.13" class="pot"/>
+<circle cx="-6.2" cy="-6.435" r="0.0754" class="paper"/>
+<circle cx="-6.2" cy="-6.435" r="0.039" class="fine"/>
+<circle cx="-6.2" cy="-6.05" r="0.13" class="pot"/>
+<circle cx="-6.2" cy="-6.05" r="0.0754" class="paper"/>
+<circle cx="-6.2" cy="-6.05" r="0.039" class="fine"/>
+<circle cx="-6.2" cy="-5.664999999999999" r="0.13" class="pot"/>
+<circle cx="-6.2" cy="-5.664999999999999" r="0.0754" class="paper"/>
+<circle cx="-6.2" cy="-5.664999999999999" r="0.039" class="fine"/>
+<rect x="-5.58" y="-8.08" width="5.66" height="7.0600000000000005" rx="0" class="masonry"/>
+<rect x="-5.47" y="-7.97" width="5.44" height="6.840000000000001" rx="0" class="stone"/>
+<rect x="-3.65" y="-1.26" width="1.8" height="0.32" rx="0" class="stone"/>
+<path d="M-2.75 -1.4200000000000002L-2.75 -0.78" class="swing"/>
+<rect x="-5.66" y="-5.3" width="0.32" height="1.6" rx="0" class="stone"/>
+<path d="M-5.8 -4.5L-5.2 -4.5" class="swing"/>
+<rect x="-0.16" y="-5.3" width="0.32" height="1.6" rx="0" class="stone"/>
+<path d="M-0.3 -4.5L0.3 -4.5" class="swing"/>
+<circle cx="-4.13" cy="-6.7" r="0.73" class="wood"/>
+<circle cx="-4.13" cy="-6.7" r="0.5694" class="pot"/>
+<path d="M-4.641 -7.065L-3.6189999999999998 -6.335" class="line"/>
+<circle cx="-1.85" cy="-6.7" r="0.73" class="wood"/>
+<circle cx="-1.85" cy="-6.7" r="0.5694" class="pot"/>
+<path d="M-2.361 -7.065L-1.339 -6.335" class="line"/>
+<rect x="-4.95" y="-3.425" width="0.6" height="1.25" rx="0" class="wood"/>
+<ellipse cx="-4.782" cy="-3.175" rx="0.132" ry="0.10560000000000001" class="linen"/>
+<path d="M-4.848 -3.2304399999999998q0.066 0.0462 0.132 0" class="fine"/>
+<circle cx="-4.782" cy="-3.24496" r="0.018480000000000003" class="timber"/>
+<ellipse cx="-4.518000000000001" cy="-3.175" rx="0.132" ry="0.10560000000000001" class="linen"/>
+<path d="M-4.5840000000000005 -3.2304399999999998q0.066 0.0462 0.132 0" class="fine"/>
+<circle cx="-4.518000000000001" cy="-3.24496" r="0.018480000000000003" class="timber"/>
+<ellipse cx="-4.782" cy="-2.8" rx="0.132" ry="0.10560000000000001" class="linen"/>
+<path d="M-4.848 -2.8554399999999998q0.066 0.0462 0.132 0" class="fine"/>
+<circle cx="-4.782" cy="-2.86996" r="0.018480000000000003" class="timber"/>
+<ellipse cx="-4.518000000000001" cy="-2.8" rx="0.132" ry="0.10560000000000001" class="linen"/>
+<path d="M-4.5840000000000005 -2.8554399999999998q0.066 0.0462 0.132 0" class="fine"/>
+<circle cx="-4.518000000000001" cy="-2.86996" r="0.018480000000000003" class="timber"/>
+<ellipse cx="-4.782" cy="-2.425" rx="0.132" ry="0.10560000000000001" class="linen"/>
+<path d="M-4.848 -2.4804399999999998q0.066 0.0462 0.132 0" class="fine"/>
+<circle cx="-4.782" cy="-2.49496" r="0.018480000000000003" class="timber"/>
+<ellipse cx="-4.518000000000001" cy="-2.425" rx="0.132" ry="0.10560000000000001" class="linen"/>
+<path d="M-4.5840000000000005 -2.4804399999999998q0.066 0.0462 0.132 0" class="fine"/>
+<circle cx="-4.518000000000001" cy="-2.49496" r="0.018480000000000003" class="timber"/>
+<rect x="-1.7750000000000001" y="-3.175" width="1.35" height="0.85" rx="0.025" class="wood"/>
+<path d="M-1.7300000000000002 -3.13L-0.47000000000000003 -3.13" class="line"/>
+<path d="M-1.7300000000000002 -2.37L-0.47000000000000003 -2.37" class="line"/>
+<rect x="-1.3295000000000001" y="-2.9795" width="0.4590000000000001" height="0.459" rx="0" class="paper"/>
+<path d="M-1.2890000000000001 -2.75q0.10800000000000001 -0.17 0.162 0t0.162 0" class="fine"/>
+<circle cx="-1.6400000000000001" cy="-2.75" r="0.035" class="brass"/>
+<circle cx="-1.6400000000000001" cy="-2.75" r="0.011" class="paper"/>
+<circle cx="-0.56" cy="-2.75" r="0.035" class="brass"/>
+<circle cx="-0.56" cy="-2.75" r="0.011" class="paper"/>
+<circle cx="-1.3" cy="-2.75" r="0.08" class="sage"/>
+<circle cx="-1.1" cy="-2.75" r="0.08" class="sage"/>
+<circle cx="-0.9000000000000001" cy="-2.75" r="0.08" class="sage"/>
+<rect x="-3.65" y="-4.9750000000000005" width="1.7" height="0.65" rx="0.06" class="wood"/>
+<rect x="-3.51" y="-4.835000000000001" width="1.42" height="0.37" rx="0.025" class="pot"/>
+<circle cx="-0.7" cy="-5.6" r="0.3" class="wood"/>
+<circle cx="-0.7" cy="-5.6" r="0.243" class="fine"/>
+<path d="M-0.9069999999999999 -5.72L-0.493 -5.72" class="line"/>
+<path d="M-0.9069999999999999 -5.6L-0.493 -5.6" class="line"/>
+<path d="M-0.9069999999999999 -5.4799999999999995L-0.493 -5.4799999999999995" class="line"/>
+<circle cx="-0.7" cy="-6.45" r="0.3" class="wood"/>
+<circle cx="-0.7" cy="-6.45" r="0.243" class="fine"/>
+<path d="M-0.9069999999999999 -6.57L-0.493 -6.57" class="line"/>
+<path d="M-0.9069999999999999 -6.45L-0.493 -6.45" class="line"/>
+<path d="M-0.9069999999999999 -6.33L-0.493 -6.33" class="line"/>
+<rect x="-0.08" y="-8.08" width="5.66" height="7.0600000000000005" rx="0" class="masonry"/>
+<rect x="0.03" y="-7.97" width="5.44" height="6.840000000000001" rx="0" class="stone"/>
+<rect x="1.85" y="-1.26" width="1.8" height="0.32" rx="0" class="stone"/>
+<path d="M2.75 -1.4200000000000002L2.75 -0.78" class="swing"/>
+<rect x="-0.16" y="-5.3" width="0.32" height="1.6" rx="0" class="stone"/>
+<path d="M-0.3 -4.5L0.3 -4.5" class="swing"/>
+<rect x="5.34" y="-5.3" width="0.32" height="1.6" rx="0" class="stone"/>
+<path d="M5.2 -4.5L5.8 -4.5" class="swing"/>
+<rect x="0.5750000000000002" y="-7.699999999999999" width="4.35" height="0.7" rx="0" class="wood"/>
+<ellipse cx="1.0970000000000002" cy="-7.35" rx="0.17" ry="0.136" class="linen"/>
+<path d="M1.0120000000000002 -7.421399999999999q0.085 0.0595 0.17 0" class="fine"/>
+<circle cx="1.0970000000000002" cy="-7.440099999999999" r="0.023800000000000005" class="timber"/>
+<ellipse cx="1.51025" cy="-7.35" rx="0.17" ry="0.136" class="linen"/>
+<path d="M1.4252500000000001 -7.421399999999999q0.085 0.0595 0.17 0" class="fine"/>
+<circle cx="1.51025" cy="-7.440099999999999" r="0.023800000000000005" class="timber"/>
+<ellipse cx="1.9235000000000002" cy="-7.35" rx="0.17" ry="0.136" class="linen"/>
+<path d="M1.8385000000000002 -7.421399999999999q0.085 0.0595 0.17 0" class="fine"/>
+<circle cx="1.9235000000000002" cy="-7.440099999999999" r="0.023800000000000005" class="timber"/>
+<ellipse cx="2.3367500000000003" cy="-7.35" rx="0.17" ry="0.136" class="linen"/>
+<path d="M2.2517500000000004 -7.421399999999999q0.085 0.0595 0.17 0" class="fine"/>
+<circle cx="2.3367500000000003" cy="-7.440099999999999" r="0.023800000000000005" class="timber"/>
+<ellipse cx="2.75" cy="-7.35" rx="0.17" ry="0.136" class="linen"/>
+<path d="M2.665 -7.421399999999999q0.085 0.0595 0.17 0" class="fine"/>
+<circle cx="2.75" cy="-7.440099999999999" r="0.023800000000000005" class="timber"/>
+<ellipse cx="3.1632500000000006" cy="-7.35" rx="0.17" ry="0.136" class="linen"/>
+<path d="M3.0782500000000006 -7.421399999999999q0.085 0.0595 0.17 0" class="fine"/>
+<circle cx="3.1632500000000006" cy="-7.440099999999999" r="0.023800000000000005" class="timber"/>
+<ellipse cx="3.5765000000000002" cy="-7.35" rx="0.17" ry="0.136" class="linen"/>
+<path d="M3.4915000000000003 -7.421399999999999q0.085 0.0595 0.17 0" class="fine"/>
+<circle cx="3.5765000000000002" cy="-7.440099999999999" r="0.023800000000000005" class="timber"/>
+<ellipse cx="3.98975" cy="-7.35" rx="0.17" ry="0.136" class="linen"/>
+<path d="M3.90475 -7.421399999999999q0.085 0.0595 0.17 0" class="fine"/>
+<circle cx="3.98975" cy="-7.440099999999999" r="0.023800000000000005" class="timber"/>
+<ellipse cx="4.403" cy="-7.35" rx="0.17" ry="0.136" class="linen"/>
+<path d="M4.318 -7.421399999999999q0.085 0.0595 0.17 0" class="fine"/>
+<circle cx="4.403" cy="-7.440099999999999" r="0.023800000000000005" class="timber"/>
+<rect x="0.35" y="-6.025" width="0.8" height="1.25" rx="0" class="wood"/>
+<ellipse cx="0.574" cy="-5.775" rx="0.17600000000000002" ry="0.1408" class="linen"/>
+<path d="M0.48599999999999993 -5.848920000000001q0.08800000000000001 0.0616 0.17600000000000002 0" class="fine"/>
+<circle cx="0.574" cy="-5.86828" r="0.024640000000000006" class="timber"/>
+<ellipse cx="0.926" cy="-5.775" rx="0.17600000000000002" ry="0.1408" class="linen"/>
+<path d="M0.8380000000000001 -5.848920000000001q0.08800000000000001 0.0616 0.17600000000000002 0" class="fine"/>
+<circle cx="0.926" cy="-5.86828" r="0.024640000000000006" class="timber"/>
+<ellipse cx="0.574" cy="-5.4" rx="0.17600000000000002" ry="0.1408" class="linen"/>
+<path d="M0.48599999999999993 -5.473920000000001q0.08800000000000001 0.0616 0.17600000000000002 0" class="fine"/>
+<circle cx="0.574" cy="-5.49328" r="0.024640000000000006" class="timber"/>
+<ellipse cx="0.926" cy="-5.4" rx="0.17600000000000002" ry="0.1408" class="linen"/>
+<path d="M0.8380000000000001 -5.473920000000001q0.08800000000000001 0.0616 0.17600000000000002 0" class="fine"/>
+<circle cx="0.926" cy="-5.49328" r="0.024640000000000006" class="timber"/>
+<ellipse cx="0.574" cy="-5.025" rx="0.17600000000000002" ry="0.1408" class="linen"/>
+<path d="M0.48599999999999993 -5.098920000000001q0.08800000000000001 0.0616 0.17600000000000002 0" class="fine"/>
+<circle cx="0.574" cy="-5.11828" r="0.024640000000000006" class="timber"/>
+<ellipse cx="0.926" cy="-5.025" rx="0.17600000000000002" ry="0.1408" class="linen"/>
+<path d="M0.8380000000000001 -5.098920000000001q0.08800000000000001 0.0616 0.17600000000000002 0" class="fine"/>
+<circle cx="0.926" cy="-5.11828" r="0.024640000000000006" class="timber"/>
+<rect x="4.25" y="-3.3000000000000003" width="0.8" height="1.2" rx="0" class="wood"/>
+<ellipse cx="4.474" cy="-3.06" rx="0.17600000000000002" ry="0.1408" class="linen"/>
+<path d="M4.386 -3.1339200000000003q0.08800000000000001 0.0616 0.17600000000000002 0" class="fine"/>
+<circle cx="4.474" cy="-3.15328" r="0.024640000000000006" class="timber"/>
+<ellipse cx="4.8260000000000005" cy="-3.06" rx="0.17600000000000002" ry="0.1408" class="linen"/>
+<path d="M4.738 -3.1339200000000003q0.08800000000000001 0.0616 0.17600000000000002 0" class="fine"/>
+<circle cx="4.8260000000000005" cy="-3.15328" r="0.024640000000000006" class="timber"/>
+<ellipse cx="4.474" cy="-2.7" rx="0.17600000000000002" ry="0.1408" class="linen"/>
+<path d="M4.386 -2.7739200000000004q0.08800000000000001 0.0616 0.17600000000000002 0" class="fine"/>
+<circle cx="4.474" cy="-2.79328" r="0.024640000000000006" class="timber"/>
+<ellipse cx="4.8260000000000005" cy="-2.7" rx="0.17600000000000002" ry="0.1408" class="linen"/>
+<path d="M4.738 -2.7739200000000004q0.08800000000000001 0.0616 0.17600000000000002 0" class="fine"/>
+<circle cx="4.8260000000000005" cy="-2.79328" r="0.024640000000000006" class="timber"/>
+<ellipse cx="4.474" cy="-2.3400000000000003" rx="0.17600000000000002" ry="0.1408" class="linen"/>
+<path d="M4.386 -2.4139200000000005q0.08800000000000001 0.0616 0.17600000000000002 0" class="fine"/>
+<circle cx="4.474" cy="-2.4332800000000003" r="0.024640000000000006" class="timber"/>
+<ellipse cx="4.8260000000000005" cy="-2.3400000000000003" rx="0.17600000000000002" ry="0.1408" class="linen"/>
+<path d="M4.738 -2.4139200000000005q0.08800000000000001 0.0616 0.17600000000000002 0" class="fine"/>
+<circle cx="4.8260000000000005" cy="-2.4332800000000003" r="0.024640000000000006" class="timber"/>
+<rect x="1.9249999999999998" y="-5.1000000000000005" width="1.75" height="0.8" rx="0.025" class="wood"/>
+<path d="M1.9699999999999998 -5.055000000000001L3.63 -5.055000000000001" class="line"/>
+<path d="M1.9699999999999998 -4.345L3.63 -4.345" class="line"/>
+<rect x="2.5025" y="-4.916" width="0.5950000000000001" height="0.43200000000000005" rx="0" class="paper"/>
+<path d="M2.5549999999999997 -4.7q0.14 -0.16000000000000003 0.21 0t0.21 0" class="fine"/>
+<circle cx="2.0999999999999996" cy="-4.7" r="0.035" class="brass"/>
+<circle cx="2.0999999999999996" cy="-4.7" r="0.011" class="paper"/>
+<circle cx="3.5" cy="-4.7" r="0.035" class="brass"/>
+<circle cx="3.5" cy="-4.7" r="0.011" class="paper"/>
+<circle cx="2.5999999999999996" cy="-4.7" r="0.08" class="sage"/>
+<circle cx="2.8" cy="-4.7" r="0.08" class="sage"/>
+<circle cx="3" cy="-4.7" r="0.08" class="sage"/>
+<rect x="0.47500000000000003" y="-3.4749999999999996" width="0.65" height="1.35" rx="0" class="wood"/>
+<ellipse cx="0.8" cy="-3.2725" rx="0.14" ry="0.22" class="sage"/>
+<path d="M0.7000000000000001 -3.4225L0.9 -3.1225" class="line"/>
+<ellipse cx="0.8" cy="-2.8" rx="0.14" ry="0.22" class="sage"/>
+<path d="M0.7000000000000001 -2.9499999999999997L0.9 -2.65" class="line"/>
+<ellipse cx="0.8" cy="-2.3275" rx="0.14" ry="0.22" class="sage"/>
+<path d="M0.7000000000000001 -2.4775L0.9 -2.1775" class="line"/>
+<rect x="3.9749999999999996" y="-6.2" width="1.15" height="0.6" rx="0.02" class="wood"/>
+<path d="M4.2165 -6.2L4.2165 -5.6000000000000005" class="line"/>
+<path d="M4.8835 -6.2L4.8835 -5.6000000000000005" class="line"/>
+<rect x="4.5249999999999995" y="-5.930000000000001" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="5.42" y="-8.08" width="5.66" height="7.0600000000000005" rx="0" class="masonry"/>
+<rect x="5.53" y="-7.97" width="5.44" height="6.840000000000001" rx="0" class="stone"/>
+<rect x="7.35" y="-1.26" width="1.8" height="0.32" rx="0" class="stone"/>
+<path d="M8.25 -1.4200000000000002L8.25 -0.78" class="swing"/>
+<rect x="5.34" y="-5.3" width="0.32" height="1.6" rx="0" class="stone"/>
+<path d="M5.2 -4.5L5.8 -4.5" class="swing"/>
+<rect x="6.8" y="-6.6" width="2.9" height="3.2" rx="0.06" class="stone"/>
+<rect x="6.9399999999999995" y="-6.46" width="2.62" height="2.92" rx="0.025" class="water"/>
+<rect x="9.8" y="-7.449999999999999" width="0.7" height="0.7" rx="0" class="stone"/>
+<circle cx="10.15" cy="-7.1" r="0.14" class="coal"/>
+<path d="M10.15 -7.1L10.43 -7.31" class="line"/>
+<circle cx="10.01" cy="-6.96" r="0.13" class="pot"/>
+<circle cx="10.01" cy="-6.96" r="0.0754" class="paper"/>
+<circle cx="10.01" cy="-6.96" r="0.039" class="fine"/>
+<rect x="6.05" y="-3.425" width="0.6" height="1.25" rx="0" class="wood"/>
+<circle cx="6.254" cy="-2.8" r="0.25" class="brass"/>
+<circle cx="6.254" cy="-2.8" r="0.19" class="blue"/>
+<circle cx="6.529999999999999" cy="-2.8" r="0.1" class="pot"/>
+<circle cx="6.529999999999999" cy="-2.8" r="0.057999999999999996" class="paper"/>
+<circle cx="6.529999999999999" cy="-2.8" r="0.03" class="fine"/>
+<circle cx="10.2" cy="-2.7" r="0.3" class="wood"/>
+<circle cx="10.2" cy="-2.7" r="0.243" class="fine"/>
+<path d="M9.992999999999999 -2.8200000000000003L10.407 -2.8200000000000003" class="line"/>
+<path d="M9.992999999999999 -2.7L10.407 -2.7" class="line"/>
+<path d="M9.992999999999999 -2.58L10.407 -2.58" class="line"/>
+<rect x="-11.08" y="1.02" width="5.66" height="7.0600000000000005" rx="0" class="masonry"/>
+<rect x="-10.97" y="1.1300000000000001" width="5.44" height="6.840000000000001" rx="0" class="stone"/>
+<rect x="-9.15" y="0.9400000000000001" width="1.8" height="0.32" rx="0" class="stone"/>
+<path d="M-8.25 0.78L-8.25 1.4200000000000002" class="swing"/>
+<rect x="-5.66" y="3.7" width="0.32" height="1.6" rx="0" class="stone"/>
+<path d="M-5.8 4.5L-5.2 4.5" class="swing"/>
+<rect x="-10.600000000000001" y="3.0500000000000003" width="0.6" height="3.3" rx="0" class="wood"/>
+<path d="M-10.510000000000002 3.38L-10.09 3.38" class="line"/>
+<path d="M-10.09 3.38l-.15 -.07v.14z" class="coal"/>
+<path d="M-10.510000000000002 3.76L-10.09 3.76" class="line"/>
+<path d="M-10.09 3.76l-.15 -.07v.14z" class="coal"/>
+<path d="M-10.510000000000002 4.14L-10.09 4.14" class="line"/>
+<path d="M-10.09 4.14l-.15 -.07v.14z" class="coal"/>
+<path d="M-10.510000000000002 4.52L-10.09 4.52" class="line"/>
+<path d="M-10.09 4.52l-.15 -.07v.14z" class="coal"/>
+<path d="M-10.510000000000002 4.8999999999999995L-10.09 4.8999999999999995" class="line"/>
+<path d="M-10.09 4.8999999999999995l-.15 -.07v.14z" class="coal"/>
+<path d="M-10.510000000000002 5.279999999999999L-10.09 5.279999999999999" class="line"/>
+<path d="M-10.09 5.279999999999999l-.15 -.07v.14z" class="coal"/>
+<path d="M-10.510000000000002 5.659999999999999L-10.09 5.659999999999999" class="line"/>
+<path d="M-10.09 5.659999999999999l-.15 -.07v.14z" class="coal"/>
+<path d="M-10.510000000000002 6.039999999999999L-10.09 6.039999999999999" class="line"/>
+<path d="M-10.09 6.039999999999999l-.15 -.07v.14z" class="coal"/>
+<rect x="-9.85" y="6.9" width="3.5" height="0.7" rx="0" class="wood"/>
+<ellipse cx="-9.43" cy="7.25" rx="0.16" ry="0.2" class="coal"/>
+<path d="M-9.43 7.05L-9.43 7.45" class="line"/>
+<ellipse cx="-8.986666666666666" cy="7.25" rx="0.16" ry="0.2" class="coal"/>
+<path d="M-8.986666666666666 7.05L-8.986666666666666 7.45" class="line"/>
+<ellipse cx="-8.543333333333333" cy="7.25" rx="0.16" ry="0.2" class="coal"/>
+<path d="M-8.543333333333333 7.05L-8.543333333333333 7.45" class="line"/>
+<ellipse cx="-8.1" cy="7.25" rx="0.16" ry="0.2" class="coal"/>
+<path d="M-8.1 7.05L-8.1 7.45" class="line"/>
+<ellipse cx="-7.656666666666666" cy="7.25" rx="0.16" ry="0.2" class="coal"/>
+<path d="M-7.656666666666666 7.05L-7.656666666666666 7.45" class="line"/>
+<ellipse cx="-7.213333333333333" cy="7.25" rx="0.16" ry="0.2" class="coal"/>
+<path d="M-7.213333333333333 7.05L-7.213333333333333 7.45" class="line"/>
+<ellipse cx="-6.77" cy="7.25" rx="0.16" ry="0.2" class="coal"/>
+<path d="M-6.77 7.05L-6.77 7.45" class="line"/>
+<rect x="-7.175" y="2.4250000000000003" width="1.25" height="0.85" rx="0.025" class="wood"/>
+<path d="M-7.13 2.47L-5.97 2.47" class="line"/>
+<path d="M-7.13 3.23L-5.97 3.23" class="line"/>
+<rect x="-6.7625" y="2.6205000000000003" width="0.42500000000000004" height="0.459" rx="0" class="paper"/>
+<path d="M-6.725 2.85q0.1 -0.17 0.15 0t0.15 0" class="fine"/>
+<circle cx="-7.05" cy="2.85" r="0.035" class="brass"/>
+<circle cx="-7.05" cy="2.85" r="0.011" class="paper"/>
+<circle cx="-6.05" cy="2.85" r="0.035" class="brass"/>
+<circle cx="-6.05" cy="2.85" r="0.011" class="paper"/>
+<path d="M-6.9875 2.85L-6.1125 2.85" class="line"/>
+<rect x="-6.675" y="2.68" width="0.125" height="0.34" rx="0" class="coal"/>
+<rect x="-8.9" y="4.3500000000000005" width="1.3" height="0.6" rx="0" class="wood"/>
+<ellipse cx="-8.666" cy="4.65" rx="0.17" ry="0.23" class="blue"/>
+<circle cx="-8.666" cy="4.65" r="0.05" class="coal"/>
+<ellipse cx="-8.236" cy="4.65" rx="0.17" ry="0.23" class="blue"/>
+<circle cx="-8.236" cy="4.65" r="0.05" class="coal"/>
+<ellipse cx="-7.806000000000001" cy="4.65" rx="0.17" ry="0.23" class="blue"/>
+<circle cx="-7.806000000000001" cy="4.65" r="0.05" class="coal"/>
+<rect x="-10.675" y="1.8" width="1.05" height="0.6" rx="0.02" class="wood"/>
+<path d="M-10.4545 1.8L-10.4545 2.4" class="line"/>
+<path d="M-9.845500000000001 1.8L-9.845500000000001 2.4" class="line"/>
+<rect x="-10.175" y="2.0700000000000003" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-5.58" y="1.02" width="5.66" height="7.0600000000000005" rx="0" class="masonry"/>
+<rect x="-5.47" y="1.1300000000000001" width="5.44" height="6.840000000000001" rx="0" class="stone"/>
+<rect x="-3.65" y="0.9400000000000001" width="1.8" height="0.32" rx="0" class="stone"/>
+<path d="M-2.75 0.78L-2.75 1.4200000000000002" class="swing"/>
+<rect x="-5.66" y="3.7" width="0.32" height="1.6" rx="0" class="stone"/>
+<path d="M-5.8 4.5L-5.2 4.5" class="swing"/>
+<rect x="-0.16" y="3.7" width="0.32" height="1.6" rx="0" class="stone"/>
+<path d="M-0.3 4.5L0.3 4.5" class="swing"/>
+<rect x="-5.025" y="6.875" width="1.05" height="0.65" rx="0.02" class="wood"/>
+<path d="M-4.8045 6.875L-4.8045 7.525" class="line"/>
+<path d="M-4.1955 6.875L-4.1955 7.525" class="line"/>
+<rect x="-4.525" y="7.17" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-3.625" y="6.875" width="1.05" height="0.65" rx="0.02" class="wood"/>
+<path d="M-3.4045 6.875L-3.4045 7.525" class="line"/>
+<path d="M-2.7955 6.875L-2.7955 7.525" class="line"/>
+<rect x="-3.125" y="7.17" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-2.225" y="6.875" width="1.05" height="0.65" rx="0.02" class="wood"/>
+<path d="M-2.0045 6.875L-2.0045 7.525" class="line"/>
+<path d="M-1.3955 6.875L-1.3955 7.525" class="line"/>
+<rect x="-1.7249999999999999" y="7.17" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-5.025" y="2.0999999999999996" width="0.65" height="1.6" rx="0" class="wood"/>
+<rect x="-4.88" y="2.1599999999999997" width="0.36" height="0.36" rx="0.02" class="wood"/>
+<path d="M-4.8044 2.1599999999999997L-4.8044 2.52" class="line"/>
+<path d="M-4.5956 2.1599999999999997L-4.5956 2.52" class="line"/>
+<rect x="-4.7250000000000005" y="2.31" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-4.88" y="2.7199999999999998" width="0.36" height="0.36" rx="0.02" class="wood"/>
+<path d="M-4.8044 2.7199999999999998L-4.8044 3.08" class="line"/>
+<path d="M-4.5956 2.7199999999999998L-4.5956 3.08" class="line"/>
+<rect x="-4.7250000000000005" y="2.87" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-4.88" y="3.28" width="0.36" height="0.36" rx="0.02" class="wood"/>
+<path d="M-4.8044 3.28L-4.8044 3.64" class="line"/>
+<path d="M-4.5956 3.28L-4.5956 3.64" class="line"/>
+<rect x="-4.7250000000000005" y="3.43" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-3.575" y="4.4750000000000005" width="1.65" height="0.85" rx="0.025" class="wood"/>
+<path d="M-3.5300000000000002 4.5200000000000005L-1.97 4.5200000000000005" class="line"/>
+<path d="M-3.5300000000000002 5.28L-1.97 5.28" class="line"/>
+<rect x="-3.0305" y="4.6705000000000005" width="0.561" height="0.459" rx="0" class="paper"/>
+<path d="M-2.981 4.9q0.132 -0.17 0.19799999999999998 0t0.19799999999999998 0" class="fine"/>
+<circle cx="-3.41" cy="4.9" r="0.035" class="brass"/>
+<circle cx="-3.41" cy="4.9" r="0.011" class="paper"/>
+<circle cx="-2.09" cy="4.9" r="0.035" class="brass"/>
+<circle cx="-2.09" cy="4.9" r="0.011" class="paper"/>
+<path d="M-3.113 4.9L-2.387 4.9" class="line"/>
+<circle cx="-3.113" cy="4.9" r="0.14" class="brass"/>
+<circle cx="-2.387" cy="4.9" r="0.14" class="brass"/>
+<rect x="-1.15" y="2.4749999999999996" width="0.8" height="0.65" rx="0.02" class="wood"/>
+<path d="M-0.982 2.4749999999999996L-0.982 3.125" class="line"/>
+<path d="M-0.518 2.4749999999999996L-0.518 3.125" class="line"/>
+<rect x="-0.775" y="2.77" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-1.125" y="5.5" width="0.75" height="0.8" rx="0.025" class="wood"/>
+<path d="M-1.08 5.545L-0.42 5.545" class="line"/>
+<path d="M-1.08 6.255000000000001L-0.42 6.255000000000001" class="line"/>
+<rect x="-0.8775" y="5.684" width="0.255" height="0.43200000000000005" rx="0" class="paper"/>
+<path d="M-0.855 5.9q0.06 -0.16000000000000003 0.09 0t0.09 0" class="fine"/>
+<circle cx="-1.05" cy="5.9" r="0.035" class="brass"/>
+<circle cx="-1.05" cy="5.9" r="0.011" class="paper"/>
+<circle cx="-0.44999999999999996" cy="5.9" r="0.035" class="brass"/>
+<circle cx="-0.44999999999999996" cy="5.9" r="0.011" class="paper"/>
+<rect x="-0.08" y="1.02" width="5.66" height="7.0600000000000005" rx="0" class="masonry"/>
+<rect x="0.03" y="1.1300000000000001" width="5.44" height="6.840000000000001" rx="0" class="stone"/>
+<rect x="1.85" y="0.9400000000000001" width="1.8" height="0.32" rx="0" class="stone"/>
+<path d="M2.75 0.78L2.75 1.4200000000000002" class="swing"/>
+<rect x="-0.16" y="3.7" width="0.32" height="1.6" rx="0" class="stone"/>
+<path d="M-0.3 4.5L0.3 4.5" class="swing"/>
+<rect x="5.34" y="3.7" width="0.32" height="1.6" rx="0" class="stone"/>
+<path d="M5.2 4.5L5.8 4.5" class="swing"/>
+<rect x="0.6000000000000001" y="2.2750000000000004" width="0.9" height="1.65" rx="0.04" class="stone"/>
+<rect x="0.6990000000000001" y="2.3905000000000003" width="0.7020000000000001" height="1.4189999999999998" rx="0" class="fine"/>
+<path d="M1.05 2.704L1.05 3.496" class="line"/>
+<path d="M0.87 3.001L1.23 3.001" class="line"/>
+<rect x="0.6000000000000001" y="4.975" width="0.9" height="1.65" rx="0.04" class="stone"/>
+<rect x="0.6990000000000001" y="5.0905" width="0.7020000000000001" height="1.4189999999999998" rx="0" class="fine"/>
+<path d="M1.05 5.404L1.05 6.196" class="line"/>
+<path d="M0.87 5.701L1.23 5.701" class="line"/>
+<rect x="4" y="2.2750000000000004" width="0.9" height="1.65" rx="0.04" class="stone"/>
+<rect x="4.099" y="2.3905000000000003" width="0.7020000000000001" height="1.4189999999999998" rx="0" class="fine"/>
+<path d="M4.45 2.704L4.45 3.496" class="line"/>
+<path d="M4.2700000000000005 3.001L4.63 3.001" class="line"/>
+<rect x="4" y="4.975" width="0.9" height="1.65" rx="0.04" class="stone"/>
+<rect x="4.099" y="5.0905" width="0.7020000000000001" height="1.4189999999999998" rx="0" class="fine"/>
+<path d="M4.45 5.404L4.45 6.196" class="line"/>
+<path d="M4.2700000000000005 5.701L4.63 5.701" class="line"/>
+<rect x="1.9" y="6.9" width="1.7" height="0.7" rx="0" class="stone"/>
+<rect x="2.07" y="6.998" width="1.36" height="0.504" rx="0" class="linen"/>
+<circle cx="2.206" cy="7.25" r="0.035" class="brass"/>
+<circle cx="2.206" cy="7.25" r="0.011" class="paper"/>
+<circle cx="3.294" cy="7.25" r="0.035" class="brass"/>
+<circle cx="3.294" cy="7.25" r="0.011" class="paper"/>
+<path d="M2.75 7.04L2.75 7.46" class="line"/>
+<path d="M2.62 7.19L2.88 7.19" class="line"/>
+<rect x="5.42" y="1.02" width="5.66" height="7.0600000000000005" rx="0" class="masonry"/>
+<rect x="5.53" y="1.1300000000000001" width="5.44" height="6.840000000000001" rx="0" class="stone"/>
+<rect x="7.35" y="0.9400000000000001" width="1.8" height="0.32" rx="0" class="stone"/>
+<path d="M8.25 0.78L8.25 1.4200000000000002" class="swing"/>
+<rect x="5.34" y="3.7" width="0.32" height="1.6" rx="0" class="stone"/>
+<path d="M5.2 4.5L5.8 4.5" class="swing"/>
+<rect x="8.825000000000001" y="5.199999999999999" width="1.65" height="2.3" rx="0" class="stone"/>
+<path d="M8.825000000000001 5.199999999999999L10.475 5.199999999999999" class="line"/>
+<path d="M8.825000000000001 5.455555555555556L10.475 5.455555555555556" class="line"/>
+<path d="M8.825000000000001 5.71111111111111L10.475 5.71111111111111" class="line"/>
+<path d="M8.825000000000001 5.966666666666667L10.475 5.966666666666667" class="line"/>
+<path d="M8.825000000000001 6.222222222222221L10.475 6.222222222222221" class="line"/>
+<path d="M8.825000000000001 6.477777777777778L10.475 6.477777777777778" class="line"/>
+<path d="M8.825000000000001 6.7333333333333325L10.475 6.7333333333333325" class="line"/>
+<path d="M8.825000000000001 6.988888888888889L10.475 6.988888888888889" class="line"/>
+<path d="M8.825000000000001 7.244444444444444L10.475 7.244444444444444" class="line"/>
+<path d="M9.65 5.545V7.154999999999999m-.15 -.25l.15 .25.15 -.25" class="line"/>
+<rect x="6.199999999999999" y="6.975" width="1.8" height="0.65" rx="0.025" class="wood"/>
+<path d="M6.244999999999999 7.02L7.955 7.02" class="line"/>
+<path d="M6.244999999999999 7.58L7.955 7.58" class="line"/>
+<rect x="6.794" y="7.124499999999999" width="0.6120000000000001" height="0.35100000000000003" rx="0" class="paper"/>
+<path d="M6.848 7.3q0.14400000000000002 -0.13 0.216 0t0.216 0" class="fine"/>
+<circle cx="6.38" cy="7.3" r="0.035" class="brass"/>
+<circle cx="6.38" cy="7.3" r="0.011" class="paper"/>
+<circle cx="7.819999999999999" cy="7.3" r="0.035" class="brass"/>
+<circle cx="7.819999999999999" cy="7.3" r="0.011" class="paper"/>
+<rect x="5.975" y="2.0999999999999996" width="0.55" height="1.4" rx="0.04" class="wood"/>
+<path d="M6.03 2.38L6.47 2.38" class="line"/>
+<circle cx="9.85" cy="2.65" r="0.46" class="stone"/>
+<circle cx="9.85" cy="2.65" r="0.3588" class="water"/>
+<rect x="9.389999999999999" y="2.6" width="0.92" height="0.1" rx="0" class="wood"/>
+<text x="-8.25" y="-1.6800000000000002" text-anchor="middle" dominant-baseline="middle" style="font-size:.43px;fill:#655546;stroke:#f8f2e8;stroke-width:.12;paint-order:stroke;letter-spacing:.025px">地下酒窖</text>
+<text x="-2.75" y="-1.6800000000000002" text-anchor="middle" dominant-baseline="middle" style="font-size:.43px;fill:#655546;stroke:#f8f2e8;stroke-width:.12;paint-order:stroke;letter-spacing:.025px">酿造间</text>
+<text x="2.75" y="-1.6800000000000002" text-anchor="middle" dominant-baseline="middle" style="font-size:.43px;fill:#655546;stroke:#f8f2e8;stroke-width:.12;paint-order:stroke;letter-spacing:.025px">储粮地窖</text>
+<text x="8.25" y="-1.6800000000000002" text-anchor="middle" dominant-baseline="middle" style="font-size:.43px;fill:#655546;stroke:#f8f2e8;stroke-width:.12;paint-order:stroke;letter-spacing:.025px">蓄水厅</text>
+<text x="-8.25" y="1.6800000000000002" text-anchor="middle" dominant-baseline="middle" style="font-size:.43px;fill:#655546;stroke:#f8f2e8;stroke-width:.12;paint-order:stroke;letter-spacing:.025px">地下器械库</text>
+<text x="-2.75" y="1.6800000000000002" text-anchor="middle" dominant-baseline="middle" style="font-size:.43px;fill:#655546;stroke:#f8f2e8;stroke-width:.12;paint-order:stroke;letter-spacing:.025px">封存库</text>
+<text x="2.75" y="1.6800000000000002" text-anchor="middle" dominant-baseline="middle" style="font-size:.43px;fill:#655546;stroke:#f8f2e8;stroke-width:.12;paint-order:stroke;letter-spacing:.025px">地下纪念堂</text>
+<text x="8.25" y="1.6800000000000002" text-anchor="middle" dominant-baseline="middle" style="font-size:.43px;fill:#655546;stroke:#f8f2e8;stroke-width:.12;paint-order:stroke;letter-spacing:.025px">石阶前厅</text>
+<text x="0" y=".18" text-anchor="middle" style="font-size:.43px;fill:#655546;stroke:none;letter-spacing:.06px">中央石廊 · 八室连通</text></g><g transform="translate(254.41176470588235 193.11764705882354)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">1</text></g><g transform="translate(545.5882352941177 210.76470588235293)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">2</text></g><g transform="translate(448.52941176470586 387.2352941176471)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">3</text></g><g transform="translate(570.2941176470588 411.05882352941177)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">4</text></g>
+<g transform="translate(90 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">1</text><text class="legend" x="19" y="4">北翼：酒窖、酿造与粮食</text></g><g transform="translate(425 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">2</text><text class="legend" x="19" y="4">蓄水厅与维护步道</text></g><g transform="translate(90 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">3</text><text class="legend" x="19" y="4">南翼：器械、封存与纪念</text></g><g transform="translate(425 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">4</text><text class="legend" x="19" y="4">石阶入口与连通门洞</text></g>
+<text x="400" y="568" text-anchor="middle" font-size="10" letter-spacing="1.1" fill="#91806a">地下全层 · 八室经石廊与侧门互通，非实测图</text>
 </svg>

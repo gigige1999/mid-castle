@@ -1,35 +1,13 @@
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { buildKeepWing, keepWingLayouts } from './keep-wing.js';
+import { buildBasementWing, basementWingLayouts } from './basement-wing.js';
+export { keepWalkLayout } from './keep-wing.js';
+export { undergroundWalkLayout } from './basement-wing.js';
 
 const rect = (x1, z1, x2, z2) => ({ rect: [x1, z1, x2, z2] });
-const disc = (x, z, radius) => ({ circle: [x, z, radius] });
 const walk = (name, bounds, spawn, obstacles, y) => ({ name, bounds, spawn, obstacles, y, radius: .12, step: .07 });
-const partitionObstacles = [];
-// Every chamber has two broad doors, opening onto the unobstructed cross passage.
-for (const z of [-.6, .6]) for (const [a, b] of [[-5.6, -3.7], [-2.65, -.7], [.7, 2.65], [3.7, 5.6]]) partitionObstacles.push(rect(a, z - .075, b, z + .075));
-for (const x of [-.7, .7]) for (const [a, b] of [[-4.3, -2.85], [-1.75, -.6], [.6, 1.75], [2.85, 4.3]]) partitionObstacles.push(rect(x - .075, a, x + .075, b));
-const basementFurniture = [
-  rect(-4.9, -4.1, -1.3, -3.28), rect(-5.4, -3, -4.8, -1.45), rect(-2.05, -1.84, -.95, -1.12),
-  rect(1.05, -4.12, 4.8, -3.3), rect(4.8, -3.1, 5.4, -1.35), rect(1.05, -1.9, 2.4, -1.2),
-  rect(-5.4, 1.1, -4.8, 3.8), rect(-4.55, 3.5, -1.3, 4.12), rect(-2.08, 1.1, -.98, 1.84),
-  rect(4.18, 2.55, 5.35, 4.1), rect(1.1, 3.5, 3.4, 4.12), disc(4.65, 1.35, .47),
-];
-export const undergroundWalkLayout = walk('地下层', [-5.5, -4.2, 5.5, 4.2], [3.8, 3.2], [...partitionObstacles, ...basementFurniture], -3.2);
-const underground = (name, center, spawn) => ({
-  center, roofOwner: null, roofPosition: [center[0], -1.5, center[2]], zoom: 3.1,
-  direction: [.26, .87, .43], level: 'basement', expanded: true,
-  walk: { ...undergroundWalkLayout, name, spawn },
-});
 export const expansionLayouts = {
-  keep: {
-    center: [1.8, 3.7, -3.8], frameBounds: [-1.4, -6.3, 5, -1.3], roofOwner: 'keep', roofPosition: [1.8, 6.85, -3.8], zoom: 2.35,
-    direction: [.26, .87, .43], level: 'upper', expanded: true,
-    walk: walk('领主卧室', [-1.4, -6.3, 5, -1.3], [2.9, -2.25], [
-      rect(-.8, -5.4, .3, -3.4), rect(.6, -5.4, 1.7, -3.4),
-      rect(-1.25, -6.14, 1.65, -5.62), rect(2.65, -6.14, 4.6, -5.4),
-      rect(4.12, -4.94, 4.92, -3.8), rect(3.85, -3.23, 4.85, -2.53),
-      rect(2.82, -3.25, 3.45, -2.65), rect(-1.3, -2.53, .15, -1.63),
-    ], 3.4),
-  },
+  ...keepWingLayouts,
   hall: {
     center: [3.9, .75, 2.9], frameBounds: [.2, 0, 7.6, 5.8], roofOwner: 'hall', roofPosition: [3.9, 3.2, 2.9], zoom: 2.0,
     direction: [.26, .87, .43], level: 'ground', expanded: true,
@@ -39,10 +17,7 @@ export const expansionLayouts = {
       rect(6.77, 2.1, 7.43, 3.9), rect(.45, 4.6, 1.65, 5.5), rect(5.82, 4.92, 7.35, 5.55),
     ], .455),
   },
-  cellar: { ...underground('地下酒窖', [-3.1, -2.9, -2.4], [-3.15, -1.35]), frameBounds: [-5.7, -4.4, -.7, -.6] },
-  larder: { ...underground('储粮地窖', [3.1, -2.9, -2.4], [3.2, -1.4]), frameBounds: [.7, -4.4, 5.7, -.6] },
-  armory: { ...underground('地下器械库', [-3.1, -2.9, 2.4], [-3.2, 2.25]), frameBounds: [-5.7, .6, -.7, 4.4] },
-  undercroft: { ...underground('石阶前厅', [0, -2.9, 0], [3.8, 3.2]), zoom: 1.8, frameBounds: [-5.7, -4.4, 5.7, 4.4] },
+  ...basementWingLayouts,
 };
 
 // These rooms unfold as generous, fully furnished cutaways in the existing scene.
@@ -145,18 +120,8 @@ export function createInteriorExpansion({ THREE, materials: M }) {
   function shield(x, y, z, material = M.rug) { const body = cylinder(.22, .07, x, y, z, material, .22, 8); body.rotation.x = Math.PI / 2; const boss = orb(.07, x, y, z + .055, M.iron); boss.scale.z = .45; }
   function lantern(x, y, z) { box(.16, .22, .13, x, y, z, M.dark); box(.11, .15, .145, x, y, z, M.flame); for (const dx of [-.07, .07]) box(.018, .24, .16, x + dx, y, z, M.brass); box(.19, .035, .18, x, y + .13, z, M.brass); }
 
-  group('keep', () => {
-    const y = 3.4; floor(expansionLayouts.keep.walk.bounds, y); shell(expansionLayouts.keep.walk.bounds, y);
-    rug(1.05, y, -2.5, 3.2, 1.05); rug(3.6, y, -4.05, 1.65, 1.8, M.blue);
-    bed(-.25, y, -4.4, true); bed(1.15, y, -4.4);
-    chest(-.7, y, -5.87, 1.05, .45); chest(.9, y, -5.87, 1.35, .45); book(-.7, y + .51, -5.87); jug(.6, y + .52, -5.87, .1);
-    shelf(3.65, y, -5.86, 1.75, 1.05, .44);
-    for (let i = 0; i < 6; i++) { const b = box(.12, .3 + (i % 3) * .05, .27, 3.05 + i * .2, y + .76, -5.84, i % 2 ? M.blue : M.rug); b.rotation.z = i === 5 ? -.12 : 0; }
-    for (const x of [3.2, 3.7, 4.2]) jug(x, y + .085, -5.85, .105);
-    hearth(4.52, y, -4.4, .76); table(4.35, y, -2.88, .95, .62, .58); book(4.3, y + .63, -2.88); candle(4.62, y + .64, -2.85); chair(3.13, y, -2.95, -Math.PI / 2);
-    table(-.55, y, -2.08, 1.35, .78, .61); cylinder(.23, .07, -.65, y + .7, -2.08, M.brass, .26); cylinder(.21, .015, -.65, y + .745, -2.08, M.water); jug(-.13, y + .67, -2.08, .11); box(.27, .012, .31, -.96, y + .67, -2.05, M.linen);
-    for (const x of [-.8, 2.15, 4.5]) lantern(x, y + .94, -6.16);
-  });
+  const kit={THREE,M,group,floor,lowWall,box,cylinder,orb,beam,rug,candle,jug,book,chest,table,chair,bed,shelf,hearth,barrel,sack,hangingHerbs,shield,lantern};
+  buildKeepWing(kit);
   group('hall', () => {
     const y = .455; floor(expansionLayouts.hall.walk.bounds, y); shell(expansionLayouts.hall.walk.bounds, y);
     rug(3.9, y, 2.8, 5.1, 2.7); table(3.9, y, 2.8, 3.8, .72);
@@ -172,54 +137,7 @@ export function createInteriorExpansion({ THREE, materials: M }) {
     for (const x of [1.1, 2.6, 5.2, 6.7]) { box(.08, 1.48, .08, x, y + .74, .05, M.timber); box(.46, .6, .035, x, y + 1.04, .105, x < 3 ? M.rug : M.blue); box(.05, .5, .013, x, y + 1.05, .128, M.linen); }
   });
 
-  // The underground floor is a single connected level; all four room groups are
-  // visible together, with floor seams continuing straight through every door.
-  const basementBounds = { cellar: [-5.7, -4.4, 0, 0], larder: [0, -4.4, 5.7, 0], armory: [-5.7, 0, 0, 4.4], undercroft: [0, 0, 5.7, 4.4] };
-  for (const id of ['cellar', 'larder', 'armory', 'undercroft']) group(id, () => {
-    const y = -3.2, north = id === 'cellar' || id === 'larder', west = id === 'cellar' || id === 'armory';
-    floor(basementBounds[id], y, false);
-    const x1 = west ? -5.6 : .7, x2 = west ? -.7 : 5.6, z1 = north ? -4.3 : .6, z2 = north ? -.6 : 4.3;
-    lowWall(x1, north ? z1 : z2, x2, north ? z1 : z2, y, north ? .8 : .32);
-    lowWall(west ? x1 : x2, z1, west ? x1 : x2, z2, y, .42);
-    const innerZ = north ? z2 : z1, innerX = west ? x2 : x1;
-    for (const [a, b] of west ? [[-5.6, -3.7], [-2.65, -.7]] : [[.7, 2.65], [3.7, 5.6]]) lowWall(a, innerZ, b, innerZ, y, .34);
-    for (const [a, b] of north ? [[-4.3, -2.85], [-1.75, -.6]] : [[.6, 1.75], [2.85, 4.3]]) lowWall(innerX, a, innerX, b, y, .34);
-    // Short vault springers suggest a Romanesque roof while keeping sight lines open.
-    for (const x of [west ? -5.52 : 5.52, innerX]) {
-      const z = north ? -4.25 : 4.25;
-      box(.25, 1.15, .25, x, y + .575, z, M.stone); box(.36, .1, .36, x, y + 1.2, z, M.light);
-      const sign = west ? 1 : -1;
-      for (let i = 0; i < 4; i++) { const block = box(.2, .22, .27, x + sign * (.13 + i * .145), y + 1.32 + i * .095, z, M.light); block.rotation.z = -sign * (.15 + i * .16); }
-    }
-    lantern(west ? -4.8 : 4.8, y + 1.04, north ? -4.22 : 4.22);
-    if (id === 'cellar') {
-      shelf(-3.1, y, -3.69, 3.6, 1.3, .76);
-      for (const x of [-4.45, -3.57, -2.69, -1.81]) for (const yy of [.07, .72]) barrel(x, y + yy, -3.68, .94, true);
-      for (const z of [-2.65, -1.88]) barrel(-5.08, y, z, 1.05);
-      table(-1.5, y, -1.48, 1.1, .72, .58); jug(-1.7, y + .64, -1.5, .12); jug(-1.3, y + .64, -1.45, .085); candle(-1.13, y + .64, -1.58);
-      box(1.4, .016, .65, -3.2, y + .012, -1.65, M.cloth);
-    } else if (id === 'larder') {
-      shelf(2.95, y, -3.72, 3.7, 1.3, .72);
-      for (let i = 0; i < 7; i++) { sack(1.4 + i * .48, y + .08, -3.72, .2); jug(1.4 + i * .48, y + .7, -3.7, .11); }
-      for (const z of [-2.7, -2.1, -1.55]) { sack(5.08, y, z, .25); sack(5.03, y + .34, z, .18); }
-      table(1.725, y, -1.55, 1.35, .7, .65); box(.72, .04, .35, 1.7, y + .72, -1.55, M.timber);
-      for (const x of [1.45, 1.65, 1.85]) orb(.075, x, y + .8, -1.55, M.veg); jug(2.15, y + .72, -1.6, .09);
-      for (const x of [1.3, 2.1, 2.9, 3.7, 4.5]) hangingHerbs(x, y + 1.31, -4.02);
-    } else if (id === 'armory') {
-      for (const z of [1.45, 2.15, 2.85, 3.55]) { box(.5, .07, .42, -5.1, y + .08, z, M.timber); beam([-5.12, y + .12, z], [-5.12, y + 1.3, z], .025, M.wood); const tip = add(new THREE.ConeGeometry(.065, .21, 4), M.iron, -5.12, y + 1.39, z); tip.rotation.y = .8; shield(-4.96, y + .55, z + .17, z < 2.5 ? M.rug : M.blue); }
-      shelf(-2.92, y, 3.8, 3.2, 1.03, .5);
-      for (const x of [-4.15, -3.5, -2.85, -2.2, -1.55]) { chest(x, y + .07, 3.8, .5, .38); const helmet = orb(.15, x, y + 1.17, 3.8, M.iron); helmet.scale.y = .85; box(.025, .16, .04, x, y + 1.1, 3.97, M.brass); }
-      table(-1.53, y, 1.47, 1.1, .74, .62); beam([-1.88, y + .7, 1.4], [-1.21, y + .7, 1.4], .026, M.iron); box(.055, .08, .24, -1.76, y + .72, 1.4, M.brass); box(.2, .015, .3, -1.25, y + .69, 1.57, M.linen);
-    } else {
-      // Stone steps lead back toward the upper castle; players use the floor switch.
-      for (let i = 0; i < 7; i++) { const height = .12 * (i + 1); box(1.1, height, .22, 4.76, y + height / 2, 2.68 + i * .2, M.stone); box(1.13, .035, .23, 4.76, y + height + .018, 2.68 + i * .2, M.light); }
-      for (const x of [4.24, 5.28]) beam([x, y + .42, 2.65], [x, y + 1.25, 4], .035);
-      table(2.25, y, 3.8, 2.2, .55, .67); book(1.55, y + .73, 3.8); candle(2.2, y + .73, 3.8, true); jug(3, y + .73, 3.8, .12);
-      cylinder(.45, .42, 4.65, y + .21, 1.35, M.stone, .45, 18); cylinder(.36, .02, 4.65, y + .43, 1.35, M.dark, .36, 18); cylinder(.31, .012, 4.65, y + .442, 1.35, M.water, .31, 18);
-      const rim = add(new THREE.TorusGeometry(.402, .055, 5, 18), M.light, 4.65, y + .445, 1.35); rim.rotation.x = Math.PI / 2;
-      rug(2.45, y, 1.6, 1.8, 1.1, M.blue);
-    }
-  });
+  buildBasementWing(kit);
 
   // Bake nested furniture transforms and merge by shared material, per room.
   // Room ownership is retained for pointer selection and collision ray tests.

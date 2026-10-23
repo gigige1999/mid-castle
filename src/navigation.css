@@ -149,3 +149,9 @@
   .space-navigation,
   .space-nav-item, .floor-nav-level, .floor-nav-room { transition: none; }
 }
+
+/* Room tabs keep the two large floors accessible without covering the diorama. */
+.floor-nav-basement { justify-content: flex-start; overflow-x: auto; overscroll-behavior-x: contain; padding-bottom: 5px; scrollbar-width: thin; scrollbar-color: #c5ae87 transparent; scroll-behavior: smooth; }
+.floor-nav-room { flex: 0 0 auto; min-width: 65px; padding-inline: 9px; }
+.floor-nav-room[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) { .floor-nav-basement { scroll-behavior: auto; } }

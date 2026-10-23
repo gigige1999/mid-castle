@@ -17,6 +17,5 @@ export const interiorLayouts = {
 };
 
 for(const [id,{walk,...layout}] of Object.entries(expansionLayouts)){
-  interiorLayouts[id]={...interiorLayouts[id],...layout,roofPosition:interiorLayouts[id]?.roofPosition||layout.center,
-    level:['cellar','larder','armory','undercroft'].includes(id)?'basement':id==='keep'?'upper':'ground'};
+  interiorLayouts[id]={...interiorLayouts[id],...layout,roofPosition:interiorLayouts[id]?.roofPosition||layout.center,entrySpawn:walk?.spawn};
 }

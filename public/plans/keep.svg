@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
-<title id="title">卧室平面图</title><desc id="desc">卧室俯视布局：帷幔主床与家人卧榻、木箱与沿墙书架、壁炉旁的阅读角、盥洗台与清水盆。室内陈设示意 · 依场景布局绘制，非实测图。</desc>
+<title id="title">卧室平面图</title><desc id="desc">卧室俯视布局：帷幔木床与睡眠区、盥洗台与水盆、阅读与会坐木案、通往主堡长廊。室内陈设示意 · 依场景布局绘制，非实测图。</desc>
 <defs>
 <pattern id="planks" width=".22" height=".7" patternUnits="userSpaceOnUse"><rect width=".22" height=".7" fill="#ede0c8"/><path d="M0 0V.7M0 .35H.22" fill="none" stroke="#ad9776" stroke-opacity=".23" stroke-width=".006"/></pattern>
 <pattern id="hatch" width=".07" height=".07" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width=".07" height=".07" fill="#ded6c5"/><path d="M0 0V.07" stroke="#9e8a70" stroke-opacity=".45" stroke-width=".01"/></pattern>
@@ -16,221 +16,76 @@ svg{background:#f8f2e8;color:#655546;font-family:"Songti SC","Noto Serif CJK SC"
 <text x="674" y="57" font-family="Georgia,serif" font-size="11" letter-spacing="2" fill="#8d7b62">PL. 01</text>
 <g transform="translate(728 97)" stroke="#655546" stroke-width=".9"><path d="M0 -10V14M-6 -3L0 -17L6 -3L0 -7Z" fill="#b5a58a"/><text x="0" y="-23" text-anchor="middle" stroke="none" fill="#655546" font-family="Georgia,serif" font-size="10">N</text></g>
 <path d="M55 132H745M55 476H745" stroke="#b9aa93" stroke-width=".7"/>
-<g class="drawing" transform="translate(400 299) scale(55.0561797752809) translate(-1.8000000000000003 3.8)"><rect x="-1.47" y="-6.37" width="6.54" height="5.14" rx="0" class="masonry"/>
-<rect x="-1.4" y="-6.3" width="6.4" height="5" rx="0" class="floor"/>
-<rect x="-1.515" y="-6.415" width="6.630000000000001" height="5.23" rx="0" class="outline"/>
-<rect x="0.20000000000000018" y="-6.372" width="1.2800000000000002" height="0.145" rx="0" class="paper"/>
-<path d="M0.20000000000000018 -6.335L1.4800000000000004 -6.335" class="line"/>
-<path d="M0.20000000000000018 -6.265L1.4800000000000004 -6.265" class="line"/>
-<path d="M0.8400000000000003 -6.359999999999999L0.8400000000000003 -6.24" class="line"/>
-<rect x="2.8880000000000003" y="-6.372" width="1.152" height="0.145" rx="0" class="paper"/>
-<path d="M2.8880000000000003 -6.335L4.04 -6.335" class="line"/>
-<path d="M2.8880000000000003 -6.265L4.04 -6.265" class="line"/>
-<path d="M3.4640000000000004 -6.359999999999999L3.4640000000000004 -6.24" class="line"/>
-<rect x="0.6480000000000001" y="-1.3249999999999997" width="0.42" height="0.14" rx="0" class="paper"/>
-<path d="M0.6480000000000001 -1.2999999999999998L0.6480000000000001 -1.7199999999999998" class="line"/>
-<path d="M0.6480000000000001 -1.7199999999999998A0.42 0.42 0 0 1 1.068 -1.2999999999999998" class="swing"/>
-<rect x="-0.55" y="-3.025" width="3.2" height="1.05" rx="0" class="rug"/>
-<rect x="-0.505" y="-2.98" width="3.1100000000000003" height="0.9600000000000001" rx="0" class="fine"/>
-<path d="M-0.51 -3.07L-0.51 -3.025" class="fine"/>
-<path d="M-0.51 -1.975L-0.51 -1.9300000000000002" class="fine"/>
-<path d="M-0.44 -3.07L-0.44 -3.025" class="fine"/>
-<path d="M-0.44 -1.975L-0.44 -1.9300000000000002" class="fine"/>
-<path d="M-0.37 -3.07L-0.37 -3.025" class="fine"/>
-<path d="M-0.37 -1.975L-0.37 -1.9300000000000002" class="fine"/>
-<path d="M-0.3 -3.07L-0.3 -3.025" class="fine"/>
-<path d="M-0.3 -1.975L-0.3 -1.9300000000000002" class="fine"/>
-<path d="M-0.22999999999999998 -3.07L-0.22999999999999998 -3.025" class="fine"/>
-<path d="M-0.22999999999999998 -1.975L-0.22999999999999998 -1.9300000000000002" class="fine"/>
-<path d="M-0.15999999999999998 -3.07L-0.15999999999999998 -3.025" class="fine"/>
-<path d="M-0.15999999999999998 -1.975L-0.15999999999999998 -1.9300000000000002" class="fine"/>
-<path d="M-0.08999999999999997 -3.07L-0.08999999999999997 -3.025" class="fine"/>
-<path d="M-0.08999999999999997 -1.975L-0.08999999999999997 -1.9300000000000002" class="fine"/>
-<path d="M-0.019999999999999962 -3.07L-0.019999999999999962 -3.025" class="fine"/>
-<path d="M-0.019999999999999962 -1.975L-0.019999999999999962 -1.9300000000000002" class="fine"/>
-<path d="M0.050000000000000044 -3.07L0.050000000000000044 -3.025" class="fine"/>
-<path d="M0.050000000000000044 -1.975L0.050000000000000044 -1.9300000000000002" class="fine"/>
-<path d="M0.12000000000000005 -3.07L0.12000000000000005 -3.025" class="fine"/>
-<path d="M0.12000000000000005 -1.975L0.12000000000000005 -1.9300000000000002" class="fine"/>
-<path d="M0.19000000000000006 -3.07L0.19000000000000006 -3.025" class="fine"/>
-<path d="M0.19000000000000006 -1.975L0.19000000000000006 -1.9300000000000002" class="fine"/>
-<path d="M0.26000000000000006 -3.07L0.26000000000000006 -3.025" class="fine"/>
-<path d="M0.26000000000000006 -1.975L0.26000000000000006 -1.9300000000000002" class="fine"/>
-<path d="M0.33000000000000007 -3.07L0.33000000000000007 -3.025" class="fine"/>
-<path d="M0.33000000000000007 -1.975L0.33000000000000007 -1.9300000000000002" class="fine"/>
-<path d="M0.4000000000000001 -3.07L0.4000000000000001 -3.025" class="fine"/>
-<path d="M0.4000000000000001 -1.975L0.4000000000000001 -1.9300000000000002" class="fine"/>
-<path d="M0.4700000000000001 -3.07L0.4700000000000001 -3.025" class="fine"/>
-<path d="M0.4700000000000001 -1.975L0.4700000000000001 -1.9300000000000002" class="fine"/>
-<path d="M0.54 -3.07L0.54 -3.025" class="fine"/>
-<path d="M0.54 -1.975L0.54 -1.9300000000000002" class="fine"/>
-<path d="M0.6100000000000001 -3.07L0.6100000000000001 -3.025" class="fine"/>
-<path d="M0.6100000000000001 -1.975L0.6100000000000001 -1.9300000000000002" class="fine"/>
-<path d="M0.6800000000000002 -3.07L0.6800000000000002 -3.025" class="fine"/>
-<path d="M0.6800000000000002 -1.975L0.6800000000000002 -1.9300000000000002" class="fine"/>
-<path d="M0.7500000000000002 -3.07L0.7500000000000002 -3.025" class="fine"/>
-<path d="M0.7500000000000002 -1.975L0.7500000000000002 -1.9300000000000002" class="fine"/>
-<path d="M0.8200000000000003 -3.07L0.8200000000000003 -3.025" class="fine"/>
-<path d="M0.8200000000000003 -1.975L0.8200000000000003 -1.9300000000000002" class="fine"/>
-<path d="M0.8900000000000003 -3.07L0.8900000000000003 -3.025" class="fine"/>
-<path d="M0.8900000000000003 -1.975L0.8900000000000003 -1.9300000000000002" class="fine"/>
-<path d="M0.9600000000000004 -3.07L0.9600000000000004 -3.025" class="fine"/>
-<path d="M0.9600000000000004 -1.975L0.9600000000000004 -1.9300000000000002" class="fine"/>
-<path d="M1.0300000000000005 -3.07L1.0300000000000005 -3.025" class="fine"/>
-<path d="M1.0300000000000005 -1.975L1.0300000000000005 -1.9300000000000002" class="fine"/>
-<path d="M1.1000000000000005 -3.07L1.1000000000000005 -3.025" class="fine"/>
-<path d="M1.1000000000000005 -1.975L1.1000000000000005 -1.9300000000000002" class="fine"/>
-<path d="M1.1700000000000006 -3.07L1.1700000000000006 -3.025" class="fine"/>
-<path d="M1.1700000000000006 -1.975L1.1700000000000006 -1.9300000000000002" class="fine"/>
-<path d="M1.2400000000000007 -3.07L1.2400000000000007 -3.025" class="fine"/>
-<path d="M1.2400000000000007 -1.975L1.2400000000000007 -1.9300000000000002" class="fine"/>
-<path d="M1.3100000000000007 -3.07L1.3100000000000007 -3.025" class="fine"/>
-<path d="M1.3100000000000007 -1.975L1.3100000000000007 -1.9300000000000002" class="fine"/>
-<path d="M1.3800000000000008 -3.07L1.3800000000000008 -3.025" class="fine"/>
-<path d="M1.3800000000000008 -1.975L1.3800000000000008 -1.9300000000000002" class="fine"/>
-<path d="M1.4500000000000008 -3.07L1.4500000000000008 -3.025" class="fine"/>
-<path d="M1.4500000000000008 -1.975L1.4500000000000008 -1.9300000000000002" class="fine"/>
-<path d="M1.520000000000001 -3.07L1.520000000000001 -3.025" class="fine"/>
-<path d="M1.520000000000001 -1.975L1.520000000000001 -1.9300000000000002" class="fine"/>
-<path d="M1.590000000000001 -3.07L1.590000000000001 -3.025" class="fine"/>
-<path d="M1.590000000000001 -1.975L1.590000000000001 -1.9300000000000002" class="fine"/>
-<path d="M1.660000000000001 -3.07L1.660000000000001 -3.025" class="fine"/>
-<path d="M1.660000000000001 -1.975L1.660000000000001 -1.9300000000000002" class="fine"/>
-<path d="M1.730000000000001 -3.07L1.730000000000001 -3.025" class="fine"/>
-<path d="M1.730000000000001 -1.975L1.730000000000001 -1.9300000000000002" class="fine"/>
-<path d="M1.8000000000000012 -3.07L1.8000000000000012 -3.025" class="fine"/>
-<path d="M1.8000000000000012 -1.975L1.8000000000000012 -1.9300000000000002" class="fine"/>
-<path d="M1.8700000000000012 -3.07L1.8700000000000012 -3.025" class="fine"/>
-<path d="M1.8700000000000012 -1.975L1.8700000000000012 -1.9300000000000002" class="fine"/>
-<path d="M1.9400000000000013 -3.07L1.9400000000000013 -3.025" class="fine"/>
-<path d="M1.9400000000000013 -1.975L1.9400000000000013 -1.9300000000000002" class="fine"/>
-<path d="M2.010000000000001 -3.07L2.010000000000001 -3.025" class="fine"/>
-<path d="M2.010000000000001 -1.975L2.010000000000001 -1.9300000000000002" class="fine"/>
-<path d="M2.080000000000001 -3.07L2.080000000000001 -3.025" class="fine"/>
-<path d="M2.080000000000001 -1.975L2.080000000000001 -1.9300000000000002" class="fine"/>
-<path d="M2.150000000000001 -3.07L2.150000000000001 -3.025" class="fine"/>
-<path d="M2.150000000000001 -1.975L2.150000000000001 -1.9300000000000002" class="fine"/>
-<path d="M2.2200000000000006 -3.07L2.2200000000000006 -3.025" class="fine"/>
-<path d="M2.2200000000000006 -1.975L2.2200000000000006 -1.9300000000000002" class="fine"/>
-<path d="M2.2900000000000005 -3.07L2.2900000000000005 -3.025" class="fine"/>
-<path d="M2.2900000000000005 -1.975L2.2900000000000005 -1.9300000000000002" class="fine"/>
-<path d="M2.3600000000000003 -3.07L2.3600000000000003 -3.025" class="fine"/>
-<path d="M2.3600000000000003 -1.975L2.3600000000000003 -1.9300000000000002" class="fine"/>
-<path d="M2.43 -3.07L2.43 -3.025" class="fine"/>
-<path d="M2.43 -1.975L2.43 -1.9300000000000002" class="fine"/>
-<path d="M2.5 -3.07L2.5 -3.025" class="fine"/>
-<path d="M2.5 -1.975L2.5 -1.9300000000000002" class="fine"/>
-<path d="M2.57 -3.07L2.57 -3.025" class="fine"/>
-<path d="M2.57 -1.975L2.57 -1.9300000000000002" class="fine"/>
-<path d="M2.6399999999999997 -3.07L2.6399999999999997 -3.025" class="fine"/>
-<path d="M2.6399999999999997 -1.975L2.6399999999999997 -1.9300000000000002" class="fine"/>
-<rect x="2.7750000000000004" y="-4.95" width="1.65" height="1.8" rx="0" class="blue"/>
-<rect x="2.8200000000000003" y="-4.905" width="1.5599999999999998" height="1.71" rx="0" class="fine"/>
-<path d="M2.8150000000000004 -4.995L2.8150000000000004 -4.95" class="fine"/>
-<path d="M2.8150000000000004 -3.15L2.8150000000000004 -3.105" class="fine"/>
-<path d="M2.8850000000000002 -4.995L2.8850000000000002 -4.95" class="fine"/>
-<path d="M2.8850000000000002 -3.15L2.8850000000000002 -3.105" class="fine"/>
-<path d="M2.955 -4.995L2.955 -4.95" class="fine"/>
-<path d="M2.955 -3.15L2.955 -3.105" class="fine"/>
-<path d="M3.025 -4.995L3.025 -4.95" class="fine"/>
-<path d="M3.025 -3.15L3.025 -3.105" class="fine"/>
-<path d="M3.0949999999999998 -4.995L3.0949999999999998 -4.95" class="fine"/>
-<path d="M3.0949999999999998 -3.15L3.0949999999999998 -3.105" class="fine"/>
-<path d="M3.1649999999999996 -4.995L3.1649999999999996 -4.95" class="fine"/>
-<path d="M3.1649999999999996 -3.15L3.1649999999999996 -3.105" class="fine"/>
-<path d="M3.2349999999999994 -4.995L3.2349999999999994 -4.95" class="fine"/>
-<path d="M3.2349999999999994 -3.15L3.2349999999999994 -3.105" class="fine"/>
-<path d="M3.3049999999999993 -4.995L3.3049999999999993 -4.95" class="fine"/>
-<path d="M3.3049999999999993 -3.15L3.3049999999999993 -3.105" class="fine"/>
-<path d="M3.374999999999999 -4.995L3.374999999999999 -4.95" class="fine"/>
-<path d="M3.374999999999999 -3.15L3.374999999999999 -3.105" class="fine"/>
-<path d="M3.444999999999999 -4.995L3.444999999999999 -4.95" class="fine"/>
-<path d="M3.444999999999999 -3.15L3.444999999999999 -3.105" class="fine"/>
-<path d="M3.514999999999999 -4.995L3.514999999999999 -4.95" class="fine"/>
-<path d="M3.514999999999999 -3.15L3.514999999999999 -3.105" class="fine"/>
-<path d="M3.5849999999999986 -4.995L3.5849999999999986 -4.95" class="fine"/>
-<path d="M3.5849999999999986 -3.15L3.5849999999999986 -3.105" class="fine"/>
-<path d="M3.6549999999999985 -4.995L3.6549999999999985 -4.95" class="fine"/>
-<path d="M3.6549999999999985 -3.15L3.6549999999999985 -3.105" class="fine"/>
-<path d="M3.7249999999999983 -4.995L3.7249999999999983 -4.95" class="fine"/>
-<path d="M3.7249999999999983 -3.15L3.7249999999999983 -3.105" class="fine"/>
-<path d="M3.794999999999998 -4.995L3.794999999999998 -4.95" class="fine"/>
-<path d="M3.794999999999998 -3.15L3.794999999999998 -3.105" class="fine"/>
-<path d="M3.864999999999998 -4.995L3.864999999999998 -4.95" class="fine"/>
-<path d="M3.864999999999998 -3.15L3.864999999999998 -3.105" class="fine"/>
-<path d="M3.934999999999998 -4.995L3.934999999999998 -4.95" class="fine"/>
-<path d="M3.934999999999998 -3.15L3.934999999999998 -3.105" class="fine"/>
-<path d="M4.004999999999998 -4.995L4.004999999999998 -4.95" class="fine"/>
-<path d="M4.004999999999998 -3.15L4.004999999999998 -3.105" class="fine"/>
-<path d="M4.074999999999998 -4.995L4.074999999999998 -4.95" class="fine"/>
-<path d="M4.074999999999998 -3.15L4.074999999999998 -3.105" class="fine"/>
-<path d="M4.144999999999999 -4.995L4.144999999999999 -4.95" class="fine"/>
-<path d="M4.144999999999999 -3.15L4.144999999999999 -3.105" class="fine"/>
-<path d="M4.214999999999999 -4.995L4.214999999999999 -4.95" class="fine"/>
-<path d="M4.214999999999999 -3.15L4.214999999999999 -3.105" class="fine"/>
-<path d="M4.284999999999999 -4.995L4.284999999999999 -4.95" class="fine"/>
-<path d="M4.284999999999999 -3.15L4.284999999999999 -3.105" class="fine"/>
-<path d="M4.3549999999999995 -4.995L4.3549999999999995 -4.95" class="fine"/>
-<path d="M4.3549999999999995 -3.15L4.3549999999999995 -3.105" class="fine"/>
-<rect x="-0.805" y="-5.4" width="1.11" height="2" rx="0.025" class="timber"/>
-<rect x="-0.745" y="-5.33" width="0.99" height="1.8599999999999999" rx="0.025" class="linen"/>
-<rect x="-0.72" y="-5.3" width="0.9400000000000001" height="0.3705" rx="0.035" class="paper"/>
-<rect x="-0.745" y="-4.517" width="0.99" height="0.9555" rx="0.015" class="rug"/>
-<path d="M-0.71 -4.361000000000001L0.21000000000000002 -4.361000000000001" class="line"/>
-<path d="M-0.71 -3.6980000000000004L0.21000000000000002 -3.6980000000000004" class="line"/>
-<circle cx="-0.78" cy="-5.375" r="0.027" class="brass"/>
-<circle cx="-0.78" cy="-3.4250000000000003" r="0.027" class="brass"/>
-<circle cx="0.28" cy="-5.375" r="0.027" class="brass"/>
-<circle cx="0.28" cy="-3.4250000000000003" r="0.027" class="brass"/>
-<rect x="0.5949999999999999" y="-5.4" width="1.11" height="2" rx="0.025" class="timber"/>
-<rect x="0.6549999999999999" y="-5.33" width="0.99" height="1.8599999999999999" rx="0.025" class="linen"/>
-<rect x="0.6799999999999999" y="-5.3" width="0.9400000000000001" height="0.3705" rx="0.035" class="paper"/>
-<rect x="0.6549999999999999" y="-4.517" width="0.99" height="0.9555" rx="0.015" class="blue"/>
-<path d="M0.69 -4.361000000000001L1.6099999999999999 -4.361000000000001" class="line"/>
-<path d="M0.69 -3.6980000000000004L1.6099999999999999 -3.6980000000000004" class="line"/>
-<rect x="-1.225" y="-6.095" width="1.05" height="0.45" rx="0.02" class="wood"/>
-<path d="M-1.0045 -6.095L-1.0045 -5.6450000000000005" class="line"/>
-<path d="M-0.39549999999999996 -6.095L-0.39549999999999996 -5.6450000000000005" class="line"/>
-<rect x="-0.725" y="-5.9" width="0.05" height="0.06" rx="0" class="brass"/>
-<rect x="0.22499999999999998" y="-6.095" width="1.35" height="0.45" rx="0.02" class="wood"/>
-<path d="M0.5085 -6.095L0.5085 -5.6450000000000005" class="line"/>
-<path d="M1.2915 -6.095L1.2915 -5.6450000000000005" class="line"/>
-<rect x="0.875" y="-5.9" width="0.05" height="0.06" rx="0" class="brass"/>
-<rect x="2.775" y="-6.08" width="1.75" height="0.44" rx="0" class="wood"/>
-<path d="M2.8 -6.045L4.5 -6.045" class="line"/>
-<circle cx="3.0549999999999997" cy="-5.848000000000001" r="0.12320000000000002" class="pot"/>
-<circle cx="3.0549999999999997" cy="-5.848000000000001" r="0.071456" class="paper"/>
-<circle cx="3.0549999999999997" cy="-5.848000000000001" r="0.03696000000000001" class="fine"/>
-<circle cx="3.4487499999999995" cy="-5.848000000000001" r="0.12320000000000002" class="pot"/>
-<circle cx="3.4487499999999995" cy="-5.848000000000001" r="0.071456" class="paper"/>
-<circle cx="3.4487499999999995" cy="-5.848000000000001" r="0.03696000000000001" class="fine"/>
-<circle cx="3.8425" cy="-5.848000000000001" r="0.12320000000000002" class="pot"/>
-<circle cx="3.8425" cy="-5.848000000000001" r="0.071456" class="paper"/>
-<circle cx="3.8425" cy="-5.848000000000001" r="0.03696000000000001" class="fine"/>
-<circle cx="4.23625" cy="-5.848000000000001" r="0.12320000000000002" class="pot"/>
-<circle cx="4.23625" cy="-5.848000000000001" r="0.071456" class="paper"/>
-<circle cx="4.23625" cy="-5.848000000000001" r="0.03696000000000001" class="fine"/>
-<rect x="4.14" y="-4.760000000000001" width="0.76" height="0.72" rx="0" class="masonry"/>
-<rect x="4.2692" y="-4.558400000000001" width="0.5016" height="0.3744" rx="0" class="coal"/>
-<path d="M4.345199999999999 -4.4648L4.6948 -4.4648" class="ember"/>
-<path d="M4.345199999999999 -4.349600000000001L4.6948 -4.349600000000001" class="ember"/>
-<path d="M4.345199999999999 -4.2344L4.6948 -4.2344" class="ember"/>
-<rect x="4.094399999999999" y="-4.1408000000000005" width="0.8512000000000001" height="0.216" rx="0" class="stone"/>
-<rect x="3.875" y="-3.19" width="0.95" height="0.62" rx="0.025" class="wood"/>
-<rect x="4.15" y="-3.05" width="0.3" height="0.34" rx="0" class="paper"/>
-<path d="M4.3 -3.04L4.3 -2.72" class="line"/>
-<circle cx="4.62" cy="-2.85" r="0.035" class="brass"/>
-<circle cx="4.62" cy="-2.85" r="0.011" class="paper"/>
-<rect x="2.8899999999999997" y="-3.1900000000000004" width="0.48" height="0.48" rx="0.015" class="wood"/>
-<rect x="2.9149999999999996" y="-3.1650000000000005" width="0.43" height="0.43" rx="0" class="rug"/>
-<rect x="2.8899999999999997" y="-3.2300000000000004" width="0.48" height="0.045" rx="0" class="timber"/>
-<rect x="-1.225" y="-2.47" width="1.35" height="0.78" rx="0.02" class="wood"/>
-<circle cx="-0.65" cy="-2.08" r="0.26" class="brass"/>
-<circle cx="-0.65" cy="-2.08" r="0.21" class="blue"/>
-<circle cx="-0.13" cy="-2.08" r="0.11" class="pot"/>
-<circle cx="-0.13" cy="-2.08" r="0.0638" class="paper"/>
-<circle cx="-0.13" cy="-2.08" r="0.033" class="fine"/>
-<rect x="-1.095" y="-2.205" width="0.27" height="0.31" rx="0" class="linen"/></g><g transform="translate(325.67415730337075 265.9662921348314)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">1</text></g><g transform="translate(350.44943820224717 185.0337078651685)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">2</text></g><g transform="translate(540.3932584269662 349.65168539325845)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">3</text></g><g transform="translate(265.1123595505618 393.6966292134831)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">4</text></g>
-<g transform="translate(90 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">1</text><text class="legend" x="19" y="4">帷幔主床与家人卧榻</text></g><g transform="translate(425 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">2</text><text class="legend" x="19" y="4">木箱与沿墙书架</text></g><g transform="translate(90 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">3</text><text class="legend" x="19" y="4">壁炉旁的阅读角</text></g><g transform="translate(425 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">4</text><text class="legend" x="19" y="4">盥洗台与清水盆</text></g>
+<g class="drawing" transform="translate(400 299) scale(41.64305949008499) translate(9 5.5)"><rect x="-12.1" y="-9.1" width="6.2" height="7.2" rx="0" class="masonry"/>
+<rect x="-12" y="-9" width="6" height="7" rx="0" class="floor"/>
+<rect x="-12.08" y="-9.08" width="6.16" height="7.16" rx="0" class="masonry"/>
+<rect x="-11.97" y="-8.97" width="5.94" height="6.94" rx="0" class="floor"/>
+<rect x="-10" y="-2.16" width="2" height="0.32" rx="0" class="floor"/>
+<path d="M-9 -2.32L-9 -1.68" class="swing"/>
+<rect x="-9.65" y="-9.072" width="1.3" height="0.145" rx="0" class="paper"/>
+<path d="M-9.65 -9.035L-8.35 -9.035" class="line"/>
+<path d="M-9.65 -8.965L-8.35 -8.965" class="line"/>
+<path d="M-9 -9.06L-9 -8.94" class="line"/>
+<rect x="-10.975000000000001" y="-8.025" width="1.1500000000000001" height="2.05" rx="0.025" class="timber"/>
+<rect x="-10.915000000000001" y="-7.955" width="1.03" height="1.91" rx="0.025" class="linen"/>
+<rect x="-10.89" y="-7.925" width="0.9800000000000001" height="0.38" rx="0.035" class="paper"/>
+<rect x="-10.915000000000001" y="-7.12" width="1.03" height="0.98" rx="0.015" class="rug"/>
+<path d="M-10.88 -6.96L-9.92 -6.96" class="line"/>
+<path d="M-10.88 -6.28L-9.92 -6.28" class="line"/>
+<circle cx="-10.950000000000001" cy="-8" r="0.027" class="brass"/>
+<circle cx="-10.950000000000001" cy="-6" r="0.027" class="brass"/>
+<circle cx="-9.85" cy="-8" r="0.027" class="brass"/>
+<circle cx="-9.85" cy="-6" r="0.027" class="brass"/>
+<rect x="-8.675" y="-8.025" width="1.1500000000000001" height="2.05" rx="0.025" class="timber"/>
+<rect x="-8.615" y="-7.955" width="1.03" height="1.91" rx="0.025" class="linen"/>
+<rect x="-8.59" y="-7.925" width="0.9800000000000001" height="0.38" rx="0.035" class="paper"/>
+<rect x="-8.615" y="-7.12" width="1.03" height="0.98" rx="0.015" class="rug"/>
+<path d="M-8.58 -6.96L-7.62 -6.96" class="line"/>
+<path d="M-8.58 -6.28L-7.62 -6.28" class="line"/>
+<circle cx="-8.65" cy="-8" r="0.027" class="brass"/>
+<circle cx="-8.65" cy="-6" r="0.027" class="brass"/>
+<circle cx="-7.55" cy="-8" r="0.027" class="brass"/>
+<circle cx="-7.55" cy="-6" r="0.027" class="brass"/>
+<rect x="-11" y="-5.76" width="1.2" height="0.48" rx="0.02" class="wood"/>
+<path d="M-10.748000000000001 -5.76L-10.748000000000001 -5.279999999999999" class="line"/>
+<path d="M-10.052 -5.76L-10.052 -5.279999999999999" class="line"/>
+<rect x="-10.425" y="-5.55" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-8.7" y="-5.76" width="1.2" height="0.48" rx="0.02" class="wood"/>
+<path d="M-8.448 -5.76L-8.448 -5.279999999999999" class="line"/>
+<path d="M-7.752 -5.76L-7.752 -5.279999999999999" class="line"/>
+<rect x="-8.125" y="-5.55" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-11.775" y="-5.4" width="0.55" height="1.9" rx="0.02" class="wood"/>
+<path d="M-11.6595 -5.4L-11.6595 -3.5" class="line"/>
+<path d="M-11.3405 -5.4L-11.3405 -3.5" class="line"/>
+<rect x="-11.525" y="-4.48" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-7" y="-8.275" width="0.7" height="1.15" rx="0.02" class="wood"/>
+<path d="M-6.853000000000001 -8.275L-6.853000000000001 -7.125" class="line"/>
+<path d="M-6.447 -8.275L-6.447 -7.125" class="line"/>
+<rect x="-6.675000000000001" y="-7.73" width="0.05" height="0.06" rx="0" class="brass"/>
+<rect x="-11.3" y="-3.45" width="1.8" height="0.7" rx="0" class="wood"/>
+<circle cx="-10.688" cy="-3.1" r="0.24499999999999997" class="brass"/>
+<circle cx="-10.688" cy="-3.1" r="0.189" class="blue"/>
+<circle cx="-9.86" cy="-3.1" r="0.1" class="pot"/>
+<circle cx="-9.86" cy="-3.1" r="0.057999999999999996" class="paper"/>
+<circle cx="-9.86" cy="-3.1" r="0.03" class="fine"/>
+<rect x="-7.875" y="-3.61" width="1.45" height="0.72" rx="0.025" class="wood"/>
+<path d="M-7.83 -3.565L-6.470000000000001 -3.565" class="line"/>
+<path d="M-7.83 -2.935L-6.470000000000001 -2.935" class="line"/>
+<rect x="-7.3965000000000005" y="-3.4444" width="0.493" height="0.38880000000000003" rx="0" class="paper"/>
+<path d="M-7.353000000000001 -3.25q0.11599999999999999 -0.144 0.174 0t0.174 0" class="fine"/>
+<circle cx="-7.73" cy="-3.25" r="0.035" class="brass"/>
+<circle cx="-7.73" cy="-3.25" r="0.011" class="paper"/>
+<circle cx="-6.57" cy="-3.25" r="0.035" class="brass"/>
+<circle cx="-6.57" cy="-3.25" r="0.011" class="paper"/>
+<rect x="-7.4" y="-4.35" width="0.5" height="0.5" rx="0.015" class="wood"/>
+<rect x="-7.375" y="-4.324999999999999" width="0.45" height="0.45" rx="0" class="rug"/>
+<rect x="-7.4" y="-4.39" width="0.5" height="0.045" rx="0" class="timber"/>
+<rect x="-7.425000000000001" y="-8.82" width="1.05" height="0.8" rx="0" class="masonry"/>
+<rect x="-7.2465" y="-8.596" width="0.6930000000000001" height="0.41600000000000004" rx="0" class="coal"/>
+<path d="M-7.141500000000001 -8.491999999999999L-6.6585 -8.491999999999999" class="ember"/>
+<path d="M-7.141500000000001 -8.363999999999999L-6.6585 -8.363999999999999" class="ember"/>
+<path d="M-7.141500000000001 -8.235999999999999L-6.6585 -8.235999999999999" class="ember"/>
+<rect x="-7.488" y="-8.132" width="1.1760000000000002" height="0.24" rx="0" class="stone"/></g><g transform="translate(341.699716713881 236.53541076487252)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">1</text></g><g transform="translate(341.699716713881 398.94334277620396)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">2</text></g><g transform="translate(477.0396600566572 392.6968838526912)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">3</text></g><g transform="translate(400 437.25495750708217)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">4</text></g>
+<g transform="translate(90 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">1</text><text class="legend" x="19" y="4">帷幔木床与睡眠区</text></g><g transform="translate(425 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">2</text><text class="legend" x="19" y="4">盥洗台与水盆</text></g><g transform="translate(90 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">3</text><text class="legend" x="19" y="4">阅读与会坐木案</text></g><g transform="translate(425 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">4</text><text class="legend" x="19" y="4">通往主堡长廊</text></g>
 <text x="400" y="568" text-anchor="middle" font-size="10" letter-spacing="1.1" fill="#91806a">室内陈设示意 · 依场景布局绘制，非实测图</text>
 </svg>

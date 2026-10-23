@@ -136,6 +136,7 @@ export function createLifeWorld({ scene, camera, collisionRoot = scene, onIntera
 
   function inActiveSpace(item) {
     if (item.type === 'npc') return !interiorLayouts[space];
+    if (interiorLayouts[space]?.level === 'upper' && interiorLayouts[item.roomId]?.level === 'upper') return true;
     if (item.roomId === 'garden') return !space || space === 'courtyard' || space === 'garden';
     return item.roomId === space;
   }

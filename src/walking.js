@@ -29,10 +29,10 @@ export function createCastleWalker({scene,camera,domElement,collisionRoot=scene,
     if(roleId){character=createCharacter(roleId);character.group.scale.setScalar(.42);resident.add(character.group);if(space===undefined)setSpace(null);greet();}
     halo.visible=Boolean(character);publish();
   }
-  function setSpace(id){
+  function setSpace(id,entrySpawn,force=false){
     const next=id&&id!=='courtyard'&&walkLayouts[id]?id:null;
-    if(space===next)return;
-    space=next;layout=walkLayouts[next||'courtyard'];clearMotion();resident.position.set(layout.spawn[0],layout.y,layout.spawn[1]);resident.rotation.y=.35;
+    if(space===next&&!force)return;
+    space=next;layout=walkLayouts[next||'courtyard'];clearMotion();const spawn=entrySpawn&&isWalkable(layout,...entrySpawn)?entrySpawn:layout.spawn;resident.position.set(spawn[0],layout.y,spawn[1]);resident.rotation.y=.35;
     publish(`${layout.name} · 点击空地行走`);
   }
   function setEnabled(value){

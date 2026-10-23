@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+<title id="title">蓄水厅平面图</title><desc id="desc">蓄水厅俯视布局：石砌蓄水池、引水装置与吊桶、水罐与清洁器具、连接中央石廊与邻室。地下层陈设示意 · 连通石廊与邻室，非实测图。</desc>
+<defs>
+<pattern id="planks" width=".22" height=".7" patternUnits="userSpaceOnUse"><rect width=".22" height=".7" fill="#ede0c8"/><path d="M0 0V.7M0 .35H.22" fill="none" stroke="#ad9776" stroke-opacity=".23" stroke-width=".006"/></pattern>
+<pattern id="hatch" width=".07" height=".07" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width=".07" height=".07" fill="#ded6c5"/><path d="M0 0V.07" stroke="#9e8a70" stroke-opacity=".45" stroke-width=".01"/></pattern>
+<pattern id="waterlines" width=".4" height=".28" patternUnits="userSpaceOnUse"><rect width=".4" height=".28" fill="#c8dadd"/><path d="M0 .2Q.1 .15 .2 .2T.4 .2" fill="none" stroke="#7f9ba2" stroke-width=".009" opacity=".5"/></pattern>
+</defs>
+<style>
+svg{background:#f8f2e8;color:#655546;font-family:"Songti SC","Noto Serif CJK SC",STSong,serif} .drawing *{stroke:#655546;stroke-width:1.1;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round} .floor{fill:url(#planks)}.masonry{fill:url(#hatch)}.wood{fill:#d6b98f}.timber{fill:#b79972}.stone{fill:#dcd5c4}.paper{fill:#f8f2e8}.linen{fill:#eee4ce}.rug{fill:#c49680}.blue{fill:#b9cdd0}.sage{fill:#bec5aa}.earth{fill:#e9dfca}.soil{fill:#c8b892}.pot{fill:#cbb29c}.brass{fill:#cdb179}.coal{fill:#8d8578}.hay{fill:#ddd1a4}.water{fill:url(#waterlines)}.line,.fine,.outline,.swing,.ripple{fill:none}.fine{stroke-width:.7;opacity:.66}.outline{stroke-width:.8;opacity:.62}.swing{stroke-width:.8;stroke-dasharray:3 3;opacity:.65}.ripple{stroke:#78949a;stroke-width:1.4}.ember{stroke:#d5af86;fill:none}.boundary{stroke-width:5;fill:none;stroke:#9e8b71}.yardpath{fill:none;stroke:#f3ebd9;stroke-width:24;stroke-linecap:butt}.chain{stroke-width:1.5;stroke-dasharray:2 2}.badge{text-anchor:middle;fill:#f8f2e8;font:10px Georgia,serif}.legend{fill:#655546;font-size:14px;letter-spacing:1px}
+</style>
+<rect x="20" y="20" width="760" height="560" rx="2" fill="none" stroke="#b6a48a" stroke-width=".65"/>
+<path d="M20 48V20h28M752 20h28v28M20 552v28h28M752 580h28v-28" fill="none" stroke="#8e795e" stroke-width="1.2"/>
+<text x="55" y="55" font-size="10" letter-spacing="3" fill="#8d7b62">CASTELLUM · SPATIAL ATLAS</text>
+<text x="55" y="95" font-size="28" letter-spacing="4">蓄水厅</text>
+<text x="56" y="116" font-family="Georgia,serif" font-size="10" letter-spacing="1.8" fill="#8d7b62">THE CISTERN HALL</text>
+<text x="674" y="57" font-family="Georgia,serif" font-size="11" letter-spacing="2" fill="#8d7b62">PL. 28</text>
+<g transform="translate(728 97)" stroke="#655546" stroke-width=".9"><path d="M0 -10V14M-6 -3L0 -17L6 -3L0 -7Z" fill="#b5a58a"/><text x="0" y="-23" text-anchor="middle" stroke="none" fill="#655546" font-family="Georgia,serif" font-size="10">N</text></g>
+<path d="M55 132H745M55 476H745" stroke="#b9aa93" stroke-width=".7"/>
+<g class="drawing" transform="translate(400 299) scale(42.241379310344826) translate(-8.25 4.55)"><rect x="5.4" y="-8.1" width="5.7" height="7.1000000000000005" rx="0" class="masonry"/>
+<rect x="5.5" y="-8" width="5.5" height="6.9" rx="0" class="stone"/>
+<rect x="5.42" y="-8.08" width="5.66" height="7.0600000000000005" rx="0" class="masonry"/>
+<rect x="5.53" y="-7.97" width="5.44" height="6.840000000000001" rx="0" class="stone"/>
+<rect x="7.35" y="-1.26" width="1.8" height="0.32" rx="0" class="stone"/>
+<path d="M8.25 -1.4200000000000002L8.25 -0.78" class="swing"/>
+<rect x="5.34" y="-5.3" width="0.32" height="1.6" rx="0" class="stone"/>
+<path d="M5.2 -4.5L5.8 -4.5" class="swing"/>
+<rect x="6.8" y="-6.6" width="2.9" height="3.2" rx="0.06" class="stone"/>
+<rect x="6.9399999999999995" y="-6.46" width="2.62" height="2.92" rx="0.025" class="water"/>
+<rect x="9.8" y="-7.449999999999999" width="0.7" height="0.7" rx="0" class="stone"/>
+<circle cx="10.15" cy="-7.1" r="0.14" class="coal"/>
+<path d="M10.15 -7.1L10.43 -7.31" class="line"/>
+<circle cx="10.01" cy="-6.96" r="0.13" class="pot"/>
+<circle cx="10.01" cy="-6.96" r="0.0754" class="paper"/>
+<circle cx="10.01" cy="-6.96" r="0.039" class="fine"/>
+<rect x="6.05" y="-3.425" width="0.6" height="1.25" rx="0" class="wood"/>
+<circle cx="6.254" cy="-2.8" r="0.25" class="brass"/>
+<circle cx="6.254" cy="-2.8" r="0.19" class="blue"/>
+<circle cx="6.529999999999999" cy="-2.8" r="0.1" class="pot"/>
+<circle cx="6.529999999999999" cy="-2.8" r="0.057999999999999996" class="paper"/>
+<circle cx="6.529999999999999" cy="-2.8" r="0.03" class="fine"/>
+<circle cx="10.2" cy="-2.7" r="0.3" class="wood"/>
+<circle cx="10.2" cy="-2.7" r="0.243" class="fine"/>
+<path d="M9.992999999999999 -2.8200000000000003L10.407 -2.8200000000000003" class="line"/>
+<path d="M9.992999999999999 -2.7L10.407 -2.7" class="line"/>
+<path d="M9.992999999999999 -2.58L10.407 -2.58" class="line"/></g><g transform="translate(400 279.9913793103448)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">1</text></g><g transform="translate(480.2586206896552 191.2844827586207)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">2</text></g><g transform="translate(319.7413793103448 372.92241379310343)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">3</text></g><g transform="translate(400 437.12931034482756)"><circle r="10" fill="#655546" stroke="#f8f2e8" stroke-width="2"/><text class="badge" y="3.4">4</text></g>
+<g transform="translate(90 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">1</text><text class="legend" x="19" y="4">石砌蓄水池</text></g><g transform="translate(425 510)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">2</text><text class="legend" x="19" y="4">引水装置与吊桶</text></g><g transform="translate(90 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">3</text><text class="legend" x="19" y="4">水罐与清洁器具</text></g><g transform="translate(425 539)"><circle r="9" fill="#655546"/><text class="badge" y="3.4">4</text><text class="legend" x="19" y="4">连接中央石廊与邻室</text></g>
+<text x="400" y="568" text-anchor="middle" font-size="10" letter-spacing="1.1" fill="#91806a">地下层陈设示意 · 连通石廊与邻室，非实测图</text>
+</svg>
